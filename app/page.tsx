@@ -12,8 +12,14 @@ export default function Home() {
             <a href="#integration" className="hover:text-primary transition-colors">Integration</a>
             <a href="#benefits" className="hover:text-primary transition-colors">Benefits</a>
           </nav>
-          <button className="bg-primary text-white px-4 py-2 rounded-lg hover:bg-primary-dark transition-colors">
-            Get Started
+          <button 
+            className="bg-white border border-gray px-4 py-2 rounded-lg hover:bg-gray-light transition-colors flex items-center gap-2"
+            aria-label="Theme toggle"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+            </svg>
+            <span className="font-medium">Light Mode</span>
           </button>
         </div>
       </header>
@@ -62,9 +68,14 @@ export default function Home() {
                 </ul>
               </div>
               <div className="flex flex-col sm:flex-row gap-4 pt-2">
-                <button className="bg-primary text-white px-6 py-3 rounded-lg hover:bg-primary-dark transition-colors font-medium">
+                <a 
+                  href="https://calendly.com/knowleyde" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="bg-primary text-white px-6 py-3 rounded-lg hover:bg-primary-dark transition-colors font-medium inline-block text-center"
+                >
                   Schedule Demo
-                </button>
+                </a>
                 <button className="border border-gray px-6 py-3 rounded-lg hover:bg-gray-light transition-colors font-medium">
                   Learn More
                 </button>
@@ -73,23 +84,14 @@ export default function Home() {
             <div className="md:w-1/2">
               <div className="relative w-full aspect-video bg-gradient-to-tr from-primary-dark via-primary to-secondary rounded-lg shadow-xl overflow-hidden">
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="p-6 bg-white/90 backdrop-blur-sm rounded-lg max-w-xs text-center space-y-3">
-                    <div className="flex justify-center">
-                      <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                        </svg>
-                      </div>
-                    </div>
-                    <h3 className="font-bold text-primary">AI-Driven Matching</h3>
-                    <p className="text-sm text-gray-dark">Our algorithms find the perfect course matches based on employee skills and business objectives</p>
-                  </div>
-                </div>
-                <div className="absolute top-4 left-4 bg-white/20 backdrop-blur-md rounded-lg p-3">
-                  <div className="text-white text-xs font-medium">Employee Profile</div>
-                </div>
-                <div className="absolute bottom-4 right-4 bg-white/20 backdrop-blur-md rounded-lg p-3">
-                  <div className="text-white text-xs font-medium">Course Match: 98%</div>
+                  <iframe 
+                    className="w-full h-full rounded-lg"
+                    src="https://www.youtube.com/embed/LDU_Txk06tM?autoplay=0&rel=0&showinfo=0&modestbranding=1"
+                    title="Crab Rave Video"
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  ></iframe>
                 </div>
               </div>
             </div>
@@ -465,12 +467,17 @@ export default function Home() {
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-              <button className="bg-white text-primary px-8 py-4 rounded-lg hover:bg-gray-light transition-colors font-medium text-lg flex items-center justify-center gap-2">
+              <a 
+                href="https://calendly.com/knowleyde" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="bg-white text-primary px-8 py-4 rounded-lg hover:bg-gray-light transition-colors font-medium text-lg flex items-center justify-center gap-2"
+              >
                 <span>Schedule a Demo</span>
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                 </svg>
-              </button>
+              </a>
               <button className="border-2 border-white bg-transparent px-8 py-4 rounded-lg hover:bg-white/10 transition-colors font-medium text-lg">
                 Contact Sales
               </button>
@@ -496,27 +503,27 @@ export default function Home() {
       </main>
 
       {/* Footer */}
-      <footer className="bg-gray-dark text-white py-12 px-4">
+      <footer className="bg-white border-t border-gray py-12 px-4">
         <div className="container mx-auto max-w-6xl">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
             <div className="md:col-span-1">
               <div className="text-2xl font-bold mb-4 text-primary">Knowley</div>
-              <p className="text-sm opacity-70 mb-4">
+              <p className="text-base text-foreground mb-6">
                 AI-powered talent management tool matching employees to L&D/courses seamlessly.
               </p>
-              <div className="flex space-x-4">
-                <a href="#" className="text-white hover:text-primary transition-colors">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+              <div className="flex space-x-5">
+                <a href="#" className="text-primary hover:text-primary-dark transition-colors">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M22.675 0h-21.35c-.732 0-1.325.593-1.325 1.325v21.351c0 .731.593 1.324 1.325 1.324h11.495v-9.294h-3.128v-3.622h3.128v-2.671c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12v9.293h6.116c.73 0 1.323-.593 1.323-1.325v-21.35c0-.732-.593-1.325-1.325-1.325z"/>
                   </svg>
                 </a>
-                <a href="#" className="text-white hover:text-primary transition-colors">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                <a href="#" className="text-primary hover:text-primary-dark transition-colors">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M22.46 6c-.77.35-1.6.58-2.46.69.88-.53 1.56-1.37 1.88-2.38-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29 0 .34.04.67.11.98C8.28 9.09 5.11 7.38 3 4.79c-.37.63-.58 1.37-.58 2.15 0 1.49.75 2.81 1.91 3.56-.71 0-1.37-.2-1.95-.5v.03c0 2.08 1.48 3.82 3.44 4.21a4.22 4.22 0 0 1-1.93.07 4.28 4.28 0 0 0 4 2.98 8.521 8.521 0 0 1-5.33 1.84c-.34 0-.68-.02-1.02-.06C3.44 20.29 5.7 21 8.12 21 16 21 20.33 14.46 20.33 8.79c0-.19 0-.37-.01-.56.84-.6 1.56-1.36 2.14-2.23z"/>
                   </svg>
                 </a>
-                <a href="#" className="text-white hover:text-primary transition-colors">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                <a href="#" className="text-primary hover:text-primary-dark transition-colors">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
                   </svg>
                 </a>
@@ -524,44 +531,44 @@ export default function Home() {
             </div>
             
             <div>
-              <h4 className="font-bold mb-4">Product</h4>
-              <ul className="space-y-2 text-sm">
-                <li><a href="#" className="opacity-70 hover:opacity-100 hover:text-primary transition-colors">Features</a></li>
-                <li><a href="#" className="opacity-70 hover:opacity-100 hover:text-primary transition-colors">Integrations</a></li>
-                <li><a href="#" className="opacity-70 hover:opacity-100 hover:text-primary transition-colors">Enterprise</a></li>
-                <li><a href="#" className="opacity-70 hover:opacity-100 hover:text-primary transition-colors">Security</a></li>
-                <li><a href="#" className="opacity-70 hover:opacity-100 hover:text-primary transition-colors">Pricing</a></li>
+              <h4 className="font-bold text-lg mb-5 text-foreground">Product</h4>
+              <ul className="space-y-3">
+                <li><a href="#" className="text-base text-gray-dark hover:text-primary transition-colors">Features</a></li>
+                <li><a href="#" className="text-base text-gray-dark hover:text-primary transition-colors">Integrations</a></li>
+                <li><a href="#" className="text-base text-gray-dark hover:text-primary transition-colors">Enterprise</a></li>
+                <li><a href="#" className="text-base text-gray-dark hover:text-primary transition-colors">Security</a></li>
+                <li><a href="#" className="text-base text-gray-dark hover:text-primary transition-colors">Pricing</a></li>
               </ul>
             </div>
             
             <div>
-              <h4 className="font-bold mb-4">Resources</h4>
-              <ul className="space-y-2 text-sm">
-                <li><a href="#" className="opacity-70 hover:opacity-100 hover:text-primary transition-colors">Documentation</a></li>
-                <li><a href="#" className="opacity-70 hover:opacity-100 hover:text-primary transition-colors">Case Studies</a></li>
-                <li><a href="#" className="opacity-70 hover:opacity-100 hover:text-primary transition-colors">Blog</a></li>
-                <li><a href="#" className="opacity-70 hover:opacity-100 hover:text-primary transition-colors">Webinars</a></li>
-                <li><a href="#" className="opacity-70 hover:opacity-100 hover:text-primary transition-colors">Help Center</a></li>
+              <h4 className="font-bold text-lg mb-5 text-foreground">Resources</h4>
+              <ul className="space-y-3">
+                <li><a href="#" className="text-base text-gray-dark hover:text-primary transition-colors">Documentation</a></li>
+                <li><a href="#" className="text-base text-gray-dark hover:text-primary transition-colors">Case Studies</a></li>
+                <li><a href="#" className="text-base text-gray-dark hover:text-primary transition-colors">Blog</a></li>
+                <li><a href="#" className="text-base text-gray-dark hover:text-primary transition-colors">Webinars</a></li>
+                <li><a href="#" className="text-base text-gray-dark hover:text-primary transition-colors">Help Center</a></li>
               </ul>
             </div>
             
             <div>
-              <h4 className="font-bold mb-4">Company</h4>
-              <ul className="space-y-2 text-sm">
-                <li><a href="#" className="opacity-70 hover:opacity-100 hover:text-primary transition-colors">About Us</a></li>
-                <li><a href="#" className="opacity-70 hover:opacity-100 hover:text-primary transition-colors">Careers</a></li>
-                <li><a href="#" className="opacity-70 hover:opacity-100 hover:text-primary transition-colors">Partners</a></li>
-                <li><a href="#" className="opacity-70 hover:opacity-100 hover:text-primary transition-colors">Contact Us</a></li>
+              <h4 className="font-bold text-lg mb-5 text-foreground">Company</h4>
+              <ul className="space-y-3">
+                <li><a href="#" className="text-base text-gray-dark hover:text-primary transition-colors">About Us</a></li>
+                <li><a href="#" className="text-base text-gray-dark hover:text-primary transition-colors">Careers</a></li>
+                <li><a href="#" className="text-base text-gray-dark hover:text-primary transition-colors">Partners</a></li>
+                <li><a href="#" className="text-base text-gray-dark hover:text-primary transition-colors">Contact Us</a></li>
               </ul>
             </div>
           </div>
           
-          <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center">
-            <p className="text-sm opacity-70 mb-4 md:mb-0">© 2024 Knowley. All rights reserved.</p>
-            <div className="flex space-x-6 text-sm">
-              <a href="#" className="opacity-70 hover:opacity-100 hover:text-primary transition-colors">Privacy Policy</a>
-              <a href="#" className="opacity-70 hover:opacity-100 hover:text-primary transition-colors">Terms of Service</a>
-              <a href="#" className="opacity-70 hover:opacity-100 hover:text-primary transition-colors">Cookie Policy</a>
+          <div className="border-t border-gray pt-8 flex flex-col md:flex-row justify-between items-center">
+            <p className="text-base text-gray-dark mb-4 md:mb-0">© 2024 Knowley. All rights reserved.</p>
+            <div className="flex space-x-8 text-base">
+              <a href="#" className="text-gray-dark hover:text-primary transition-colors">Privacy Policy</a>
+              <a href="#" className="text-gray-dark hover:text-primary transition-colors">Terms of Service</a>
+              <a href="#" className="text-gray-dark hover:text-primary transition-colors">Cookie Policy</a>
             </div>
           </div>
         </div>

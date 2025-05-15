@@ -1,18 +1,18 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-  --primary: #4361ee;
-  --primary-light: #738eff;
-  --primary-dark: #2940b3;
-  --secondary: #3a86ff;
-  --accent: #4cc9f0;
+  --background: #F8F9FA;
+  --foreground: #212529;
+  --primary: #5771FF;
+  --primary-light: #A8B5FF;
+  --primary-dark: #4661E6;
+  --secondary: #A8B5FF;
+  --accent: #5771FF;
   --success: #06d6a0;
   --warning: #ffd166;
   --error: #ef476f;
-  --gray-light: #f8f9fa;
-  --gray: #e9ecef;
+  --gray-light: #F8F9FA;
+  --gray: #DEE2E6;
   --gray-dark: #495057;
 }
 
@@ -26,19 +26,7 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-    --primary: #738eff;
-    --primary-light: #98b0ff;
-    --primary-dark: #3a5ce8;
-    --secondary: #5d9aff;
-    --gray-light: #2a2a2a;
-    --gray: #3a3a3a;
-    --gray-dark: #6c757d;
-  }
-}
+/* Removing dark mode since we'll only have light mode */
 
 body {
   background: var(--background);
