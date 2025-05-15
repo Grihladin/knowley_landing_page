@@ -414,37 +414,6 @@ export default function Home() {
               </div>
             </div>
             
-            <div className="mt-16 bg-white p-8 rounded-xl shadow-sm">
-              <div className="flex flex-col md:flex-row items-center gap-8">
-                <div className="md:w-3/5 space-y-4">
-                  <div className="text-sm font-medium text-primary">CASE STUDY</div>
-                  <h3 className="text-2xl font-bold">
-                    "Knowley reduced our L&D matching process from 3 weeks to just 2 days while improving learning outcomes."
-                  </h3>
-                  <div className="pt-2">
-                    <div className="font-medium">Sarah Johnson</div>
-                    <div className="text-sm text-gray-dark">Head of Talent Development, Fortune 500 Company</div>
-                  </div>
-                </div>
-                <div className="md:w-2/5">
-                  <div className="flex items-center gap-4">
-                    <div className="text-4xl font-bold text-primary">85%</div>
-                    <div className="text-sm">
-                      <div className="font-medium">Time Saved</div>
-                      <div className="text-gray-dark">in the L&D matching process</div>
-                    </div>
-                  </div>
-                  <div className="w-full h-px bg-gray my-4"></div>
-                  <div className="flex items-center gap-4">
-                    <div className="text-4xl font-bold text-success">32%</div>
-                    <div className="text-sm">
-                      <div className="font-medium">Increased</div>
-                      <div className="text-gray-dark">employee skill development</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
           </div>
         </section>
 
@@ -564,7 +533,7 @@ export default function Home() {
           </div>
           
           <div className="border-t border-gray pt-8 flex flex-col md:flex-row justify-between items-center">
-            <p className="text-base text-gray-dark mb-4 md:mb-0">© 2024 Knowley. All rights reserved.</p>
+            <p className="text-base text-gray-dark mb-4 md:mb-0">© 2025 Knowley. All rights reserved.</p>
             <div className="flex space-x-8 text-base">
               <a href="#" className="text-gray-dark hover:text-primary transition-colors">Privacy Policy</a>
               <a href="#" className="text-gray-dark hover:text-primary transition-colors">Terms of Service</a>
