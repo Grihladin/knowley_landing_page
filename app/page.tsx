@@ -1,4 +1,7 @@
+"use client";
 import Image from "next/image";
+import "client-only";
+
 
 export default function Home() {
   return (
@@ -453,16 +456,63 @@ export default function Home() {
             </div>
             
             <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 max-w-xl mx-auto">
-              <form className="flex flex-col sm:flex-row gap-3">
+              <form 
+                className="flex flex-col sm:flex-row gap-3" 
+                onSubmit={async (e) => {
+                  e.preventDefault();
+                  const form = e.currentTarget;
+                  const emailInput = form.querySelector('input[type="email"]') as HTMLInputElement;
+                  const email = emailInput.value;
+                  const messageElement = form.parentElement?.querySelector('.waitlist-message') as HTMLDivElement;
+                  
+                  if (!email || !email.includes('@')) {
+                    messageElement.textContent = 'Please enter a valid email address';
+                    messageElement.className = 'waitlist-message text-sm mt-3 text-yellow-300';
+                    return;
+                  }
+                  
+                  try {
+                    messageElement.textContent = 'Processing...';
+                    messageElement.className = 'waitlist-message text-sm mt-3 text-white';
+                    
+                    const response = await fetch('/api/waitlist', {
+                      method: 'POST',
+                      headers: {
+                        'Content-Type': 'application/json',
+                      },
+                      body: JSON.stringify({ email }),
+                    });
+                    
+                    const data = await response.json();
+                    
+                    if (response.ok) {
+                      emailInput.value = '';
+                      messageElement.textContent = 'Success! You\'ve been added to our waitlist.';
+                      messageElement.className = 'waitlist-message text-sm mt-3 text-green-300';
+                    } else {
+                      messageElement.textContent = data.message || 'Something went wrong. Please try again.';
+                      messageElement.className = 'waitlist-message text-sm mt-3 text-yellow-300';
+                    }
+                  } catch (error) {
+                    messageElement.textContent = 'Failed to connect to server. Please try again.';
+                    messageElement.className = 'waitlist-message text-sm mt-3 text-yellow-300';
+                  }
+                }}
+              >
                 <input 
                   type="email" 
                   placeholder="Enter your work email" 
-                  className="flex-grow px-4 py-3 rounded-lg text-gray-dark focus:outline-none focus:ring-2 focus:ring-primary-light"
+                  className="flex-grow px-4 py-3 rounded-lg text-gray-dark border-2 border-white outline-none focus:ring-2 focus:ring-primary-light"
+                  required
                 />
-                <button className="bg-accent text-white px-5 py-3 rounded-lg hover:bg-accent/90 transition-colors font-medium whitespace-nowrap">
+                <button 
+                  type="submit"
+                  className="bg-accent text-white px-5 py-3 rounded-lg hover:bg-accent/90 transition-colors font-medium whitespace-nowrap"
+                >
                   Join Waitlist
                 </button>
               </form>
+              <div className="waitlist-message text-sm mt-3 text-white"></div>
               <p className="text-xs mt-3 opacity-70">
                 By signing up, you agree to our Terms of Service and Privacy Policy.
               </p>
@@ -474,13 +524,13 @@ export default function Home() {
       {/* Footer */}
       <footer className="bg-white border-t border-gray py-12 px-4">
         <div className="container mx-auto max-w-6xl">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
-            <div className="md:col-span-1">
+          <div className="flex justify-center items-center mb-12">
+            <div className="text-center">
               <div className="text-2xl font-bold mb-4 text-primary">Knowley</div>
-              <p className="text-base text-foreground mb-6">
+              <p className="text-base text-foreground mb-6 max-w-md">
                 AI-powered talent management tool matching employees to L&D/courses seamlessly.
               </p>
-              <div className="flex">
+              <div className="flex justify-center">
                 <a 
                   href="https://linkedin.com/company/knowleyai" 
                   target="_blank" 
@@ -498,47 +548,16 @@ export default function Home() {
                 </a>
               </div>
             </div>
-            
-            <div>
-              <h4 className="font-bold text-lg mb-5 text-foreground">Product</h4>
-              <ul className="space-y-3">
-                <li><a href="#" className="text-base text-gray-dark hover:text-primary transition-colors">Features</a></li>
-                <li><a href="#" className="text-base text-gray-dark hover:text-primary transition-colors">Integrations</a></li>
-                <li><a href="#" className="text-base text-gray-dark hover:text-primary transition-colors">Enterprise</a></li>
-                <li><a href="#" className="text-base text-gray-dark hover:text-primary transition-colors">Security</a></li>
-                <li><a href="#" className="text-base text-gray-dark hover:text-primary transition-colors">Pricing</a></li>
-              </ul>
-            </div>
-            
-            <div>
-              <h4 className="font-bold text-lg mb-5 text-foreground">Resources</h4>
-              <ul className="space-y-3">
-                <li><a href="#" className="text-base text-gray-dark hover:text-primary transition-colors">Documentation</a></li>
-                <li><a href="#" className="text-base text-gray-dark hover:text-primary transition-colors">Case Studies</a></li>
-                <li><a href="#" className="text-base text-gray-dark hover:text-primary transition-colors">Blog</a></li>
-                <li><a href="#" className="text-base text-gray-dark hover:text-primary transition-colors">Webinars</a></li>
-                <li><a href="#" className="text-base text-gray-dark hover:text-primary transition-colors">Help Center</a></li>
-              </ul>
-            </div>
-            
-            <div>
-              <h4 className="font-bold text-lg mb-5 text-foreground">Company</h4>
-              <ul className="space-y-3">
-                <li><a href="#" className="text-base text-gray-dark hover:text-primary transition-colors">About Us</a></li>
-                <li><a href="#" className="text-base text-gray-dark hover:text-primary transition-colors">Careers</a></li>
-                <li><a href="#" className="text-base text-gray-dark hover:text-primary transition-colors">Partners</a></li>
-                <li><a href="#" className="text-base text-gray-dark hover:text-primary transition-colors">Contact Us</a></li>
-              </ul>
-            </div>
           </div>
           
           <div className="border-t border-gray pt-8 flex flex-col md:flex-row justify-between items-center">
             <p className="text-base text-gray-dark mb-4 md:mb-0">© 2025 Knowley. All rights reserved.</p>
-            <div className="flex space-x-8 text-base">
-              <a href="#" className="text-gray-dark hover:text-primary transition-colors">Privacy Policy</a>
-              <a href="#" className="text-gray-dark hover:text-primary transition-colors">Terms of Service</a>
-              <a href="#" className="text-gray-dark hover:text-primary transition-colors">Cookie Policy</a>
-            </div>
+            <a 
+              href="mailto:info@knowley.ai" 
+              className="text-base text-gray-dark hover:text-primary transition-colors"
+            >
+              info@knowley.ai
+            </a>
           </div>
         </div>
       </footer>
