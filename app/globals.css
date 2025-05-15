@@ -33,3 +33,28 @@ body {
   color: var(--foreground);
   font-family: var(--font-sans, Arial, Helvetica, sans-serif);
 }
+
+/* LinkedIn animation */
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.linkedin-icon {
+  transition: all 0.3s ease;
+}
+
+.linkedin-icon:hover {
+  transform: scale(1.2);
+}
+
+.linkedin-pulse {
+  animation: pulse 2s infinite ease-in-out;
+}
