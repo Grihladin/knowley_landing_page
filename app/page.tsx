@@ -8,22 +8,15 @@ export default function Home() {
     <div className="flex flex-col min-h-screen">
       {/* Navigation */}
       <header className="sticky top-0 z-10 bg-background/80 backdrop-blur-sm border-b border-gray/20">
-        <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-          <div className="text-2xl font-bold text-primary">Knowley</div>
-          <nav className="hidden md:flex space-x-8">
-            <a href="#features" className="hover:text-primary transition-colors">Features</a>
-            <a href="#integration" className="hover:text-primary transition-colors">Integration</a>
-            <a href="#benefits" className="hover:text-primary transition-colors">Benefits</a>
-          </nav>
-          <button 
-            className="bg-white border border-gray px-4 py-2 rounded-lg hover:bg-gray-light transition-colors flex items-center gap-2"
-            aria-label="Theme toggle"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
-            </svg>
-            <span className="font-medium">Light Mode</span>
-          </button>
+        <div className="container mx-auto px-4 py-4">
+          <div className="flex flex-col sm:flex-row items-center">
+            <div className="text-2xl font-bold text-primary mb-2 sm:mb-0">Knowley</div>
+            <nav className="flex space-x-4 sm:space-x-8 mx-auto text-sm sm:text-base">
+              <a href="#features" className="hover:text-primary transition-colors">Features</a>
+              <a href="#integration" className="hover:text-primary transition-colors">Integration</a>
+              <a href="#benefits" className="hover:text-primary transition-colors">Benefits</a>
+            </nav>
+          </div>
         </div>
       </header>
 
@@ -31,7 +24,7 @@ export default function Home() {
         {/* Hero Section */}
         <section className="py-20 px-4 bg-gradient-to-br from-background to-gray-light">
           <div className="container mx-auto max-w-6xl flex flex-col md:flex-row items-center gap-12">
-            <div className="md:w-1/2 space-y-6">
+            <div className="w-full md:w-1/2 space-y-6">
               <div className="inline-block px-3 py-1 bg-primary/10 text-primary rounded-full text-sm font-medium mb-2">
                 AI-Powered L&D Solution
               </div>
@@ -84,7 +77,7 @@ export default function Home() {
                 </button>
               </div>
             </div>
-            <div className="md:w-1/2">
+            <div className="w-full md:w-1/2 mt-8 md:mt-0">
               <div className="relative w-full aspect-video bg-gradient-to-tr from-primary-dark via-primary to-secondary rounded-lg shadow-xl overflow-hidden">
                 <div className="absolute inset-0 flex items-center justify-center">
                   <iframe 
