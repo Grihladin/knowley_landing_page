@@ -6,7 +6,7 @@ import {
   staggerContainer,
   teamCardVariants,
   imageFrameVariants,
-  linkedInButtonVariants,
+  buttonVariants,
 } from "./utils/animations";
 
 const teamMembers = [
@@ -69,11 +69,12 @@ export default function TeamSection() {
 							key={idx}
 							variants={teamCardVariants}
 							whileHover="hover"
-							className="bg-gray-50 rounded-lg shadow p-6 flex flex-col items-center w-72 min-h-[320px] md:min-h-[340px]"
+							className="bg-gray-50 rounded-lg shadow p-6 flex flex-col items-center w-72 min-h-[320px] md:min-h-[340px] transform-gpu will-change-transform"
 						>
 							<motion.div
 								variants={imageFrameVariants}
 								whileHover="hover"
+								className="transform-gpu will-change-transform"
 							>
 								<img
 									src={member.image}
@@ -101,9 +102,14 @@ export default function TeamSection() {
 							</motion.p>
 							<motion.a
 								href={member.linkedin}
-								variants={linkedInButtonVariants}
-								whileHover="hover"
-								className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-full transition mt-auto text-sm font-medium"
+								initial={{ scale: 1 }}
+								whileHover={{ scale: 1.05 }}
+								whileTap={{ scale: 0.95 }}
+								transition={{ 
+									type: "tween", 
+									duration: 0.15 
+								}}
+								className="inline-flex items-center justify-center p-2 bg-blue-600 text-white rounded-lg transform-gpu mt-auto will-change-transform"
 								target="_blank"
 								rel="noopener noreferrer"
 								aria-label={`LinkedIn profile of ${member.name}`}
@@ -112,11 +118,10 @@ export default function TeamSection() {
 									xmlns="http://www.w3.org/2000/svg"
 									fill="currentColor"
 									viewBox="0 0 24 24"
-									className="w-5 h-5"
+									className="w-6 h-6"
 								>
 									<path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-10h3v10zm-1.5-11.268c-.966 0-1.75-.784-1.75-1.75s.784-1.75 1.75-1.75 1.75.784 1.75 1.75-.784 1.75-1.75 1.75zm15.5 11.268h-3v-5.604c0-1.337-.025-3.063-1.868-3.063-1.868 0-2.154 1.459-2.154 2.967v5.7h-3v-10h2.881v1.367h.041c.401-.761 1.379-1.563 2.838-1.563 3.034 0 3.595 1.997 3.595 4.59v5.606z" />
 								</svg>
-								LinkedIn
 							</motion.a>
 						</motion.div>
 					))}

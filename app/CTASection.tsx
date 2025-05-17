@@ -25,25 +25,24 @@ export default function CTASection() {
     setShowContactForm(prev => !prev);
   };
 
-  const { scrollYProgress } = useScroll();
+  // Optimize scroll animation for better performance
+  const { scrollYProgress } = useScroll({
+    // Use layout effect: false for better performance
+    layoutEffect: false
+  });
+  // Apply a more efficient transform with reduced precision for better performance
   const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
 
   return (
     <section id="waitlist" className="py-20 mt-16 px-4 bg-gradient-to-br from-primary to-primary-dark text-white relative overflow-hidden">
       <motion.div
-        className="absolute inset-0 opacity-10"
+        className="absolute inset-0 opacity-10 will-change-transform"
         style={{ y: backgroundY }}
       >
-        <motion.div
-          initial={{ scale: 0.8, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 1 }}
+        <div
           className="absolute top-0 left-0 w-48 h-48 rounded-full bg-white blur-3xl"
         />
-        <motion.div
-          initial={{ scale: 0.8, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 1, delay: 0.2 }}
+        <div
           className="absolute bottom-0 right-0 w-64 h-64 rounded-full bg-white blur-3xl"
         />
       </motion.div>
@@ -100,35 +99,29 @@ export default function CTASection() {
         </motion.div>
         {/* Form Container - Stacked layout where both forms can be visible */}
         <div className="flex flex-col space-y-6 max-w-xl mx-auto">
-          {/* Contact Form - Shows at the top when active */}
-          <div className="min-h-0 overflow-hidden" style={{ 
-                maxHeight: showContactForm ? '1000px' : '0px',
-                marginBottom: showContactForm ? 16 : 0,
-                transition: 'max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), margin 0.3s ease-in-out'
-              }}>
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9, y: -10 }}
-              animate={{ 
-                opacity: showContactForm ? 1 : 0,
-                scale: showContactForm ? 1 : 0.9,
-                y: showContactForm ? 0 : -10,
-              }}
-              transition={{
-                opacity: { duration: 0.2 },
-                scale: { duration: 0.3 },
-                y: { duration: 0.3 }
-              }}
-              className="bg-white/10 backdrop-blur-sm rounded-xl p-6 w-full origin-top"
-            >
-              <ContactForm />
-            </motion.div>
-          </div>
+          {/* Contact Form - Shows with AnimatePresence for better performance */}
+          <AnimatePresence>
+            {showContactForm && (
+              <motion.div
+                initial={{ opacity: 0, height: 0, marginBottom: 0 }}
+                animate={{ opacity: 1, height: "auto", marginBottom: 16 }}
+                exit={{ opacity: 0, height: 0, marginBottom: 0 }}
+                transition={{
+                  opacity: { duration: 0.2 },
+                  height: { duration: 0.3, ease: "easeInOut" }
+                }}
+                className="bg-white/10 backdrop-blur-sm rounded-xl p-6 w-full overflow-hidden will-change-auto"
+              >
+                <ContactForm />
+              </motion.div>
+            )}
+          </AnimatePresence>
           
-          {/* Waitlist Form - Always present */}
+          {/* Waitlist Form - Always present, removed layout animation for better performance */}
           <motion.div
             className="bg-white/10 backdrop-blur-sm rounded-xl p-6 w-full"
-            layout
-            layoutId="waitlist-form"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ 
               type: "tween",
               duration: 0.3,

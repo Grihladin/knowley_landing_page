@@ -1,6 +1,6 @@
 "use client";
-import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import React, { useState, memo } from "react";
+import { motion } from "framer-motion";
 import { formInputVariants, buttonVariants } from "./utils/animations";
 import { validateEmail } from "./utils/validation";
 
@@ -201,4 +201,5 @@ const ContactForm: React.FC = () => {
   );
 };
 
-export default ContactForm;
+// Memoize the component to prevent unnecessary re-renders
+export default memo(ContactForm);

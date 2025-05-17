@@ -1,6 +1,6 @@
 // WaitlistForm: React state-based, accessible, and user-friendly waitlist form
-import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import React, { useState, memo } from "react";
+import { motion } from "framer-motion";
 import { formInputVariants, buttonVariants } from "./utils/animations";
 import { validateEmail } from "./utils/validation";
 
@@ -110,4 +110,5 @@ const WaitlistForm: React.FC = () => {
   );
 };
 
-export default WaitlistForm;
+// Memoize the component to prevent unnecessary re-renders
+export default memo(WaitlistForm);

@@ -55,7 +55,9 @@ export const staggerContainer: Variants = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.2,
+      staggerChildren: 0.1, // Reduced stagger time for smoother overall animation
+      ease: "easeOut",
+      duration: 0.3, // Add a duration for smoother container fade-in
     },
   },
 };
@@ -63,42 +65,35 @@ export const staggerContainer: Variants = {
 export const teamCardVariants: Variants = {
   hidden: {
     opacity: 0,
-    x: -20,
-    scale: 0.95,
+    y: 10, // Changed from x to y for more efficient rendering
+    scale: 0.98,
   },
   visible: {
     opacity: 1,
-    x: 0,
+    y: 0,
     scale: 1,
     transition: {
-      duration: 0.5,
+      duration: 0.3, // Reduced duration
       ease: "easeOut",
     },
   },
   hover: {
-    scale: 1.02,
+    scale: 1.01, // Reduced scale amount for smoother animation
+    y: -2, // Small lift effect instead of large scale
     transition: {
       duration: 0.2,
+      type: "tween", // Use tween instead of spring for more predictable performance
     },
   },
 };
 
 export const imageFrameVariants: Variants = {
   hover: {
-    rotateY: [-3, 3],
-    transition: {
-      duration: 0.3,
-      ease: "easeInOut",
-    },
-  },
-};
-
-export const linkedInButtonVariants: Variants = {
-  hover: {
-    backgroundColor: "#0a66c2",
-    scale: 1.05,
+    scale: 1.03, // Use scale instead of rotation for better performance
     transition: {
       duration: 0.2,
+      type: "tween",
+      ease: "easeOut",
     },
   },
 };
@@ -315,18 +310,19 @@ export const ctaHeadingVariants: Variants = {
 export const formContainerVariants: Variants = {
   hidden: {
     opacity: 0,
-    y: 40,
-    scale: 0.95,
+    y: 20,
+    scale: 0.98,
   },
   visible: {
     opacity: 1,
     y: 0,
     scale: 1,
     transition: {
-      type: "spring",
-      stiffness: 100,
-      damping: 20,
-      staggerChildren: 0.1,
+      // Use tween instead of spring for more predictable animations
+      type: "tween",
+      duration: 0.3,
+      ease: "easeOut",
+      staggerChildren: 0.05,
     },
   },
 };
@@ -334,23 +330,24 @@ export const formContainerVariants: Variants = {
 export const formInputVariants: Variants = {
   hidden: {
     opacity: 0,
-    x: -20,
+    y: 10, // Change from x to y for more efficient rendering
   },
   visible: {
     opacity: 1,
-    x: 0,
+    y: 0,
     transition: {
-      type: "spring",
-      stiffness: 100,
-      damping: 20,
+      // Use tween for more efficient animations
+      type: "tween",
+      duration: 0.2,
+      ease: "easeOut",
     },
   },
   focus: {
-    scale: 1.02,
+    // Reduce scale amount for better performance
+    scale: 1.01,
     transition: {
-      type: "spring",
-      stiffness: 400,
-      damping: 10,
+      type: "tween",
+      duration: 0.15,
     },
   },
 };
