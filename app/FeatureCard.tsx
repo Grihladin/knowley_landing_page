@@ -9,7 +9,7 @@ interface FeatureCardProps {
 }
 
 const FeatureCard: React.FC<FeatureCardProps> = ({ icon, title, description, items }) => (
-  <div className="bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+  <div className="bg-white p-4 sm:p-8 rounded-xl shadow-sm hover:shadow-md transition-shadow w-full max-w-full">
     <div className="flex items-center gap-4 mb-6">
       <div className="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center">
         {icon}
