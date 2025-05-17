@@ -21,7 +21,7 @@ export default function CTASection() {
   const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
 
   return (
-    <section className="py-20 px-4 bg-gradient-to-br from-primary to-primary-dark text-white relative overflow-hidden">
+    <section id="waitlist" className="py-20 px-4 bg-gradient-to-br from-primary to-primary-dark text-white relative overflow-hidden">
       <motion.div
         className="absolute inset-0 opacity-10"
         style={{ y: backgroundY }}

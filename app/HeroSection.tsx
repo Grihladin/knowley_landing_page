@@ -81,15 +81,16 @@ export default function HeroSection() {
             >
               Schedule Demo
             </motion.a>
-            <motion.button
+            <motion.a
+              href="#waitlist"
               variants={heroButtonVariants}
               whileHover="hover"
               whileTap="tap" 
-              className="border border-gray px-6 py-3 rounded-lg hover:bg-gray-light transition-colors font-medium focus:outline-none focus:ring-2 focus:ring-primary"
-              aria-label="Learn more about Knowley"
+              className="border border-gray px-6 py-3 rounded-lg hover:bg-gray-light transition-colors font-medium focus:outline-none focus:ring-2 focus:ring-primary text-center"
+              aria-label="Join our waitlist"
             >
-              Learn More
-            </motion.button>
+              Waitlist
+            </motion.a>
           </motion.div>
         </motion.div>
         <motion.div

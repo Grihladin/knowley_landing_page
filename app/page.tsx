@@ -26,6 +26,7 @@ export default function Home() {
               <a href="#features" className="hover:text-primary transition-colors" aria-label="Features section">Features</a>
               <a href="#integration" className="hover:text-primary transition-colors" aria-label="Integration section">Integration</a>
               <a href="#benefits" className="hover:text-primary transition-colors" aria-label="Benefits section">Benefits</a>
+              <a href="#team" className="hover:text-primary transition-colors" aria-label="Team section">Team</a>
             </nav>
           </div>
         </div>
