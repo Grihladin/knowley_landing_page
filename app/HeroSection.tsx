@@ -86,7 +86,7 @@ export default function HeroSection() {
               variants={heroButtonVariants}
               whileHover="hover"
               whileTap="tap" 
-              className="border border-gray px-6 py-3 rounded-lg hover:bg-gray-light transition-colors font-medium focus:outline-none focus:ring-2 focus:ring-primary text-center"
+              className="border border-gray px-6 py-3 rounded-lg hover:bg-gray-light transition-colors font-medium text-center"
               aria-label="Join our waitlist"
             >
               Waitlist
