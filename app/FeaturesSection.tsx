@@ -45,14 +45,6 @@ export default function FeaturesSection() {
             }
           />
         </div>
-        <div className="mt-16 text-center">
-          <button className="bg-primary/10 text-primary px-6 py-3 rounded-lg hover:bg-primary/20 transition-colors font-medium inline-flex items-center gap-2">
-            <span>Explore All Features</span>
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-            </svg>
-          </button>
-        </div>
       </div>
     </section>
   );

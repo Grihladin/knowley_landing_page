@@ -2,22 +2,22 @@ import React from "react";
 
 const teamMembers = [
 	{
-		name: "Alex Johnson",
-		role: "Founder & Coach",
+		name: "Pavel Senko",
+		role: "CTO",
 		image: "/logo-color.png",
 		linkedin: "https://www.linkedin.com/in/alex-johnson",
 		quote: "Running is not just a sport, it's a way of life.",
 	},
 	{
-		name: "Maria Lee",
-		role: "Nutritionist",
+		name: "Michael Ratke",
+		role: "CEO",
 		image: "/logo-color.png",
 		linkedin: "https://www.linkedin.com/in/maria-lee",
 		quote: "Fuel your body, fuel your passion.",
 	},
 	{
-		name: "James Smith",
-		role: "Trainer",
+		name: "Alexander Uplishvili",
+		role: "COO",
 		image: "/logo-color.png",
 		linkedin: "https://www.linkedin.com/in/james-smith",
 		quote: "Every step forward is a step toward success.",
