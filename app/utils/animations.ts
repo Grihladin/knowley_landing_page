@@ -28,13 +28,12 @@ export const buttonVariants: Variants = {
     y: 0,
     scale: 1,
     transition: {
-      type: "spring",
-      stiffness: 400,
-      damping: 20,
+      duration: 0.3,
+      ease: "easeOut",
     },
   },
   hover: {
-    scale: 1.08,
+    scale: 1.05,
     boxShadow: "0px 8px 20px rgba(0, 0, 0, 0.2)",
     transition: {
       duration: 0.2,
@@ -195,19 +194,15 @@ export const featureCardVariants: Variants = {
     y: 0,
     scale: 1,
     transition: {
-      type: "spring",
-      stiffness: 100,
-      damping: 15,
-      mass: 1,
+      duration: 0.4,
+      ease: "easeOut",
     },
   },
   hover: {
     scale: 1.03,
-    y: -5,
     transition: {
-      type: "spring",
-      stiffness: 400,
-      damping: 10,
+      duration: 0.2,
+      ease: "easeOut",
     },
   },
 };
@@ -216,25 +211,20 @@ export const featureIconVariants: Variants = {
   hidden: {
     opacity: 0,
     scale: 0.5,
-    rotate: -15,
   },
   visible: {
     opacity: 1,
     scale: 1,
-    rotate: 0,
     transition: {
-      type: "spring",
-      stiffness: 200,
-      damping: 20,
+      duration: 0.4,
+      ease: "easeOut",
     },
   },
   hover: {
     scale: 1.1,
-    rotate: 5,
     transition: {
-      type: "spring",
-      stiffness: 400,
-      damping: 10,
+      duration: 0.2,
+      ease: "easeOut",
     },
   },
 };
@@ -282,9 +272,8 @@ export const ctaTagVariants: Variants = {
     scale: 1,
     y: 0,
     transition: {
-      type: "spring",
-      stiffness: 400,
-      damping: 20,
+      duration: 0.3,
+      ease: "easeOut",
     },
   },
 };
@@ -298,9 +287,8 @@ export const ctaHeadingVariants: Variants = {
     opacity: 1,
     y: 0,
     transition: {
-      type: "spring",
-      stiffness: 100,
-      damping: 20,
+      duration: 0.4,
+      ease: "easeOut",
     },
   },
 };

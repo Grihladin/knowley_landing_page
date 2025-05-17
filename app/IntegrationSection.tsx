@@ -44,7 +44,8 @@ export default function IntegrationSection() {
               </div>
               <div className="grid grid-cols-2 gap-4 mb-6">
                 <motion.div 
-                  whileHover={{ scale: 1.05 }}
+                  whileHover={{ scale: 1.03 }}
+                  transition={{ duration: 0.2, ease: "easeOut" }}
                   className="border border-gray rounded-lg p-4 bg-gray-light/50 flex items-center justify-center h-24 transition-all hover:border-primary"
                 >
                   <div className="text-center">
@@ -53,7 +54,8 @@ export default function IntegrationSection() {
                   </div>
                 </motion.div>
                 <motion.div 
-                  whileHover={{ scale: 1.05 }}
+                  whileHover={{ scale: 1.03 }}
+                  transition={{ duration: 0.2, ease: "easeOut" }}
                   className="border border-gray rounded-lg p-4 bg-gray-light/50 flex items-center justify-center h-24 transition-all hover:border-primary"
                 >
                   <div className="text-center">
@@ -62,7 +64,8 @@ export default function IntegrationSection() {
                   </div>
                 </motion.div>
                 <motion.div 
-                  whileHover={{ scale: 1.05 }}
+                  whileHover={{ scale: 1.03 }}
+                  transition={{ duration: 0.2, ease: "easeOut" }}
                   className="border border-gray rounded-lg p-4 bg-gray-light/50 flex items-center justify-center h-24 transition-all hover:border-primary"
                 >
                   <div className="text-center">
@@ -71,7 +74,8 @@ export default function IntegrationSection() {
                   </div>
                 </motion.div>
                 <motion.div 
-                  whileHover={{ scale: 1.05 }}
+                  whileHover={{ scale: 1.03 }}
+                  transition={{ duration: 0.2, ease: "easeOut" }}
                   className="border border-gray rounded-lg p-4 bg-gray-light/50 flex items-center justify-center h-24 transition-all hover:border-primary"
                 >
                   <div className="text-center">
@@ -83,11 +87,12 @@ export default function IntegrationSection() {
               <div className="flex justify-center mb-6">
                 <motion.div 
                   animate={{ 
-                    y: [0, -5, 0],
+                    scale: 1.05
                   }}
                   transition={{
-                    duration: 2,
+                    duration: 1,
                     repeat: Infinity,
+                    repeatType: "reverse",
                     ease: "easeInOut"
                   }}
                   className="bg-primary text-white rounded-full w-10 h-10 flex items-center justify-center"
@@ -98,7 +103,8 @@ export default function IntegrationSection() {
                 </motion.div>
               </div>
               <motion.div 
-                whileHover={{ scale: 1.02 }}
+                whileHover={{ scale: 1.01 }}
+                transition={{ duration: 0.2, ease: "easeOut" }}
                 className="bg-gradient-to-r from-primary to-secondary text-white p-6 rounded-lg text-center"
               >
                 <div className="font-bold text-xl mb-2">Knowley AI Platform</div>
@@ -129,7 +135,8 @@ export default function IntegrationSection() {
                 <motion.div
                   key={index}
                   variants={fadeInUp}
-                  whileHover={{ scale: 1.02 }}
+                  whileHover={{ scale: 1.01 }}
+                  transition={{ duration: 0.2, ease: "easeOut" }}
                   className="flex items-start gap-4 p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-all"
                 >
                   <div className="bg-success/10 rounded-full p-2 text-success">
