@@ -44,7 +44,7 @@ const WaitlistForm: React.FC = () => {
 
   return (
     <form 
-      className="flex flex-col sm:flex-row items-end gap-3" 
+      className="flex flex-col sm:flex-row items-end gap-4" 
       onSubmit={handleSubmit} 
       noValidate 
       aria-label="Join waitlist form"
@@ -98,13 +98,13 @@ const WaitlistForm: React.FC = () => {
         whileTap={status !== "loading" ? "tap" : undefined}
         animate={status === "loading" ? "loading" : "visible"}
         type="submit"
-        className={`bg-accent text-white h-[50px] px-5 rounded-lg transition-colors font-medium whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-primary ${
-          status === "loading" ? "opacity-70 cursor-not-allowed" : "hover:bg-accent/90"
+        className={`bg-white text-primary h-[50px] px-5 rounded-lg transition-colors font-medium whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-white ${
+          status === "loading" ? "opacity-70 cursor-not-allowed" : "hover:bg-gray-light"
         }`}
         disabled={status === "loading"}
         aria-busy={status === "loading"}
       >
-        Join Waitlist
+        {status === "loading" ? "Processing..." : "Join Waitlist"}
       </motion.button>
     </form>
   );
