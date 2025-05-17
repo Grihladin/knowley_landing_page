@@ -1,26 +1,30 @@
 "use client";
 import Image from "next/image";
 import "client-only";
+import FeatureCard from "./FeatureCard";
+import BenefitCard from "./BenefitCard";
+import AccessibleButton from "./AccessibleButton";
+import WaitlistForm from "./WaitlistForm";
 
 
 export default function Home() {
   return (
     <div className="flex flex-col min-h-screen">
       {/* Navigation */}
-      <header className="sticky top-0 z-10 bg-background/80 backdrop-blur-sm border-b border-gray/20">
+      <header className="sticky top-0 z-10 bg-background/80 backdrop-blur-sm border-b border-gray/20" role="banner">
         <div className="container mx-auto px-4 py-4">
           <div className="flex flex-col sm:flex-row items-center">
-            <div className="text-2xl font-bold text-primary mb-2 sm:mb-0">Knowley</div>
-            <nav className="flex space-x-4 sm:space-x-8 mx-auto text-sm sm:text-base">
-              <a href="#features" className="hover:text-primary transition-colors">Features</a>
-              <a href="#integration" className="hover:text-primary transition-colors">Integration</a>
-              <a href="#benefits" className="hover:text-primary transition-colors">Benefits</a>
+            <div className="text-2xl font-bold text-primary mb-2 sm:mb-0" aria-label="Knowley Home">Knowley</div>
+            <nav className="flex space-x-4 sm:space-x-8 mx-auto text-sm sm:text-base" aria-label="Main navigation">
+              <a href="#features" className="hover:text-primary transition-colors" aria-label="Features section">Features</a>
+              <a href="#integration" className="hover:text-primary transition-colors" aria-label="Integration section">Integration</a>
+              <a href="#benefits" className="hover:text-primary transition-colors" aria-label="Benefits section">Benefits</a>
             </nav>
           </div>
         </div>
       </header>
 
-      <main className="flex-grow">
+      <main className="flex-grow" id="main-content" role="main">
         {/* Hero Section */}
         <section className="py-20 px-4 bg-gradient-to-br from-background to-gray-light">
           <div className="container mx-auto max-w-6xl flex flex-col md:flex-row items-center gap-12">
@@ -36,7 +40,7 @@ export default function Home() {
                 days with AI-powered talent matching that integrates with your existing systems.
               </p>
               <div className="pt-4">
-                <ul className="space-y-2">
+                <ul className="space-y-2" aria-label="Key benefits list">
                   <li className="flex items-center gap-2">
                     <div className="w-5 h-5 rounded-full bg-primary flex items-center justify-center">
                       <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3 text-white" viewBox="0 0 20 20" fill="currentColor">
@@ -72,7 +76,7 @@ export default function Home() {
                 >
                   Schedule Demo
                 </a>
-                <button className="border border-gray px-6 py-3 rounded-lg hover:bg-gray-light transition-colors font-medium">
+                <button className="border border-gray px-6 py-3 rounded-lg hover:bg-gray-light transition-colors font-medium focus:outline-none focus:ring-2 focus:ring-primary" aria-label="Learn more about Knowley">
                   Learn More
                 </button>
               </div>
@@ -83,10 +87,11 @@ export default function Home() {
                   <iframe 
                     className="w-full h-full rounded-lg"
                     src="https://www.youtube.com/embed/LDU_Txk06tM?autoplay=0&rel=0&showinfo=0&modestbranding=1"
-                    title="Crab Rave Video"
+                    title="Crab Rave Video - Knowley Demo"
                     frameBorder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen
+                    aria-label="Demo video: How Knowley works"
                   ></iframe>
                 </div>
               </div>
@@ -95,10 +100,10 @@ export default function Home() {
         </section>
 
         {/* Features Section */}
-        <section id="features" className="py-20 px-4 bg-gray-light">
+        <section id="features" className="py-20 px-4 bg-gray-light" aria-labelledby="features-heading">
           <div className="container mx-auto max-w-6xl">
             <div className="text-center max-w-3xl mx-auto mb-16">
-              <h2 className="text-3xl md:text-4xl font-bold mb-6">Powerful AI-Driven Features</h2>
+              <h2 id="features-heading" className="text-3xl md:text-4xl font-bold mb-6">Powerful AI-Driven Features</h2>
               <p className="text-gray-dark text-lg">
                 Our intelligent platform uses advanced algorithms to match employees with 
                 the perfect learning opportunities, saving time and maximizing development impact.
@@ -106,86 +111,38 @@ export default function Home() {
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <div className="bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition-shadow">
-                <div className="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mb-6">
+              <FeatureCard 
+                title="AI Matching Algorithm"
+                description="Our proprietary AI analyzes employee skills, learning history, and career goals to recommend the most relevant courses and development opportunities."
+                items={["Skills gap analysis", "Learning style compatibility", "Business need alignment"]}
+                icon={
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />
                   </svg>
-                </div>
-                <h3 className="text-xl font-bold mb-3">AI Matching Algorithm</h3>
-                <p className="text-gray-dark mb-4">
-                  Our proprietary AI analyzes employee skills, learning history, and career goals 
-                  to recommend the most relevant courses and development opportunities.
-                </p>
-                <ul className="space-y-2">
-                  <li className="flex items-start gap-2">
-                    <div className="mt-1 text-success">•</div>
-                    <span className="text-sm">Skills gap analysis</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <div className="mt-1 text-success">•</div>
-                    <span className="text-sm">Learning style compatibility</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <div className="mt-1 text-success">•</div>
-                    <span className="text-sm">Business need alignment</span>
-                  </li>
-                </ul>
-              </div>
+                }
+              />
               
-              <div className="bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition-shadow">
-                <div className="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mb-6">
+              <FeatureCard 
+                title="Seamless Integration"
+                description="Connect Knowley with your existing HR, LMS, and talent management systems without replacing what already works. We enhance, not replace."
+                items={["API-based connectivity", "Fast implementation", "No disruption to workflows"]}
+                icon={
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a2 2 0 110-4h1a1 1 0 001-1V7a1 1 0 011-1h3a1 1 0 001-1V4z" />
                   </svg>
-                </div>
-                <h3 className="text-xl font-bold mb-3">Seamless Integration</h3>
-                <p className="text-gray-dark mb-4">
-                  Connect Knowley with your existing HR, LMS, and talent management systems without 
-                  replacing what already works. We enhance, not replace.
-                </p>
-                <ul className="space-y-2">
-                  <li className="flex items-start gap-2">
-                    <div className="mt-1 text-success">•</div>
-                    <span className="text-sm">API-based connectivity</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <div className="mt-1 text-success">•</div>
-                    <span className="text-sm">Fast implementation</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <div className="mt-1 text-success">•</div>
-                    <span className="text-sm">No disruption to workflows</span>
-                  </li>
-                </ul>
-              </div>
+                }
+              />
               
-              <div className="bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition-shadow">
-                <div className="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mb-6">
+              <FeatureCard 
+                title="Data-Driven Insights"
+                description="Gain valuable insights into your L&D program effectiveness with comprehensive analytics and reporting that highlight ROI and skills progression."
+                items={["Customizable dashboards", "Engagement metrics", "Skills development tracking"]}
+                icon={
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
                   </svg>
-                </div>
-                <h3 className="text-xl font-bold mb-3">Data-Driven Insights</h3>
-                <p className="text-gray-dark mb-4">
-                  Gain valuable insights into your L&D program effectiveness with comprehensive 
-                  analytics and reporting that highlight ROI and skills progression.
-                </p>
-                <ul className="space-y-2">
-                  <li className="flex items-start gap-2">
-                    <div className="mt-1 text-success">•</div>
-                    <span className="text-sm">Customizable dashboards</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <div className="mt-1 text-success">•</div>
-                    <span className="text-sm">Engagement metrics</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <div className="mt-1 text-success">•</div>
-                    <span className="text-sm">Skills development tracking</span>
-                  </li>
-                </ul>
-              </div>
+                }
+              />
             </div>
             
             <div className="mt-16 text-center">
@@ -321,93 +278,32 @@ export default function Home() {
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <div className="bg-white rounded-xl overflow-hidden shadow-sm">
-                <div className="h-2 bg-primary"></div>
-                <div className="p-8">
-                  <div className="flex items-center gap-4 mb-6">
-                    <div className="p-3 rounded-full bg-primary/10">
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                      </svg>
-                    </div>
-                    <h3 className="text-xl font-bold">Time & Cost Savings</h3>
-                  </div>
-                  
-                  <ul className="space-y-4">
-                    <li className="flex items-start gap-3">
-                      <div className="mt-1 text-success font-bold">✓</div>
-                      <div>
-                        <span className="font-medium">90% faster matching</span>
-                        <p className="text-sm text-gray-dark mt-1">
-                          Reduce course selection time from weeks to just days with AI-powered recommendations
-                        </p>
-                      </div>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <div className="mt-1 text-success font-bold">✓</div>
-                      <div>
-                        <span className="font-medium">Lower training costs</span>
-                        <p className="text-sm text-gray-dark mt-1">
-                          Eliminate wasted spending on mismatched courses with precise AI recommendations
-                        </p>
-                      </div>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <div className="mt-1 text-success font-bold">✓</div>
-                      <div>
-                        <span className="font-medium">Reduced admin overhead</span>
-                        <p className="text-sm text-gray-dark mt-1">
-                          Automate the course matching process, freeing up L&D staff for strategic initiatives
-                        </p>
-                      </div>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-              
-              <div className="bg-white rounded-xl overflow-hidden shadow-sm">
-                <div className="h-2 bg-secondary"></div>
-                <div className="p-8">
-                  <div className="flex items-center gap-4 mb-6">
-                    <div className="p-3 rounded-full bg-secondary/10">
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                      </svg>
-                    </div>
-                    <h3 className="text-xl font-bold">Enhanced Outcomes</h3>
-                  </div>
-                  
-                  <ul className="space-y-4">
-                    <li className="flex items-start gap-3">
-                      <div className="mt-1 text-success font-bold">✓</div>
-                      <div>
-                        <span className="font-medium">Higher completion rates</span>
-                        <p className="text-sm text-gray-dark mt-1">
-                          Better matched courses lead to 40% higher completion rates and improved learning outcomes
-                        </p>
-                      </div>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <div className="mt-1 text-success font-bold">✓</div>
-                      <div>
-                        <span className="font-medium">Increased employee satisfaction</span>
-                        <p className="text-sm text-gray-dark mt-1">
-                          Personalized learning paths that align with career goals boost engagement and retention
-                        </p>
-                      </div>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <div className="mt-1 text-success font-bold">✓</div>
-                      <div>
-                        <span className="font-medium">Business-aligned skill development</span>
-                        <p className="text-sm text-gray-dark mt-1">
-                          Close skills gaps faster with learning that aligns with both employee and business objectives
-                        </p>
-                      </div>
-                    </li>
-                  </ul>
-                </div>
-              </div>
+              <BenefitCard 
+                title="Time & Cost Savings"
+                benefits={[
+                  { label: "90% faster matching", description: "Reduce course selection time from weeks to just days with AI-powered recommendations" },
+                  { label: "Lower training costs", description: "Eliminate wasted spending on mismatched courses with precise AI recommendations" },
+                  { label: "Reduced admin overhead", description: "Automate the course matching process, freeing up L&D staff for strategic initiatives" },
+                ]}
+                icon={
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                }
+              />
+              <BenefitCard 
+                title="Enhanced Outcomes"
+                benefits={[
+                  { label: "Higher completion rates", description: "Better matched courses lead to 40% higher completion rates and improved learning outcomes" },
+                  { label: "Increased employee satisfaction", description: "Personalized learning paths that align with career goals boost engagement and retention" },
+                  { label: "Business-aligned skill development", description: "Close skills gaps faster with learning that aligns with both employee and business objectives" },
+                ]}
+                icon={
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                  </svg>
+                }
+              />
             </div>
             
           </div>
@@ -449,63 +345,7 @@ export default function Home() {
             </div>
             
             <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 max-w-xl mx-auto">
-              <form 
-                className="flex flex-col sm:flex-row gap-3" 
-                onSubmit={async (e) => {
-                  e.preventDefault();
-                  const form = e.currentTarget;
-                  const emailInput = form.querySelector('input[type="email"]') as HTMLInputElement;
-                  const email = emailInput.value;
-                  const messageElement = form.parentElement?.querySelector('.waitlist-message') as HTMLDivElement;
-                  
-                  if (!email || !email.includes('@')) {
-                    messageElement.textContent = 'Please enter a valid email address';
-                    messageElement.className = 'waitlist-message text-sm mt-3 text-yellow-300';
-                    return;
-                  }
-                  
-                  try {
-                    messageElement.textContent = 'Processing...';
-                    messageElement.className = 'waitlist-message text-sm mt-3 text-white';
-                    
-                    const response = await fetch('/api/waitlist', {
-                      method: 'POST',
-                      headers: {
-                        'Content-Type': 'application/json',
-                      },
-                      body: JSON.stringify({ email }),
-                    });
-                    
-                    const data = await response.json();
-                    
-                    if (response.ok) {
-                      emailInput.value = '';
-                      messageElement.textContent = 'Success! You\'ve been added to our waitlist.';
-                      messageElement.className = 'waitlist-message text-sm mt-3 text-green-300';
-                    } else {
-                      messageElement.textContent = data.message || 'Something went wrong. Please try again.';
-                      messageElement.className = 'waitlist-message text-sm mt-3 text-yellow-300';
-                    }
-                  } catch (error) {
-                    messageElement.textContent = 'Failed to connect to server. Please try again.';
-                    messageElement.className = 'waitlist-message text-sm mt-3 text-yellow-300';
-                  }
-                }}
-              >
-                <input 
-                  type="email" 
-                  placeholder="Enter your work email" 
-                  className="flex-grow px-4 py-3 rounded-lg text-gray-dark border-2 border-white outline-none focus:ring-2 focus:ring-primary-light"
-                  required
-                />
-                <button 
-                  type="submit"
-                  className="bg-accent text-white px-5 py-3 rounded-lg hover:bg-accent/90 transition-colors font-medium whitespace-nowrap"
-                >
-                  Join Waitlist
-                </button>
-              </form>
-              <div className="waitlist-message text-sm mt-3 text-white"></div>
+              <WaitlistForm />
               <p className="text-xs mt-3 opacity-70">
                 By signing up, you agree to our Terms of Service and Privacy Policy.
               </p>
@@ -515,11 +355,11 @@ export default function Home() {
       </main>
 
       {/* Footer */}
-      <footer className="bg-white border-t border-gray py-12 px-4">
+      <footer className="bg-white border-t border-gray py-12 px-4" role="contentinfo">
         <div className="container mx-auto max-w-6xl">
           <div className="flex justify-center items-center mb-12">
             <div className="text-center">
-              <div className="text-2xl font-bold mb-4 text-primary">Knowley</div>
+              <div className="text-2xl font-bold mb-4 text-primary" aria-label="Knowley Logo">Knowley</div>
               <p className="text-base text-foreground mb-6 max-w-md">
                 AI-powered talent management tool matching employees to L&D/courses seamlessly.
               </p>
@@ -529,12 +369,15 @@ export default function Home() {
                   target="_blank" 
                   rel="noopener noreferrer" 
                   className="text-primary hover:text-primary-dark transition-colors bg-primary/5 p-3 rounded-full"
+                  aria-label="Visit Knowley LinkedIn page"
+                  title="LinkedIn"
                 >
                   <svg 
                     xmlns="http://www.w3.org/2000/svg" 
                     className="h-7 w-7 linkedin-icon linkedin-pulse" 
                     fill="currentColor" 
                     viewBox="0 0 24 24"
+                    aria-hidden="true"
                   >
                     <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
                   </svg>
