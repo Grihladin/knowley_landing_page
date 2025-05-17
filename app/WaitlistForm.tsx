@@ -44,7 +44,7 @@ const WaitlistForm: React.FC = () => {
 
   return (
     <form 
-      className="flex flex-col sm:flex-row items-end gap-4" 
+      className="flex flex-col sm:flex-row items-stretch sm:items-end gap-4 w-full" 
       onSubmit={handleSubmit} 
       noValidate 
       aria-label="Join waitlist form"
@@ -100,7 +100,7 @@ const WaitlistForm: React.FC = () => {
         type="submit"
         className={`bg-white text-primary h-[50px] px-5 rounded-lg transition-colors font-medium whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-white ${
           status === "loading" ? "opacity-70 cursor-not-allowed" : "hover:bg-gray-light"
-        }`}
+        } w-full sm:w-auto`}
         disabled={status === "loading"}
         aria-busy={status === "loading"}
       >

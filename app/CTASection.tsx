@@ -34,7 +34,7 @@ export default function CTASection() {
   const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
 
   return (
-    <section id="waitlist" className="py-20 mt-16 px-4 bg-gradient-to-br from-primary to-primary-dark text-white relative overflow-hidden">
+    <section id="waitlist" className="py-12 sm:py-20 mt-10 sm:mt-16 px-4 bg-gradient-to-br from-primary to-primary-dark text-white relative overflow-hidden">
       <motion.div
         className="absolute inset-0 opacity-10 will-change-transform"
         style={{ y: backgroundY }}
@@ -51,30 +51,30 @@ export default function CTASection() {
         variants={ctaSectionVariants}
         initial="hidden"
         animate={inView ? "visible" : "hidden"}
-        className="container mx-auto max-w-4xl text-center relative z-10"
+        className="container mx-auto max-w-4xl text-center relative z-10 px-4 sm:px-6"
       >
         <motion.div
           variants={ctaTagVariants}
-          className="inline-block px-4 py-1 bg-white/20 backdrop-blur-sm rounded-full text-sm font-medium mb-6"
+          className="inline-block px-3 sm:px-4 py-1 bg-white/20 backdrop-blur-sm rounded-full text-xs sm:text-sm font-medium mb-4 sm:mb-6"
         >
           Start Your AI-Powered L&D Journey
         </motion.div>
         <motion.h2
           variants={ctaHeadingVariants}
-          className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6"
+          className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6"
         >
           Ready to Transform Your Talent Development?
         </motion.h2>
         <motion.p
           variants={ctaHeadingVariants}
-          className="text-xl mb-10 opacity-90 max-w-2xl mx-auto"
+          className="text-base sm:text-xl mb-8 sm:mb-10 opacity-90 max-w-2xl mx-auto"
         >
           Join forward-thinking companies that are cutting course selection time 
           from weeks to days while delivering better learning outcomes.
         </motion.p>
         <motion.div
           variants={ctaSectionVariants}
-          className="flex flex-col sm:flex-row gap-4 justify-center mb-12"
+          className="flex flex-col sm:flex-row gap-4 justify-center mb-12 w-full px-4 sm:px-0 max-w-md mx-auto"
         >
           <motion.a
             variants={buttonVariants}
@@ -83,7 +83,7 @@ export default function CTASection() {
             href="https://calendly.com/knowleyde"
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-white text-primary px-8 py-4 rounded-lg hover:bg-gray-light transition-colors font-medium text-lg"
+            className="bg-white text-primary px-6 sm:px-8 py-3 sm:py-4 rounded-lg hover:bg-gray-light transition-colors font-medium text-base sm:text-lg text-center"
           >
             Schedule a Demo
           </motion.a>
@@ -92,13 +92,13 @@ export default function CTASection() {
             whileHover="hover"
             whileTap="tap"
             onClick={toggleContactForm}
-            className="border-2 border-white bg-transparent px-8 py-4 rounded-lg hover:bg-white/10 transition-colors font-medium text-lg"
+            className="border-2 border-white bg-transparent px-6 sm:px-8 py-3 sm:py-4 rounded-lg hover:bg-white/10 transition-colors font-medium text-base sm:text-lg text-center"
           >
             Contact Us
           </motion.button>
         </motion.div>
         {/* Form Container - Stacked layout where both forms can be visible */}
-        <div className="flex flex-col space-y-6 max-w-xl mx-auto">
+        <div className="flex flex-col space-y-6 max-w-xl mx-auto w-full px-4 sm:px-0">
           {/* Contact Form - Shows with AnimatePresence for better performance */}
           <AnimatePresence>
             {showContactForm && (
@@ -110,7 +110,7 @@ export default function CTASection() {
                   opacity: { duration: 0.2 },
                   height: { duration: 0.3, ease: "easeInOut" }
                 }}
-                className="bg-white/10 backdrop-blur-sm rounded-xl p-6 w-full overflow-hidden will-change-auto"
+                className="bg-white/10 backdrop-blur-sm rounded-xl p-4 sm:p-6 w-full overflow-hidden will-change-auto"
               >
                 <ContactForm />
               </motion.div>
@@ -119,7 +119,7 @@ export default function CTASection() {
           
           {/* Waitlist Form - Always present, removed layout animation for better performance */}
           <motion.div
-            className="bg-white/10 backdrop-blur-sm rounded-xl p-6 w-full"
+            className="bg-white/10 backdrop-blur-sm rounded-xl p-4 sm:p-6 w-full"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ 
