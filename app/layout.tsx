@@ -51,6 +51,23 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <script type="application/ld+json" suppressHydrationWarning>
+          {`
+            {
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              "name": "Knowley",
+              "url": "https://knowley.ai/",
+              "logo": "https://knowley.ai/logo-color.png",
+              "sameAs": [
+                "https://linkedin.com/company/knowleyai"
+              ],
+              "description": "AI-powered talent management tool matching employees to L&D/courses seamlessly."
+            }
+          `}
+        </script>
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
