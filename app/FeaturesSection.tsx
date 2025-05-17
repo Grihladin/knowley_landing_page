@@ -1,19 +1,48 @@
 // FeaturesSection.tsx
 "use client";
+import { motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
 import FeatureCard from "./FeatureCard";
+import { featureSectionVariants, fadeInUp } from "./utils/animations";
 
 export default function FeaturesSection() {
+  const [ref, inView] = useInView({
+    triggerOnce: true,
+    threshold: 0.1,
+  });
+
   return (
     <section id="features" className="py-20 px-2 sm:px-4 bg-gray-light" aria-labelledby="features-heading">
-      <div className="container mx-auto max-w-full sm:max-w-6xl">
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 id="features-heading" className="text-3xl md:text-4xl font-bold mb-6">Powerful AI-Driven Features</h2>
-          <p className="text-gray-dark text-lg">
+      <motion.div
+        ref={ref}
+        variants={featureSectionVariants}
+        initial="hidden"
+        animate={inView ? "visible" : "hidden"}
+        className="container mx-auto max-w-full sm:max-w-6xl"
+      >
+        <motion.div 
+          variants={featureSectionVariants}
+          className="text-center max-w-3xl mx-auto mb-16"
+        >
+          <motion.h2 
+            variants={fadeInUp}
+            id="features-heading" 
+            className="text-3xl md:text-4xl font-bold mb-6"
+          >
+            Powerful AI-Driven Features
+          </motion.h2>
+          <motion.p 
+            variants={fadeInUp}
+            className="text-gray-dark text-lg"
+          >
             Our intelligent platform uses advanced algorithms to match employees with 
             the perfect learning opportunities, saving time and maximizing development impact.
-          </p>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+          </motion.p>
+        </motion.div>
+        <motion.div 
+          variants={featureSectionVariants}
+          className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8"
+        >
           <FeatureCard 
             title="AI Matching Algorithm"
             description="Our proprietary AI analyzes employee skills, learning history, and career goals to recommend the most relevant courses and development opportunities."
@@ -44,8 +73,8 @@ export default function FeaturesSection() {
               </svg>
             }
           />
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
     </section>
   );
 }

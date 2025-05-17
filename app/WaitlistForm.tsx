@@ -1,5 +1,7 @@
 // WaitlistForm: React state-based, accessible, and user-friendly waitlist form
 import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { formInputVariants, formButtonVariants } from "./utils/animations";
 
 const WaitlistForm: React.FC = () => {
   const [email, setEmail] = useState("");
@@ -38,7 +40,9 @@ const WaitlistForm: React.FC = () => {
 
   return (
     <form className="flex flex-col sm:flex-row gap-3" onSubmit={handleSubmit} aria-label="Join waitlist form">
-      <input
+      <motion.input
+        variants={formInputVariants}
+        whileFocus="focus"
         type="email"
         value={email}
         onChange={e => setEmail(e.target.value)}
@@ -47,21 +51,39 @@ const WaitlistForm: React.FC = () => {
         required
         aria-label="Work email"
       />
-      <button
+      <motion.button
+        variants={formButtonVariants}
+        whileHover={status !== "loading" ? "hover" : undefined}
+        whileTap={status !== "loading" ? "tap" : undefined}
+        animate={status === "loading" ? "loading" : "visible"}
         type="submit"
         className="bg-accent text-white px-5 py-3 rounded-lg hover:bg-accent/90 transition-colors font-medium whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-primary"
         disabled={status === "loading"}
         aria-busy={status === "loading"}
       >
         {status === "loading" ? "Joining..." : "Join Waitlist"}
-      </button>
-      <div
-        className={`waitlist-message text-sm mt-3 ${status === "success" ? "text-green-300" : status === "error" ? "text-yellow-300" : "text-white"}`}
-        role="status"
-        aria-live="polite"
-      >
-        {message}
-      </div>
+      </motion.button>
+      <AnimatePresence mode="wait">
+        {message && (
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ type: "spring", stiffness: 200, damping: 20 }}
+            className={`waitlist-message text-sm mt-3 ${
+              status === "success" 
+                ? "text-green-300" 
+                : status === "error" 
+                ? "text-yellow-300" 
+                : "text-white"
+            }`}
+            role="status"
+            aria-live="polite"
+          >
+            {message}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </form>
   );
 };

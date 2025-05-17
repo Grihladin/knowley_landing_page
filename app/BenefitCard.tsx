@@ -1,5 +1,7 @@
 // Reusable BenefitCard component for landing page benefits
 import React from "react";
+import { motion } from "framer-motion";
+import { benefitCardVariants, benefitIconVariants, benefitItemVariants } from "./utils/animations";
 
 interface BenefitCardProps {
   icon: React.ReactNode;
@@ -9,32 +11,57 @@ interface BenefitCardProps {
 }
 
 const BenefitCard: React.FC<BenefitCardProps> = ({ icon, title, benefits, colorClass }) => (
-  <div className={`bg-white rounded-xl overflow-hidden shadow-sm`}>
+  <motion.div
+    variants={benefitCardVariants}
+    whileHover="hover"
+    className={`bg-white rounded-xl overflow-hidden shadow-sm transform-gpu`}
+  >
     <div className={`h-2 ${colorClass || 'bg-primary'}`}></div>
     <div className="p-8">
       <div className="flex items-center gap-4 mb-6">
-        <div className="p-3 rounded-full bg-primary/10 flex items-center justify-center">
+        <motion.div
+          variants={benefitIconVariants}
+          className="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center transform-gpu"
+        >
           {icon}
-        </div>
-        <h3 className="text-xl font-bold leading-snug align-middle">{title}</h3>
+        </motion.div>
+        <h3 className="text-xl font-bold leading-snug align-middle">
+          {title}
+        </h3>
       </div>
       <ul className="space-y-4">
         {benefits.map((b, idx) => (
-          <li key={idx} className="flex items-start gap-3">
-            <div className="flex items-center justify-center mt-1">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-primary" viewBox="0 0 20 20" fill="currentColor">
-                <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+          <motion.li
+            key={idx}
+            variants={benefitItemVariants}
+            className="flex items-start gap-3"
+          >
+            <div className="flex-shrink-0 w-5 h-5 rounded-full bg-blue-100 flex items-center justify-center mt-1">
+              <svg 
+                className="w-3 h-3 text-blue-600" 
+                fill="none" 
+                viewBox="0 0 24 24" 
+                stroke="currentColor"
+              >
+                <path 
+                  strokeLinecap="round" 
+                  strokeLinejoin="round" 
+                  strokeWidth={2} 
+                  d="M5 13l4 4L19 7"
+                />
               </svg>
             </div>
             <div>
-              <span className="font-medium leading-normal align-middle">{b.label}</span>
-              <p className="text-sm text-gray-dark mt-1 leading-relaxed">{b.description}</p>
+              <span className="font-medium leading-normal">{b.label}</span>
+              <p className="text-sm text-gray-dark mt-1 leading-relaxed">
+                {b.description}
+              </p>
             </div>
-          </li>
+          </motion.li>
         ))}
       </ul>
     </div>
-  </div>
+  </motion.div>
 );
 
 export default BenefitCard;
