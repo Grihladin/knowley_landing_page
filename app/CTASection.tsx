@@ -9,7 +9,7 @@ import {
   ctaSectionVariants,
   ctaTagVariants,
   ctaHeadingVariants,
-  ctaButtonVariants,
+  buttonVariants,
   formContainerVariants
 } from "./utils/animations";
 
@@ -78,7 +78,7 @@ export default function CTASection() {
           className="flex flex-col sm:flex-row gap-4 justify-center mb-12"
         >
           <motion.a
-            variants={ctaButtonVariants}
+            variants={buttonVariants}
             whileHover="hover"
             whileTap="tap"
             href="https://calendly.com/knowleyde"
@@ -89,7 +89,7 @@ export default function CTASection() {
             Schedule a Demo
           </motion.a>
           <motion.button
-            variants={ctaButtonVariants}
+            variants={buttonVariants}
             whileHover="hover"
             whileTap="tap"
             onClick={toggleContactForm}

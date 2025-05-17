@@ -16,6 +16,40 @@ export const fadeInUp: Variants = {
   },
 };
 
+// Unified button animations to be used across all buttons
+export const buttonVariants: Variants = {
+  hidden: {
+    opacity: 0,
+    y: 20,
+    scale: 0.95,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: {
+      type: "spring",
+      stiffness: 400,
+      damping: 20,
+    },
+  },
+  hover: {
+    scale: 1.08,
+    boxShadow: "0px 8px 20px rgba(0, 0, 0, 0.2)",
+    transition: {
+      duration: 0.2,
+      ease: "easeOut",
+    },
+  },
+  tap: {
+    scale: 0.98,
+  },
+  loading: {
+    scale: 0.98,
+    opacity: 0.8,
+  },
+};
+
 export const staggerContainer: Variants = {
   hidden: { opacity: 0 },
   visible: {
@@ -125,30 +159,7 @@ export const heroListItemVariants: Variants = {
   },
 };
 
-export const heroButtonVariants: Variants = {
-  hidden: {
-    opacity: 0,
-    y: 20,
-  },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.4,
-      ease: "easeOut",
-    },
-  },
-  hover: {
-    scale: 1.05,
-    transition: {
-      duration: 0.2,
-      ease: "easeInOut",
-    },
-  },
-  tap: {
-    scale: 0.98,
-  },
-};
+// Using unified buttonVariants instead
 
 export const heroImageVariants: Variants = {
   hidden: {
@@ -299,34 +310,7 @@ export const ctaHeadingVariants: Variants = {
   },
 };
 
-export const ctaButtonVariants: Variants = {
-  hidden: {
-    opacity: 0,
-    y: 20,
-    scale: 0.95,
-  },
-  visible: {
-    opacity: 1,
-    y: 0,
-    scale: 1,
-    transition: {
-      type: "spring",
-      stiffness: 400,
-      damping: 20,
-    },
-  },
-  hover: {
-    scale: 1.05,
-    transition: {
-      type: "spring",
-      stiffness: 400,
-      damping: 10,
-    },
-  },
-  tap: {
-    scale: 0.98,
-  },
-};
+// Using unified buttonVariants instead
 
 export const formContainerVariants: Variants = {
   hidden: {
@@ -371,33 +355,4 @@ export const formInputVariants: Variants = {
   },
 };
 
-export const formButtonVariants: Variants = {
-  hidden: {
-    opacity: 0,
-    x: 20,
-  },
-  visible: {
-    opacity: 1,
-    x: 0,
-    transition: {
-      type: "spring",
-      stiffness: 100,
-      damping: 20,
-    },
-  },
-  hover: {
-    scale: 1.05,
-    transition: {
-      type: "spring",
-      stiffness: 400,
-      damping: 10,
-    },
-  },
-  tap: {
-    scale: 0.98,
-  },
-  loading: {
-    scale: 0.98,
-    opacity: 0.8,
-  },
-};
+// Using unified buttonVariants instead

@@ -7,7 +7,7 @@ import {
   heroTextVariants,
   heroTagVariants,
   heroListItemVariants,
-  heroButtonVariants,
+  buttonVariants,
   heroImageVariants,
 } from "./utils/animations";
 
@@ -74,7 +74,7 @@ export default function HeroSection() {
               href="https://calendly.com/knowleyde"
               target="_blank"
               rel="noopener noreferrer"
-              variants={heroButtonVariants}
+              variants={buttonVariants}
               whileHover="hover"
               whileTap="tap"
               className="bg-primary text-white px-6 py-3 rounded-lg hover:bg-primary-dark transition-colors font-medium inline-block text-center"
@@ -83,7 +83,7 @@ export default function HeroSection() {
             </motion.a>
             <motion.a
               href="#waitlist"
-              variants={heroButtonVariants}
+              variants={buttonVariants}
               whileHover="hover"
               whileTap="tap" 
               className="border border-gray px-6 py-3 rounded-lg hover:bg-gray-light transition-colors font-medium text-center"

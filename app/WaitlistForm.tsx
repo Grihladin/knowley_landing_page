@@ -1,7 +1,7 @@
 // WaitlistForm: React state-based, accessible, and user-friendly waitlist form
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { formInputVariants, formButtonVariants } from "./utils/animations";
+import { formInputVariants, buttonVariants } from "./utils/animations";
 import { validateEmail } from "./utils/validation";
 
 const WaitlistForm: React.FC = () => {
@@ -93,7 +93,7 @@ const WaitlistForm: React.FC = () => {
 
       </div>
       <motion.button
-        variants={formButtonVariants}
+        variants={buttonVariants}
         whileHover={status !== "loading" ? "hover" : undefined}
         whileTap={status !== "loading" ? "tap" : undefined}
         animate={status === "loading" ? "loading" : "visible"}
