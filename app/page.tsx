@@ -18,7 +18,7 @@ export default function Home() {
   return (
     <div className="flex flex-col min-h-screen">
       {/* Navigation */}
-      <header className="sticky top-0 z-10 bg-background/80 backdrop-blur-sm border-b border-gray/20" role="banner">
+      <header className="sticky top-0 z-50 bg-background/80 backdrop-blur-sm border-b border-gray/20" role="banner">
         <div className="container mx-auto px-4 py-4">
           <div className="flex flex-col sm:flex-row items-center">
             <div className="text-2xl font-bold text-primary mb-2 sm:mb-0" aria-label="Knowley Home">Knowley</div>

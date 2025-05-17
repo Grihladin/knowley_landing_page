@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import fs from 'fs';
 import path from 'path';
+import { validateEmail } from '../../utils/validation';
 
 interface WaitlistData {
   emails: string[];
@@ -13,10 +14,11 @@ export async function POST(request: NextRequest) {
     const body = await request.json();
     const { email } = body;
 
-    // Simple validation
-    if (!email || !email.includes('@')) {
+    // Comprehensive email validation
+    const validation = validateEmail(email);
+    if (!validation.isValid) {
       return NextResponse.json(
-        { success: false, message: 'Please provide a valid email address' },
+        { success: false, message: validation.message },
         { status: 400 }
       );
     }

@@ -2,16 +2,19 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { formInputVariants, formButtonVariants } from "./utils/animations";
+import { validateEmail } from "./utils/validation";
 
 const WaitlistForm: React.FC = () => {
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [touched, setTouched] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!email || !email.includes("@")) {
-      setMessage("Please enter a valid email address");
+    const validation = validateEmail(email);
+    if (!validation.isValid) {
+      setMessage(validation.message);
       setStatus("error");
       return;
     }
@@ -26,8 +29,9 @@ const WaitlistForm: React.FC = () => {
       const data = await response.json();
       if (response.ok) {
         setEmail("");
-        setMessage("Success! You've been added to our waitlist.");
+        setMessage("✓ Successfully joined the waitlist!");
         setStatus("success");
+        setTouched(true); // Show the success message
       } else {
         setMessage(data.message || "Something went wrong. Please try again.");
         setStatus("error");
@@ -39,51 +43,69 @@ const WaitlistForm: React.FC = () => {
   };
 
   return (
-    <form className="flex flex-col sm:flex-row gap-3" onSubmit={handleSubmit} aria-label="Join waitlist form">
-      <motion.input
-        variants={formInputVariants}
-        whileFocus="focus"
-        type="email"
-        value={email}
-        onChange={e => setEmail(e.target.value)}
-        placeholder="Enter your work email"
-        className="flex-grow px-4 py-3 rounded-lg text-gray-dark border-2 border-white outline-none focus:ring-2 focus:ring-primary-light"
-        required
-        aria-label="Work email"
-      />
+    <form 
+      className="flex flex-col sm:flex-row items-end gap-3" 
+      onSubmit={handleSubmit} 
+      noValidate 
+      aria-label="Join waitlist form"
+    >
+      <div className="flex-grow relative pt-6">
+        {touched && message && (
+          <div 
+            className={`absolute top-0 left-1 text-sm ${
+              status === "error" ? "text-red-500" : 
+              status === "success" ? "text-green-500" : ""
+            }`}
+            id="email-validation-message"
+            role="alert"
+          >
+            {message}
+          </div>
+        )}
+        <motion.input
+          variants={formInputVariants}
+          whileFocus="focus"
+          type="email"
+          value={email}
+          onChange={e => {
+            setEmail(e.target.value);
+            if (touched) {
+              const validation = validateEmail(e.target.value);
+              setMessage(validation.message);
+              setStatus(validation.isValid ? "idle" : "error");
+            }
+          }}
+          onBlur={() => {
+            setTouched(true);
+            const validation = validateEmail(email);
+            setMessage(validation.message);
+            setStatus(validation.isValid ? "idle" : "error");
+          }}
+          placeholder="Enter your work email"
+          className={`w-full h-[50px] px-4 rounded-lg text-gray-dark border-2 ${
+            touched && status === "error" ? "border-red-500" : "border-white"
+          } outline-none focus:ring-2 focus:ring-primary-light`}
+          required
+          aria-label="Work email"
+          aria-invalid={touched && status === "error"}
+          aria-describedby={message ? "email-validation-message" : undefined}
+        />
+
+      </div>
       <motion.button
         variants={formButtonVariants}
         whileHover={status !== "loading" ? "hover" : undefined}
         whileTap={status !== "loading" ? "tap" : undefined}
         animate={status === "loading" ? "loading" : "visible"}
         type="submit"
-        className="bg-accent text-white px-5 py-3 rounded-lg hover:bg-accent/90 transition-colors font-medium whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-primary"
+        className={`bg-accent text-white h-[50px] px-5 rounded-lg transition-colors font-medium whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-primary ${
+          status === "loading" ? "opacity-70 cursor-not-allowed" : "hover:bg-accent/90"
+        }`}
         disabled={status === "loading"}
         aria-busy={status === "loading"}
       >
-        {status === "loading" ? "Joining..." : "Join Waitlist"}
+        Join Waitlist
       </motion.button>
-      <AnimatePresence mode="wait">
-        {message && (
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{ type: "spring", stiffness: 200, damping: 20 }}
-            className={`waitlist-message text-sm mt-3 ${
-              status === "success" 
-                ? "text-green-300" 
-                : status === "error" 
-                ? "text-yellow-300" 
-                : "text-white"
-            }`}
-            role="status"
-            aria-live="polite"
-          >
-            {message}
-          </motion.div>
-        )}
-      </AnimatePresence>
     </form>
   );
 };
