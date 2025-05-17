@@ -11,6 +11,7 @@ import IntegrationSection from "./IntegrationSection";
 import BenefitsSection from "./BenefitsSection";
 import CTASection from "./CTASection";
 import FooterSection from "./FooterSection";
+import TeamSection from "./TeamSection";
 
 
 export default function Home() {
@@ -39,6 +40,8 @@ export default function Home() {
         <IntegrationSection />
         {/* Benefits Section */}
         <BenefitsSection />
+        {/* Team Section */}
+        <TeamSection />
         {/* CTA Section */}
         <CTASection />
       </main>
