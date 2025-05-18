@@ -50,3 +50,14 @@ Open [http://localhost:3000](http://localhost:3000) in your browser to view the 
 - Waitlist and contact forms (API routes)
 - Modern UI with smooth animations
 - Optimized for performance and SEO
+- Optimized for mobile devices
+
+---
+
+Feel free to customize and extend this project for your own needs!
+
+---
+
+**License:**
+
+This project is licensed under the [MIT License](https://opensource.org/licenses/MIT).
