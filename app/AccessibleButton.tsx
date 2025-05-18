@@ -1,4 +1,3 @@
-// AccessibleButton: a button with improved accessibility and focus styles
 import React from "react";
 
 interface AccessibleButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {

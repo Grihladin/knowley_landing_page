@@ -1,4 +1,3 @@
-// Reusable BenefitCard component for landing page benefits
 import React from "react";
 import { motion } from "framer-motion";
 import { benefitCardVariants, benefitIconVariants, benefitItemVariants } from "./utils/animations";

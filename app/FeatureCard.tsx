@@ -1,4 +1,3 @@
-// Reusable FeatureCard component for landing page features
 import React from "react";
 import { motion } from "framer-motion";
 import { featureCardVariants, featureIconVariants, featureItemVariants } from "./utils/animations";

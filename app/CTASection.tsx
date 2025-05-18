@@ -1,4 +1,3 @@
-// CTASection.tsx
 "use client";
 import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
 import { useInView } from "react-intersection-observer";

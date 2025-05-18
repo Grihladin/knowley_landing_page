@@ -1,10 +1,5 @@
 "use client";
-import Image from "next/image";
 import "client-only";
-import FeatureCard from "./FeatureCard";
-import BenefitCard from "./BenefitCard";
-import AccessibleButton from "./AccessibleButton";
-import WaitlistForm from "./WaitlistForm";
 import HeroSection from "./HeroSection";
 import FeaturesSection from "./FeaturesSection";
 import IntegrationSection from "./IntegrationSection";
@@ -33,21 +28,14 @@ export default function Home() {
       </header>
 
       <main className="flex-grow" id="main-content" role="main">
-        {/* Hero Section */}
         <HeroSection />
-        {/* Features Section */}
         <FeaturesSection />
-        {/* Integration Section */}
         <IntegrationSection />
-        {/* Benefits Section */}
         <BenefitsSection />
-        {/* Team Section */}
         <TeamSection />
-        {/* CTA Section */}
         <CTASection />
       </main>
 
-      {/* Footer */}
       <FooterSection />
     </div>
   );

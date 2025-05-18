@@ -1,8 +1,22 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Knowley Landing Page
+
+A modern landing page built with [Next.js](https://nextjs.org), designed to showcase Knowley and collect user interest. This project uses the Next.js App Router, TypeScript, and modern React best practices.
 
 ## Getting Started
 
-First, run the development server:
+### 1. Install dependencies
+
+```bash
+npm install
+# or
+yarn install
+# or
+pnpm install
+# or
+bun install
+```
+
+### 2. Run the development server
 
 ```bash
 npm run dev
@@ -14,23 +28,25 @@ pnpm dev
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) in your browser to view the landing page.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Project Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- `app/` — Main application folder (Next.js App Router)
+  - `page.tsx` — Main landing page layout and sections
+  - `layout.tsx` — Root layout for the app
+  - `globals.css` — Global styles
+  - `HeroSection.tsx`, `FeaturesSection.tsx`, `IntegrationSection.tsx`, `BenefitsSection.tsx`, `TeamSection.tsx`, `CTASection.tsx`, `FooterSection.tsx` — Page sections/components
+  - `api/` — API routes for forms (e.g., contact, waitlist)
+  - `utils/` — Utility functions (e.g., animations, validation)
+- `data/` — Static data (e.g., contact and waitlist JSON)
+- `public/` — Static assets (images, icons, etc.)
+- `next.config.ts` — Next.js configuration
+- `tsconfig.json` — TypeScript configuration
+- `package.json` — Project dependencies and scripts
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Features
+- Responsive, accessible landing page
+- Waitlist and contact forms (API routes)
+- Modern UI with smooth animations
+- Optimized for performance and SEO
