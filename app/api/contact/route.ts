@@ -16,6 +16,23 @@ interface ContactData {
 
 const dataFilePath = path.join(process.cwd(), 'data', 'contact.json');
 
+const TELEGRAM_BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN!;
+const TELEGRAM_CHAT_ID = process.env.TELEGRAM_CHAT_ID!;
+
+async function notifyTelegramContact(name: string, email: string, message: string) {
+  const text = `📩 New contact message:\n*Name:* ${name}\n*Email:* ${email}\n*Message:* ${message}`;
+  const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
+  await fetch(url, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      chat_id: TELEGRAM_CHAT_ID,
+      text,
+      parse_mode: 'Markdown',
+    }),
+  });
+}
+
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
@@ -64,6 +81,9 @@ export async function POST(request: NextRequest) {
 
     // Save data back to file
     fs.writeFileSync(dataFilePath, JSON.stringify(contactData, null, 2));
+
+    // Notify Telegram
+    await notifyTelegramContact(name, email, message);
 
     return NextResponse.json(
       { success: true, message: 'Message sent successfully' },
