@@ -102,7 +102,7 @@ export const heroContainerVariants: Variants = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.25, // Increased stagger time
+      staggerChildren: 0.2, // Increased stagger time -> Reduced stagger time
       delayChildren: 0.2,
     },
   },
@@ -117,7 +117,7 @@ export const heroTextVariants: Variants = {
     opacity: 1,
     y: 0,
     transition: {
-      duration: 0.6,
+      duration: 0.5, // Reduced duration
       ease: [0.215, 0.61, 0.355, 1], // easeOutCubic for smooth text reveal
     },
   },
@@ -166,7 +166,7 @@ export const heroImageVariants: Variants = {
     scale: 1,
     y: 0,
     transition: {
-      duration: 0.8,
+      duration: 0.6, // Reduced duration
       ease: [0.215, 0.61, 0.355, 1], // easeOutCubic for smooth scaling
     },
   },
