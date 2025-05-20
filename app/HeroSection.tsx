@@ -8,8 +8,49 @@ import {
   buttonVariants,
   heroImageVariants,
 } from "./utils/animations";
+import React, { useEffect, useRef, useState } from "react";
 
 export default function HeroSection() {
+  const [isPlaying, setIsPlaying] = useState(false);
+  const playerRef = useRef<HTMLDivElement>(null);
+  const ytPlayer = useRef<any>(null);
+
+  useEffect(() => {
+    // Load YouTube IFrame API if not already loaded
+    if (!(window as any).YT) {
+      const tag = document.createElement('script');
+      tag.src = "https://www.youtube.com/iframe_api";
+      document.body.appendChild(tag);
+    }
+    (window as any).onYouTubeIframeAPIReady = () => {
+      if (playerRef.current && !ytPlayer.current) {
+        ytPlayer.current = new (window as any).YT.Player(playerRef.current, {
+          videoId: "LDU_Txk06tM",
+          playerVars: {
+            autoplay: 0,
+            rel: 0,
+            showinfo: 0,
+            modestbranding: 1,
+          },
+          events: {
+            onStateChange: (event: any) => {
+              if (event.data === 1) setIsPlaying(true); // 1 = playing
+              else if (event.data === 2 || event.data === 0) setIsPlaying(false); // 2 = paused, 0 = ended
+            },
+          },
+        });
+      }
+    };
+    // If API is already loaded
+    if ((window as any).YT && (window as any).YT.Player && playerRef.current && !ytPlayer.current) {
+      (window as any).onYouTubeIframeAPIReady();
+    }
+    // Cleanup
+    return () => {
+      if (ytPlayer.current && ytPlayer.current.destroy) ytPlayer.current.destroy();
+    };
+  }, []);
+
   return (
     <section className="py-20 px-4 bg-gradient-to-br from-background to-gray-light overflow-hidden">
       <motion.div 
@@ -95,17 +136,21 @@ export default function HeroSection() {
           variants={heroImageVariants}
           className="w-full md:w-1/2 mt-8 md:mt-0"
         >
-          <div className="relative w-full aspect-video bg-gradient-to-tr from-primary-dark via-primary to-secondary rounded-lg shadow-xl overflow-hidden">
+          <div className="relative w-full aspect-video rounded-2xl shadow-2xl overflow-hidden border-2 border-primary/30 bg-white/10 backdrop-blur-md">
+            {/* Play button overlay, hidden when video is playing */}
+            {!isPlaying && (
+              <div className="absolute inset-0 flex items-center justify-center cursor-pointer z-10" onClick={() => {
+                if (ytPlayer.current) ytPlayer.current.playVideo();
+              }}>
+                <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" className="drop-shadow-lg">
+                  <circle cx="40" cy="40" r="38" fill="#fff" fillOpacity="0.7"/>
+                  <circle cx="40" cy="40" r="38" stroke="#6366F1" strokeWidth="4"/>
+                  <polygon points="34,28 58,40 34,52" fill="#6366F1"/>
+                </svg>
+              </div>
+            )}
             <div className="absolute inset-0 flex items-center justify-center">
-              <iframe 
-                className="w-full h-full rounded-lg"
-                src="https://www.youtube.com/embed/LDU_Txk06tM?autoplay=0&rel=0&showinfo=0&modestbranding=1"
-                title="Crab Rave Video - Knowley Demo"
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-                aria-label="Demo video: How Knowley works"
-              ></iframe>
+              <div ref={playerRef} className="w-full h-full rounded-2xl" />
             </div>
           </div>
         </motion.div>
