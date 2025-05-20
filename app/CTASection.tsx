@@ -96,29 +96,35 @@ export default function CTASection() {
             Contact Us
           </motion.button>
         </motion.div>
-        {/* Form Container - Stacked layout where both forms can be visible */}
-        <div className="flex flex-col space-y-6 max-w-xl mx-auto w-full px-4 sm:px-0">
-          {/* Contact Form - Shows with AnimatePresence for better performance */}
-          <AnimatePresence>
+        {/* Form Container - Using layout prop for smoother transitions */}
+        <motion.div 
+          layout
+          className="flex flex-col space-y-6 max-w-xl mx-auto w-full px-4 sm:px-0"
+        >
+          {/* Contact Form - Improved animation */}
+          <AnimatePresence mode="popLayout">
             {showContactForm && (
               <motion.div
-                initial={{ opacity: 0, height: 0, marginBottom: 0 }}
-                animate={{ opacity: 1, height: "auto", marginBottom: 16 }}
-                exit={{ opacity: 0, height: 0, marginBottom: 0 }}
+                layout
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.95 }}
                 transition={{
-                  opacity: { duration: 0.2 },
-                  height: { duration: 0.3, ease: "easeInOut" }
+                  type: "tween",
+                  duration: 0.3,
+                  ease: "easeOut"
                 }}
-                className="bg-white/10 backdrop-blur-sm rounded-xl p-4 sm:p-6 w-full overflow-hidden will-change-auto"
+                className="bg-white/10 rounded-xl p-4 sm:p-6 w-full overflow-hidden will-change-transform"
               >
                 <ContactForm />
               </motion.div>
             )}
           </AnimatePresence>
           
-          {/* Waitlist Form - Always present, removed layout animation for better performance */}
+          {/* Waitlist Form - Added layout prop for smooth transitions */}
           <motion.div
-            className="bg-white/10 backdrop-blur-sm rounded-xl p-4 sm:p-6 w-full"
+            layout
+            className="bg-white/10 rounded-xl p-4 sm:p-6 w-full"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ 
@@ -135,7 +141,7 @@ export default function CTASection() {
               By signing up, you agree to our Terms of Service and Privacy Policy.
             </motion.p>
           </motion.div>
-        </div>
+        </motion.div>
       </motion.div>
     </section>
   );
