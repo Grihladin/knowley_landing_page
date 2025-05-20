@@ -5,6 +5,7 @@ export const fadeInUp: Variants = {
   hidden: {
     opacity: 0,
     y: 20,
+    willChange: "transform, opacity", // Added will-change
   },
   visible: {
     opacity: 1,
@@ -22,6 +23,7 @@ export const buttonVariants: Variants = {
     opacity: 0,
     y: 20,
     scale: 0.95,
+    willChange: "transform, opacity", // Added will-change
   },
   visible: {
     opacity: 1,
@@ -34,7 +36,7 @@ export const buttonVariants: Variants = {
   },
   hover: {
     scale: 1.05,
-    boxShadow: "0px 8px 20px rgba(0, 0, 0, 0.2)",
+    boxShadow: "0px 8px 20px rgba(0, 0, 0, 0.2)", // Keep boxShadow for now, monitor if perf issues arise
     transition: {
       duration: 0.2,
       ease: "easeOut",
@@ -54,9 +56,9 @@ export const staggerContainer: Variants = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.1, // Reduced stagger time for smoother overall animation
+      staggerChildren: 0.1, 
       ease: "easeOut",
-      duration: 0.3, // Add a duration for smoother container fade-in
+      duration: 0.3, 
     },
   },
 };
@@ -64,31 +66,33 @@ export const staggerContainer: Variants = {
 export const teamCardVariants: Variants = {
   hidden: {
     opacity: 0,
-    y: 10, // Changed from x to y for more efficient rendering
+    y: 10, 
     scale: 0.98,
+    willChange: "transform, opacity", // Added will-change
   },
   visible: {
     opacity: 1,
     y: 0,
     scale: 1,
     transition: {
-      duration: 0.3, // Reduced duration
+      duration: 0.3, 
       ease: "easeOut",
     },
   },
   hover: {
-    scale: 1.01, // Reduced scale amount for smoother animation
-    y: -2, // Small lift effect instead of large scale
+    scale: 1.01, 
+    y: -2, 
     transition: {
       duration: 0.2,
-      type: "tween", // Use tween instead of spring for more predictable performance
+      type: "tween", 
     },
   },
 };
 
 export const imageFrameVariants: Variants = {
   hover: {
-    scale: 1.03, // Use scale instead of rotation for better performance
+    scale: 1.03, 
+    willChange: "transform", // Added will-change for scale
     transition: {
       duration: 0.2,
       type: "tween",
@@ -102,8 +106,8 @@ export const heroContainerVariants: Variants = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.2, // Increased stagger time -> Reduced stagger time
-      delayChildren: 0.2,
+      staggerChildren: 0.15, // Adjusted stagger time
+      delayChildren: 0.1,  // Adjusted delay
     },
   },
 };
@@ -112,13 +116,14 @@ export const heroTextVariants: Variants = {
   hidden: {
     opacity: 0,
     y: 20,
+    willChange: "transform, opacity", // Added will-change
   },
   visible: {
     opacity: 1,
     y: 0,
     transition: {
-      duration: 0.5, // Reduced duration
-      ease: [0.215, 0.61, 0.355, 1], // easeOutCubic for smooth text reveal
+      duration: 0.5, 
+      ease: [0.215, 0.61, 0.355, 1], 
     },
   },
 };
@@ -127,6 +132,7 @@ export const heroTagVariants: Variants = {
   hidden: { 
     opacity: 0,
     scale: 0.8,
+    willChange: "transform, opacity", // Added will-change
   },
   visible: {
     opacity: 1,
@@ -142,6 +148,7 @@ export const heroListItemVariants: Variants = {
   hidden: {
     opacity: 0,
     x: -20,
+    willChange: "transform, opacity", // Added will-change
   },
   visible: {
     opacity: 1,
@@ -160,14 +167,15 @@ export const heroImageVariants: Variants = {
     opacity: 0,
     scale: 0.95,
     y: 20,
+    willChange: "transform, opacity", // Added will-change
   },
   visible: {
     opacity: 1,
     scale: 1,
     y: 0,
     transition: {
-      duration: 0.6, // Reduced duration
-      ease: [0.215, 0.61, 0.355, 1], // easeOutCubic for smooth scaling
+      duration: 0.6, 
+      ease: [0.215, 0.61, 0.355, 1], 
     },
   },
 };
@@ -177,7 +185,7 @@ export const featureSectionVariants: Variants = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.2,
+      staggerChildren: 0.15, // Adjusted stagger time
       delayChildren: 0.1,
     },
   },
@@ -188,6 +196,7 @@ export const featureCardVariants: Variants = {
     opacity: 0,
     y: 30,
     scale: 0.95,
+    willChange: "transform, opacity", // Added will-change
   },
   visible: {
     opacity: 1,
@@ -200,6 +209,7 @@ export const featureCardVariants: Variants = {
   },
   hover: {
     scale: 1.03,
+    willChange: "transform", // Added will-change for scale
     transition: {
       duration: 0.2,
       ease: "easeOut",
@@ -211,6 +221,7 @@ export const featureIconVariants: Variants = {
   hidden: {
     opacity: 0,
     scale: 0.5,
+    willChange: "transform, opacity", // Added will-change
   },
   visible: {
     opacity: 1,
@@ -222,6 +233,7 @@ export const featureIconVariants: Variants = {
   },
   hover: {
     scale: 1.1,
+    willChange: "transform", // Added will-change for scale
     transition: {
       duration: 0.2,
       ease: "easeOut",
@@ -233,6 +245,7 @@ export const featureItemVariants: Variants = {
   hidden: {
     opacity: 0,
     x: -20,
+    willChange: "transform, opacity", // Added will-change
   },
   visible: {
     opacity: 1,
@@ -255,7 +268,7 @@ export const ctaSectionVariants: Variants = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.2,
+      staggerChildren: 0.15, // Adjusted stagger time
       delayChildren: 0.1,
     },
   },
@@ -266,6 +279,7 @@ export const ctaTagVariants: Variants = {
     opacity: 0,
     scale: 0.8,
     y: 20,
+    willChange: "transform, opacity", // Added will-change
   },
   visible: {
     opacity: 1,
@@ -282,6 +296,7 @@ export const ctaHeadingVariants: Variants = {
   hidden: {
     opacity: 0,
     y: 30,
+    willChange: "transform, opacity", // Added will-change
   },
   visible: {
     opacity: 1,
@@ -300,17 +315,17 @@ export const formContainerVariants: Variants = {
     opacity: 0,
     y: 20,
     scale: 0.98,
+    willChange: "transform, opacity", // Added will-change
   },
   visible: {
     opacity: 1,
     y: 0,
     scale: 1,
     transition: {
-      // Use tween instead of spring for more predictable animations
       type: "tween",
       duration: 0.3,
       ease: "easeOut",
-      staggerChildren: 0.05,
+      staggerChildren: 0.05, // Keep small stagger for form elements
     },
   },
 };
@@ -318,21 +333,21 @@ export const formContainerVariants: Variants = {
 export const formInputVariants: Variants = {
   hidden: {
     opacity: 0,
-    y: 10, // Change from x to y for more efficient rendering
+    y: 10, 
+    willChange: "transform, opacity", // Added will-change
   },
   visible: {
     opacity: 1,
     y: 0,
     transition: {
-      // Use tween for more efficient animations
       type: "tween",
       duration: 0.2,
       ease: "easeOut",
     },
   },
   focus: {
-    // Reduce scale amount for better performance
     scale: 1.01,
+    willChange: "transform", // Added will-change for scale
     transition: {
       type: "tween",
       duration: 0.15,

@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, memo } from "react";
 import { motion } from "framer-motion";
-import { formInputVariants, buttonVariants } from "./utils/animations";
+import { formInputVariants, buttonVariants, formContainerVariants } from "./utils/animations"; // Added formContainerVariants
 import { validateEmail } from "./utils/validation";
 
 const ContactForm: React.FC = () => {
@@ -115,7 +115,10 @@ const ContactForm: React.FC = () => {
   };
 
   return (
-    <form 
+    <motion.form // Changed to motion.form
+      variants={formContainerVariants} // Added variants
+      initial="hidden" // Added initial
+      animate="visible" // Added animate
       className="w-full flex flex-col gap-4" 
       onSubmit={handleSubmit} 
       noValidate 
@@ -136,7 +139,7 @@ const ContactForm: React.FC = () => {
       
       <div className="flex flex-col w-full">
         <motion.input
-          variants={formInputVariants}
+          variants={formInputVariants} // This will be used for the item's animation
           whileFocus="focus"
           type="text"
           name="name"
@@ -152,7 +155,7 @@ const ContactForm: React.FC = () => {
 
       <div className="flex flex-col w-full">
         <motion.input
-          variants={formInputVariants}
+          variants={formInputVariants} // This will be used for the item's animation
           whileFocus="focus"
           type="email"
           name="email"
@@ -170,7 +173,7 @@ const ContactForm: React.FC = () => {
 
       <div className="flex flex-col w-full">
         <motion.textarea
-          variants={formInputVariants}
+          variants={formInputVariants} // This will be used for the item's animation
           whileFocus="focus"
           name="message"
           value={formData.message}
@@ -184,10 +187,14 @@ const ContactForm: React.FC = () => {
       </div>
 
       <motion.button
-        variants={buttonVariants}
+        variants={buttonVariants} // This will be used for the item's animation
         whileHover={status !== "loading" ? "hover" : undefined}
         whileTap={status !== "loading" ? "tap" : undefined}
-        animate={status === "loading" ? "loading" : "visible"}
+        // The "animate" prop here will be driven by the parent's stagger if "loading" isn't active.
+        // If status is "loading", it will override to the "loading" variant.
+        // Consider if the button should also have initial="hidden" animate="visible" if not part of a container,
+        // but here it will inherit from the parent form.
+        animate={status === "loading" ? "loading" : undefined} // Let parent control "visible" unless loading
         type="submit"
         className={`bg-white text-primary h-[50px] px-5 rounded-lg transition-colors font-medium whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-white mt-2 ${
           status === "loading" ? "opacity-70 cursor-not-allowed" : "hover:bg-gray-light"
@@ -197,7 +204,7 @@ const ContactForm: React.FC = () => {
       >
         {status === "loading" ? "Sending..." : "Send Message"}
       </motion.button>
-    </form>
+    </motion.form>
   );
 };
 
