@@ -16,7 +16,7 @@ pnpm install
 bun install
 ```
 
-### 2. Run the development server
+### 2.1. Run the development server
 
 ```bash
 npm run dev
@@ -27,6 +27,14 @@ pnpm dev
 # or
 bun dev
 ```
+
+### 2.2. Run the product server
+
+```bash
+npm run build
+npm start
+```
+
 
 Open [http://localhost:3000](http://localhost:3000) in your browser to view the landing page.
 
