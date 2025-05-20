@@ -55,13 +55,13 @@ export default function HeroSection() {
   return (
     <section className="py-20 px-4 bg-gradient-to-br from-background to-gray-light overflow-hidden">
       <motion.div 
-        variants={heroContainerVariants}
+        variants={heroContainerVariants} // Main stagger container
         initial="hidden"
         animate="visible"
         className="container mx-auto max-w-6xl flex flex-col md:flex-row items-center gap-12"
       >
+        {/* Text content block - no longer uses heroContainerVariants itself */}
         <motion.div 
-          variants={heroContainerVariants}
           className="w-full md:w-1/2 space-y-6"
         >
           <motion.div
@@ -83,8 +83,8 @@ export default function HeroSection() {
             Knowley cuts qualification upgrade course selection time from weeks to 
             days with AI-powered talent matching that integrates with your existing systems.
           </motion.p>
+          {/* List wrapper - no longer uses heroContainerVariants */}
           <motion.div 
-            variants={heroContainerVariants}
             className="pt-4"
           >
             <ul className="space-y-2" aria-label="Key benefits list">
@@ -106,8 +106,8 @@ export default function HeroSection() {
               ))}
             </ul>
           </motion.div>
+          {/* Buttons wrapper - no longer uses heroContainerVariants */}
           <motion.div 
-            variants={heroContainerVariants}
             className="flex flex-col sm:flex-row gap-4 pt-2"
           >
             <motion.a
@@ -135,7 +135,7 @@ export default function HeroSection() {
           </motion.div>
         </motion.div>
         <motion.div
-          variants={heroImageVariants}
+          variants={heroImageVariants} // Image block uses its own specific animation
           className="w-full md:w-1/2 mt-8 md:mt-0"
         >
           <div className="relative w-full aspect-video rounded-2xl shadow-2xl overflow-hidden border-2 border-primary/30 bg-white/10 backdrop-blur-md">

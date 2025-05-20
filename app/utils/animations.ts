@@ -106,6 +106,7 @@ export const heroContainerVariants: Variants = {
   visible: {
     opacity: 1,
     transition: {
+      delay: 0.3, // Added delay before the animation starts
       staggerChildren: 0.15, // Adjusted stagger time
       delayChildren: 0.1,  // Adjusted delay
     },
