@@ -13,10 +13,10 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Knowley | AI Talent Development Matching",
+  title: "Knowley",
   description: "Match employees to learning & development courses with AI. Cut course selection time from weeks to days.",
   openGraph: {
-    title: "Knowley | AI Talent Development Matching",
+    title: "Knowley",
     description: "Match employees to learning & development courses with AI. Cut course selection time from weeks to days.",
     url: "https://knowley.ai/",
     siteName: "Knowley",
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Knowley | AI Talent Development Matching",
+    title: "Knowley",
     description: "Match employees to learning & development courses with AI. Cut course selection time from weeks to days.",
     site: "@knowleyai",
     images: ["/logo-color.png"],
