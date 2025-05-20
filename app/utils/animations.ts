@@ -102,7 +102,7 @@ export const heroContainerVariants: Variants = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.15,
+      staggerChildren: 0.25, // Increased stagger time
       delayChildren: 0.2,
     },
   },

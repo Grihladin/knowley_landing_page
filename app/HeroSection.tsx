@@ -9,6 +9,7 @@ import {
   heroImageVariants,
 } from "./utils/animations";
 import React, { useEffect, useRef, useState } from "react";
+import { handleSmoothScroll } from "./utils/smoothScroll";
 
 export default function HeroSection() {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -122,6 +123,7 @@ export default function HeroSection() {
             </motion.a>
             <motion.a
               href="#waitlist"
+              onClick={(e) => handleSmoothScroll(e, "#waitlist")}
               variants={buttonVariants}
               whileHover="hover"
               whileTap="tap" 
@@ -143,7 +145,7 @@ export default function HeroSection() {
                 if (ytPlayer.current) ytPlayer.current.playVideo();
               }}>
                 <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" className="drop-shadow-lg">
-                  <circle cx="40" cy="40" r="38" fill="#fff" fillOpacity="0.7"/>
+                  <circle cx="40" cy="40" r="38" fill="#fff" fillOpacity="1"/>
                   <circle cx="40" cy="40" r="38" stroke="#6366F1" strokeWidth="4"/>
                   <polygon points="34,28 58,40 34,52" fill="#6366F1"/>
                 </svg>
