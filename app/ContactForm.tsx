@@ -133,7 +133,7 @@ const ContactForm: React.FC = () => {
           onChange={handleChange}
           onBlur={handleBlur}
           placeholder="Your Name"
-          className="w-full h-[50px] px-4 rounded-lg text-white bg-transparent border-2 border-white outline-none focus:ring-2 focus:ring-primary-light"
+          className="w-full h-[50px] px-4 rounded-lg text-white bg-transparent border-2 border-white outline-none focus:ring-2 focus:ring-primary-light placeholder-white/70"
           required
           aria-label="Your name"
         />
@@ -149,7 +149,7 @@ const ContactForm: React.FC = () => {
           placeholder="Your Email"
           className={`w-full h-[50px] px-4 rounded-lg text-white bg-transparent border-2 ${
             touched.email && status === "error" ? "border-red-500" : "border-white"
-          } outline-none focus:ring-2 focus:ring-primary-light`}
+          } outline-none focus:ring-2 focus:ring-primary-light placeholder-white/70`}
           required
           aria-label="Your email"
         />
@@ -162,7 +162,7 @@ const ContactForm: React.FC = () => {
           onChange={handleChange}
           onBlur={handleBlur}
           placeholder="Your Message"
-          className="w-full px-4 py-3 rounded-lg text-white bg-transparent border-2 border-white outline-none focus:ring-2 focus:ring-primary-light min-h-[120px]"
+          className="w-full px-4 py-3 rounded-lg text-white bg-transparent border-2 border-white outline-none focus:ring-2 focus:ring-primary-light min-h-[120px] placeholder-white/70"
           required
           aria-label="Your message"
         />

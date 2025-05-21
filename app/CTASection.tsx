@@ -55,17 +55,17 @@ export default function CTASection() {
           <div
             className={`
               bg-white/20 rounded-xl w-full overflow-hidden
-              transition-all duration-300 ease-in-out
+              transition-[max-height] duration-500 ease-in-out
               ${showContactForm ? 'max-h-[1000px]' : 'max-h-0'}
             `}
             aria-hidden={!showContactForm}
           >
             <div className={`
               p-4 sm:p-6
-              transition-opacity duration-300 ease-in-out
+              transition-opacity duration-500 ease-in-out
               ${showContactForm ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}
             `}>
-              {showContactForm && <ContactForm />}
+              <ContactForm />
             </div>
           </div>
           

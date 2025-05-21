@@ -87,7 +87,7 @@ const WaitlistForm: React.FC = () => {
           placeholder="Enter your work email"
           className={`w-full h-[50px] px-4 rounded-lg text-white bg-transparent border-2 ${
             touched && status === "error" ? "border-red-500" : "border-white"
-          } outline-none focus:ring-2 focus:ring-primary-light`}
+          } outline-none focus:ring-2 focus:ring-primary-light placeholder-white/70`}
           required
           aria-label="Work email"
           aria-invalid={touched && status === "error"}
