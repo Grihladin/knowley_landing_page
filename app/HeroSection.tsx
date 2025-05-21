@@ -105,8 +105,8 @@ export default function HeroSection() {
               Schedule Demo
             </a>
             <a
-              href="#waitlist"
-              onClick={(e) => handleSmoothScroll(e, "#waitlist")}
+              href="#cta-section" // Changed href to #cta-section
+              onClick={(e) => handleSmoothScroll(e, "#cta-section")} // Changed selector to #cta-section
               className="border border-gray px-6 py-3 rounded-lg hover:bg-gray-light font-medium text-center"
               aria-label="Join our waitlist"
             >

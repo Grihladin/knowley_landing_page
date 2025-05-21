@@ -11,7 +11,10 @@ export default function CTASection() {
   };
 
   return (
-    <section className="py-12 sm:py-20 mt-10 sm:mt-16 px-4 bg-gradient-to-r from-primary to-secondary relative overflow-hidden">
+    <section 
+      id="cta-section"
+      className="py-12 sm:py-20 mt-10 sm:mt-16 px-4 bg-gradient-to-r from-primary to-secondary relative overflow-hidden"
+    >
       <div
         className="absolute inset-0 opacity-10"
       >
