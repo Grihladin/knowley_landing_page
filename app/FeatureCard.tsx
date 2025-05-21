@@ -1,6 +1,4 @@
 import React from "react";
-import { motion } from "framer-motion";
-import { featureCardVariants, featureIconVariants, featureItemVariants } from "./utils/animations";
 
 interface FeatureCardProps {
   icon: React.ReactNode;
@@ -10,31 +8,21 @@ interface FeatureCardProps {
 }
 
 const FeatureCard: React.FC<FeatureCardProps> = ({ icon, title, description, items }) => (
-  <motion.div
-    variants={featureCardVariants}
-    whileHover="hover"
-    className="bg-white p-4 sm:p-8 rounded-xl shadow-sm hover:shadow-md transition-shadow w-full max-w-full"
-  >
+  <div className="bg-white p-4 sm:p-8 rounded-xl shadow-sm hover:shadow-md transition-shadow w-full max-w-full feature-card">
     <div className="flex items-center gap-4 mb-6">
-      <motion.div
-        variants={featureIconVariants}
-        className="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center"
-      >
+      <div className="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center icon-hover">
         {icon}
-      </motion.div>
+      </div>
       <h3 className="text-xl font-bold leading-snug align-middle">{title}</h3>
     </div>
     <p className="text-gray-dark mb-4 leading-relaxed">{description}</p>
     {items && (
-      <motion.ul 
-        variants={featureItemVariants}
-        className="space-y-2"
-      >
+      <ul className="space-y-2">
         {items.map((item, idx) => (
-          <motion.li
+          <li
             key={idx}
-            variants={featureItemVariants}
-            className="flex items-center gap-2"
+            className="flex items-center gap-2 animated-list-item"
+            style={{ animationDelay: `${idx * 0.1}s` }}
           >
             <div className="flex-shrink-0 w-5 h-5 rounded-full bg-blue-100 flex items-center justify-center">
               <svg 
@@ -52,11 +40,11 @@ const FeatureCard: React.FC<FeatureCardProps> = ({ icon, title, description, ite
               </svg>
             </div>
             <span className="text-sm align-middle leading-normal">{item}</span>
-          </motion.li>
+          </li>
         ))}
-      </motion.ul>
+      </ul>
     )}
-  </motion.div>
+  </div>
 );
 
 export default FeatureCard;

@@ -1,46 +1,44 @@
 "use client";
-import { motion } from "framer-motion";
-import { useInView } from "react-intersection-observer";
+import React, { useEffect, useRef } from "react";
 import BenefitCard from "./BenefitCard";
-import { benefitSectionVariants, fadeInUp } from "./utils/animations";
 
 export default function BenefitsSection() {
-  const [ref, inView] = useInView({
-    triggerOnce: true,
-    threshold: 0.1,
-  });
+  const sectionRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <section id="benefits" className="py-20 px-4 bg-gray-light">
-      <motion.div
-        ref={ref}
-        variants={benefitSectionVariants}
-        initial="hidden"
-        animate={inView ? "visible" : "hidden"}
-        className="container mx-auto max-w-6xl"
+      <div
+        ref={sectionRef}
+        className="container mx-auto max-w-6xl section-fade-in"
       >
-        <motion.div 
-          variants={benefitSectionVariants}
-          className="text-center max-w-3xl mx-auto mb-16"
-        >
-          <motion.h2 
-            variants={fadeInUp}
-            className="text-3xl md:text-4xl font-bold mb-6"
-          >
+        <div className="text-center max-w-3xl mx-auto mb-16">
+          <h2 className="text-3xl md:text-4xl font-bold mb-6 fade-in-up">
             Why Choose Knowley?
-          </motion.h2>
-          <motion.p 
-            variants={fadeInUp}
-            className="text-gray-dark text-lg"
-          >
+          </h2>
+          <p className="text-gray-dark text-lg fade-in-up">
             Our AI-powered platform delivers tangible benefits for both your business and employees,
             creating a more effective talent development ecosystem.
-          </motion.p>
-        </motion.div>
-        <motion.div 
-          variants={benefitSectionVariants}
-          className="grid grid-cols-1 md:grid-cols-2 gap-8"
-        >
+          </p>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 stagger-children">
           <BenefitCard 
             title="Time & Cost Savings"
             benefits={[
@@ -62,14 +60,14 @@ export default function BenefitsSection() {
               { label: "Business-aligned skill development", description: "Close skills gaps faster with learning that aligns with both employee and business objectives" },
             ]}
             icon={
-              <svg xmlns="http://www.w3.org/2000/svg"            className="h-6 w-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13 10V3L4 14h7v7l9-11h-7z" />
               </svg>
             }
             colorClass="bg-primary"
           />
-        </motion.div>
-      </motion.div>
+        </div>
+      </div>
     </section>
   );
 }

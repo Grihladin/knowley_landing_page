@@ -1,6 +1,4 @@
 import React, { useState, memo } from "react";
-import { motion } from "framer-motion";
-import { formInputVariants, buttonVariants } from "./utils/animations";
 import { validateEmail } from "./utils/validation";
 
 const WaitlistForm: React.FC = () => {
@@ -43,7 +41,7 @@ const WaitlistForm: React.FC = () => {
 
   return (
     <form 
-      className="flex flex-col sm:flex-row items-stretch sm:items-end gap-4 w-full" 
+      className="flex flex-col sm:flex-row items-stretch sm:items-end gap-4 w-full stagger-children" 
       onSubmit={handleSubmit} 
       noValidate 
       aria-label="Join waitlist form"
@@ -61,9 +59,7 @@ const WaitlistForm: React.FC = () => {
             {message}
           </div>
         )}
-        <motion.input
-          variants={formInputVariants}
-          whileFocus="focus"
+        <input
           type="email"
           value={email}
           onChange={e => {
@@ -83,7 +79,7 @@ const WaitlistForm: React.FC = () => {
           placeholder="Enter your work email"
           className={`w-full h-[50px] px-4 rounded-lg text-gray-dark border-2 ${
             touched && status === "error" ? "border-red-500" : "border-white"
-          } outline-none focus:ring-2 focus:ring-primary-light`}
+          } outline-none focus:ring-2 focus:ring-primary-light form-input`}
           required
           aria-label="Work email"
           aria-invalid={touched && status === "error"}
@@ -91,20 +87,16 @@ const WaitlistForm: React.FC = () => {
         />
 
       </div>
-      <motion.button
-        variants={buttonVariants}
-        whileHover={status !== "loading" ? "hover" : undefined}
-        whileTap={status !== "loading" ? "tap" : undefined}
-        animate={status === "loading" ? "loading" : "visible"}
+      <button
         type="submit"
         className={`bg-white text-primary h-[50px] px-5 rounded-lg transition-colors font-medium whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-white ${
-          status === "loading" ? "opacity-70 cursor-not-allowed" : "hover:bg-gray-light"
-        } w-full sm:w-auto`}
+          status === "loading" ? "opacity-70 cursor-not-allowed loading" : ""
+        } w-full sm:w-auto button-hover`}
         disabled={status === "loading"}
         aria-busy={status === "loading"}
       >
         {status === "loading" ? "Processing..." : "Join Waitlist"}
-      </motion.button>
+      </button>
     </form>
   );
 };

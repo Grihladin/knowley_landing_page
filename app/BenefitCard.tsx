@@ -1,6 +1,4 @@
 import React from "react";
-import { motion } from "framer-motion";
-import { benefitCardVariants, benefitIconVariants, benefitItemVariants } from "./utils/animations";
 
 interface BenefitCardProps {
   icon: React.ReactNode;
@@ -10,30 +8,23 @@ interface BenefitCardProps {
 }
 
 const BenefitCard: React.FC<BenefitCardProps> = ({ icon, title, benefits, colorClass }) => (
-  <motion.div
-    variants={benefitCardVariants}
-    whileHover="hover"
-    className={`bg-white rounded-xl overflow-hidden shadow-sm transform-gpu`}
-  >
+  <div className="bg-white rounded-xl overflow-hidden shadow-sm feature-card">
     <div className={`h-2 ${colorClass || 'bg-primary'}`}></div>
     <div className="p-8">
       <div className="flex items-center gap-4 mb-6">
-        <motion.div
-          variants={benefitIconVariants}
-          className="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center transform-gpu"
-        >
+        <div className="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center icon-hover">
           {icon}
-        </motion.div>
+        </div>
         <h3 className="text-xl font-bold leading-snug align-middle">
           {title}
         </h3>
       </div>
       <ul className="space-y-4">
         {benefits.map((b, idx) => (
-          <motion.li
+          <li
             key={idx}
-            variants={benefitItemVariants}
-            className="flex items-start gap-3"
+            className="flex items-start gap-3 animated-list-item"
+            style={{ animationDelay: `${idx * 0.1}s` }}
           >
             <div className="flex-shrink-0 w-5 h-5 rounded-full bg-blue-100 flex items-center justify-center mt-1">
               <svg 
@@ -56,11 +47,11 @@ const BenefitCard: React.FC<BenefitCardProps> = ({ icon, title, benefits, colorC
                 {b.description}
               </p>
             </div>
-          </motion.li>
+          </li>
         ))}
       </ul>
     </div>
-  </motion.div>
+  </div>
 );
 
 export default BenefitCard;

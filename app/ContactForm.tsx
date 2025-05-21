@@ -1,7 +1,5 @@
 "use client";
 import React, { useState, memo } from "react";
-import { motion } from "framer-motion";
-import { formInputVariants, buttonVariants, formContainerVariants } from "./utils/animations"; // Added formContainerVariants
 import { validateEmail } from "./utils/validation";
 
 const ContactForm: React.FC = () => {
@@ -115,11 +113,8 @@ const ContactForm: React.FC = () => {
   };
 
   return (
-    <motion.form // Changed to motion.form
-      variants={formContainerVariants} // Added variants
-      initial="hidden" // Added initial
-      animate="visible" // Added animate
-      className="w-full flex flex-col gap-4" 
+    <form 
+      className="w-full flex flex-col gap-4 stagger-children" 
       onSubmit={handleSubmit} 
       noValidate 
       aria-label="Contact form"
@@ -138,25 +133,21 @@ const ContactForm: React.FC = () => {
       )}
       
       <div className="flex flex-col w-full">
-        <motion.input
-          variants={formInputVariants} // This will be used for the item's animation
-          whileFocus="focus"
+        <input
           type="text"
           name="name"
           value={formData.name}
           onChange={handleChange}
           onBlur={handleBlur}
           placeholder="Your Name"
-          className="w-full h-[50px] px-4 rounded-lg text-gray-dark border-2 border-white outline-none focus:ring-2 focus:ring-primary-light"
+          className="w-full h-[50px] px-4 rounded-lg text-gray-dark border-2 border-white outline-none focus:ring-2 focus:ring-primary-light form-input"
           required
           aria-label="Your name"
         />
       </div>
 
       <div className="flex flex-col w-full">
-        <motion.input
-          variants={formInputVariants} // This will be used for the item's animation
-          whileFocus="focus"
+        <input
           type="email"
           name="email"
           value={formData.email}
@@ -165,46 +156,36 @@ const ContactForm: React.FC = () => {
           placeholder="Your Email"
           className={`w-full h-[50px] px-4 rounded-lg text-gray-dark border-2 ${
             touched.email && status === "error" ? "border-red-500" : "border-white"
-          } outline-none focus:ring-2 focus:ring-primary-light`}
+          } outline-none focus:ring-2 focus:ring-primary-light form-input`}
           required
           aria-label="Your email"
         />
       </div>
 
       <div className="flex flex-col w-full">
-        <motion.textarea
-          variants={formInputVariants} // This will be used for the item's animation
-          whileFocus="focus"
+        <textarea
           name="message"
           value={formData.message}
           onChange={handleChange}
           onBlur={handleBlur}
           placeholder="Your Message"
-          className="w-full px-4 py-3 rounded-lg text-gray-dark border-2 border-white outline-none focus:ring-2 focus:ring-primary-light min-h-[120px]"
+          className="w-full px-4 py-3 rounded-lg text-gray-dark border-2 border-white outline-none focus:ring-2 focus:ring-primary-light min-h-[120px] form-input"
           required
           aria-label="Your message"
         />
       </div>
 
-      <motion.button
-        variants={buttonVariants} // This will be used for the item's animation
-        whileHover={status !== "loading" ? "hover" : undefined}
-        whileTap={status !== "loading" ? "tap" : undefined}
-        // The "animate" prop here will be driven by the parent's stagger if "loading" isn't active.
-        // If status is "loading", it will override to the "loading" variant.
-        // Consider if the button should also have initial="hidden" animate="visible" if not part of a container,
-        // but here it will inherit from the parent form.
-        animate={status === "loading" ? "loading" : undefined} // Let parent control "visible" unless loading
+      <button
         type="submit"
         className={`bg-white text-primary h-[50px] px-5 rounded-lg transition-colors font-medium whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-white mt-2 ${
-          status === "loading" ? "opacity-70 cursor-not-allowed" : "hover:bg-gray-light"
-        }`}
+          status === "loading" ? "opacity-70 cursor-not-allowed loading" : "hover:bg-gray-light"
+        } button-hover`}
         disabled={status === "loading"}
         aria-busy={status === "loading"}
       >
         {status === "loading" ? "Sending..." : "Send Message"}
-      </motion.button>
-    </motion.form>
+      </button>
+    </form>
   );
 };
 

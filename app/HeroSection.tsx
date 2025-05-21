@@ -1,13 +1,4 @@
 "use client";
-import { motion } from "framer-motion";
-import {
-  heroContainerVariants,
-  heroTextVariants,
-  heroTagVariants,
-  heroListItemVariants,
-  buttonVariants,
-  heroImageVariants,
-} from "./utils/animations";
 import React, { useEffect, useRef, useState } from "react";
 import { handleSmoothScroll } from "./utils/smoothScroll";
 
@@ -53,48 +44,28 @@ export default function HeroSection() {
   }, []);
 
   return (
-    <section className="py-20 px-4 bg-gradient-to-br from-background to-gray-light overflow-hidden">
-      <motion.div 
-        variants={heroContainerVariants} // Main stagger container
-        initial="hidden"
-        animate="visible"
-        className="container mx-auto max-w-6xl flex flex-col md:flex-row items-center gap-12"
-      >
-        {/* Text content block - no longer uses heroContainerVariants itself */}
-        <motion.div 
-          className="w-full md:w-1/2 space-y-6"
-        >
-          <motion.div
-            variants={heroTagVariants}
-            className="inline-block px-3 py-1 bg-primary/10 text-primary rounded-full text-sm font-medium mb-2"
-          >
+    <section className="py-20 px-4 from-background via-gray-light to-background bg-gradient-to-br">
+      <div className="container mx-auto max-w-6xl flex flex-col md:flex-row items-center gap-12 stagger-children">
+        <div className="w-full md:w-1/2 space-y-6">
+          <div className="inline-block px-3 py-1 bg-primary/10 text-primary rounded-full text-sm font-medium mb-2 fade-in-up">
             AI-Powered L&D Solution
-          </motion.div>
-          <motion.h1
-            variants={heroTextVariants}
-            className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary"
-          >
+          </div>
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight bg-clip-text text-transparent bg-gradient-to-r from-primary via-primary to-secondary fade-in-up">
             Match Talent to Learning in Minutes
-          </motion.h1>
-          <motion.p
-            variants={heroTextVariants}
-            className="text-xl text-gray-dark"
-          >
+          </h1>
+          <p className="text-xl text-gray-dark fade-in-up">
             Knowley cuts qualification upgrade course selection time from weeks to 
             days with AI-powered talent matching that integrates with your existing systems.
-          </motion.p>
-          {/* List wrapper - no longer uses heroContainerVariants */}
-          <motion.div 
-            className="pt-4"
-          >
+          </p>
+          <div className="pt-4">
             <ul className="space-y-2" aria-label="Key benefits list">
               {["Speeds up course selection by up to 90%",
                 "No replacement of existing systems required",
                 "Perfect matches for both employees and business needs"].map((benefit, index) => (
-                <motion.li
+                <li
                   key={index}
-                  variants={heroListItemVariants}
-                  className="flex items-center gap-2"
+                  className="flex items-center gap-2 animated-list-item"
+                  style={{ animationDelay: `${index * 0.1}s` }}
                 >
                   <div className="w-5 h-5 rounded-full bg-primary flex items-center justify-center">
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3 text-white" viewBox="0 0 20 20" fill="currentColor">
@@ -102,46 +73,34 @@ export default function HeroSection() {
                     </svg>
                   </div>
                   <span>{benefit}</span>
-                </motion.li>
+                </li>
               ))}
             </ul>
-          </motion.div>
-          {/* Buttons wrapper - no longer uses heroContainerVariants */}
-          <motion.div 
-            className="flex flex-col sm:flex-row gap-4 pt-2"
-          >
-            <motion.a
+          </div>
+          <div className="flex flex-col sm:flex-row gap-4 pt-2">
+            <a
               href="https://calendly.com/knowleyde"
               target="_blank"
               rel="noopener noreferrer"
-              variants={buttonVariants}
-              whileHover="hover"
-              whileTap="tap"
-              className="bg-primary text-white px-6 py-3 rounded-lg hover:bg-primary-dark transition-colors font-medium inline-block text-center"
+              className="bg-primary text-white px-6 py-3 rounded-lg hover:bg-primary-dark transition-colors font-medium inline-block text-center button-hover"
             >
               Schedule Demo
-            </motion.a>
-            <motion.a
+            </a>
+            <a
               href="#waitlist"
               onClick={(e) => handleSmoothScroll(e, "#waitlist")}
-              variants={buttonVariants}
-              whileHover="hover"
-              whileTap="tap" 
-              className="border border-gray px-6 py-3 rounded-lg hover:bg-gray-light transition-colors font-medium text-center"
+              className="border border-gray px-6 py-3 rounded-lg hover:bg-gray-light transition-colors font-medium text-center button-hover"
               aria-label="Join our waitlist"
             >
               Waitlist
-            </motion.a>
-          </motion.div>
-        </motion.div>
-        <motion.div
-          variants={heroImageVariants} // Image block uses its own specific animation
-          className="w-full md:w-1/2 mt-8 md:mt-0"
-        >
-          <div className="relative w-full aspect-video rounded-2xl shadow-2xl overflow-hidden border-2 border-primary/30 bg-white/10 backdrop-blur-md">
+            </a>
+          </div>
+        </div>
+        <div className="w-full md:w-1/2 mt-8 md:mt-0 fade-in">
+          <div className="relative w-full aspect-video rounded-2xl shadow-2xl overflow-hidden border-2 border-primary/30 bg-white/10 backdrop-blur-md hover-scale">
             {/* Play button overlay, hidden when video is playing */}
             {!isPlaying && (
-              <div className="absolute inset-0 flex items-center justify-center cursor-pointer z-10" onClick={() => {
+              <div className="absolute inset-0 flex items-center justify-center cursor-pointer z-10 hover-scale" onClick={() => {
                 if (ytPlayer.current) ytPlayer.current.playVideo();
               }}>
                 <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" className="drop-shadow-lg">
@@ -155,8 +114,8 @@ export default function HeroSection() {
               <div ref={playerRef} className="w-full h-full rounded-2xl" />
             </div>
           </div>
-        </motion.div>
-      </motion.div>
+        </div>
+      </div>
     </section>
   );
 }
