@@ -170,7 +170,7 @@ const ContactForm: React.FC = () => {
 
       <button
         type="submit"
-        className={`border-2 border-white bg-transparent text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-medium text-base sm:text-lg text-center focus:outline-none focus:ring-2 focus:ring-white mt-2 ${
+        className={`bg-white text-primary px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-medium text-base sm:text-lg text-center focus:outline-none focus:ring-2 focus:ring-white mt-2 ${
           status === "loading" ? "opacity-70 cursor-not-allowed" : ""
         }`}
         disabled={status === "loading"}
