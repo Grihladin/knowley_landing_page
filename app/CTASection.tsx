@@ -14,7 +14,6 @@ export default function CTASection() {
     <section className="py-12 sm:py-20 mt-10 sm:mt-16 px-4 bg-gradient-to-r from-primary to-secondary relative overflow-hidden">
       <div
         className="absolute inset-0 opacity-10"
-        style={{ willChange: 'transform' }}
       >
         <div
           className="absolute top-0 left-0 w-48 h-48 rounded-full bg-white blur-3xl"
@@ -41,13 +40,13 @@ export default function CTASection() {
             href="https://calendly.com/knowleyde"
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-white text-primary px-6 sm:px-8 py-3 sm:py-4 rounded-lg hover:bg-gray-light font-medium text-base sm:text-lg text-center"
+            className="bg-white text-primary px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-medium text-base sm:text-lg text-center"
           >
             Schedule a Demo
           </a>
           <button
             onClick={toggleContactForm}
-            className="border-2 border-white bg-transparent px-6 sm:px-8 py-3 sm:py-4 rounded-lg hover:bg-white/10 font-medium text-base sm:text-lg text-center"
+            className="border-2 border-white bg-transparent px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-medium text-base sm:text-lg text-center"
           >
             Contact Us
           </button>
