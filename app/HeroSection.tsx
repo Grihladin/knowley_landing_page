@@ -5,6 +5,7 @@ import { YouTubePlayer, YouTubeEvent } from './utils/youtube-types';
 
 export default function HeroSection() {
   const [isPlaying, setIsPlaying] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(false);
   const playerRef = useRef<HTMLDivElement>(null);
   const ytPlayer = useRef<YouTubePlayer | null>(null);
 
@@ -19,8 +20,15 @@ export default function HeroSection() {
             rel: 0,
             showinfo: 0,
             modestbranding: 1,
+            playsinline: 1,
+            enablejsapi: 1,
+            origin: window.location.origin,
+            loading: 'lazy',
           },
           events: {
+            onReady: () => {
+              setIsLoaded(true);
+            },
             onStateChange: (event: YouTubeEvent) => {
               // 1 = playing, 2 = paused, 0 = ended
               setIsPlaying(event.data === 1);
@@ -31,17 +39,21 @@ export default function HeroSection() {
     };
 
     // Load YouTube IFrame API if not already loaded
-    if (!window.YT) {
-      // Define callback before loading script
-      window.onYouTubeIframeAPIReady = initializePlayer;
-      
-      const tag = document.createElement('script');
-      tag.src = "https://www.youtube.com/iframe_api";
-      document.body.appendChild(tag);
-    } 
-    // If API is already loaded
-    else if (window.YT && window.YT.Player) {
-      initializePlayer();
+    if (typeof window !== 'undefined') {
+      if (!window.YT) {
+        // Define callback before loading script
+        window.onYouTubeIframeAPIReady = initializePlayer;
+        
+        const tag = document.createElement('script');
+        tag.src = "https://www.youtube.com/iframe_api";
+        tag.async = true;
+        tag.defer = true;
+        document.head.appendChild(tag);
+      } 
+      // If API is already loaded
+      else if (window.YT && window.YT.Player) {
+        initializePlayer();
+      }
     }
 
     // Cleanup
@@ -104,21 +116,36 @@ export default function HeroSection() {
         </div>
         <div className="w-full md:w-1/2 mt-8 md:mt-0">
           <div className="relative w-full aspect-video rounded-2xl shadow-2xl overflow-hidden border-2 border-primary/30 bg-white/10 backdrop-blur-md">
-            {/* Play button overlay, hidden when video is playing */}
-            {!isPlaying && (
-              <button 
-                className="absolute inset-0 flex items-center justify-center cursor-pointer z-10 bg-transparent border-0"
-                onClick={() => ytPlayer.current?.playVideo()}
-                aria-label="Play video"
-              >
-                <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" className="drop-shadow-lg">
-                  <circle cx="40" cy="40" r="38" fill="#fff" fillOpacity="1"/>
-                  <circle cx="40" cy="40" r="38" stroke="#6366F1" strokeWidth="4"/>
-                  <polygon points="34,28 58,40 34,52" fill="#6366F1"/>
-                </svg>
-              </button>
+            {/* Thumbnail with play button (shown until video loads or while paused) */}
+            {(!isLoaded || !isPlaying) && (
+              <div className="absolute inset-0 z-10 flex items-center justify-center bg-black/5 backdrop-blur-sm">
+                {/* Video thumbnail - preloading the YouTube preview image */}
+                <img 
+                  src={`https://i.ytimg.com/vi/LDU_Txk06tM/hqdefault.jpg`}
+                  alt="Video thumbnail" 
+                  className="absolute inset-0 w-full h-full object-cover"
+                  loading="lazy"
+                  width="480"
+                  height="360"
+                />
+                
+                {/* Play button */}
+                <button 
+                  className="relative flex items-center justify-center cursor-pointer z-20 bg-transparent border-0"
+                  onClick={() => ytPlayer.current?.playVideo()}
+                  aria-label="Play video"
+                >
+                  <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" className="drop-shadow-lg">
+                    <circle cx="40" cy="40" r="38" fill="#fff" fillOpacity="1"/>
+                    <circle cx="40" cy="40" r="38" stroke="#6366F1" strokeWidth="4"/>
+                    <polygon points="34,28 58,40 34,52" fill="#6366F1"/>
+                  </svg>
+                </button>
+              </div>
             )}
-            <div className="absolute inset-0 flex items-center justify-center">
+            
+            {/* Actual YouTube iframe */}
+            <div className={`absolute inset-0 flex items-center justify-center transition-opacity duration-300 ${isPlaying ? 'opacity-100' : 'opacity-0'}`}>
               <div ref={playerRef} className="w-full h-full rounded-2xl" />
             </div>
           </div>
