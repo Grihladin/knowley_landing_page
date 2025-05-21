@@ -7,33 +7,47 @@ const WaitlistForm: React.FC = () => {
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [touched, setTouched] = useState(false);
 
+  const validateAndSetStatus = (emailValue: string) => {
+    if (!touched) return;
+    const validation = validateEmail(emailValue);
+    setMessage(validation.message);
+    setStatus(validation.isValid ? "idle" : "error");
+    return validation;
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
     const validation = validateEmail(email);
     if (!validation.isValid) {
       setMessage(validation.message);
       setStatus("error");
       return;
     }
+    
     setStatus("loading");
     setMessage("Processing...");
+    
     try {
       const response = await fetch("/api/waitlist", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email }),
       });
+      
       const data = await response.json();
+      
       if (response.ok) {
         setEmail("");
         setMessage("✓ Successfully joined the waitlist!");
         setStatus("success");
-        setTouched(true); // Show the success message
+        setTouched(true);
       } else {
         setMessage(data.message || "Something went wrong. Please try again.");
         setStatus("error");
       }
-    } catch {
+    } catch (error) {
+      console.error("Error submitting waitlist form:", error);
       setMessage("Failed to connect to server. Please try again.");
       setStatus("error");
     }
@@ -64,17 +78,11 @@ const WaitlistForm: React.FC = () => {
           value={email}
           onChange={e => {
             setEmail(e.target.value);
-            if (touched) {
-              const validation = validateEmail(e.target.value);
-              setMessage(validation.message);
-              setStatus(validation.isValid ? "idle" : "error");
-            }
+            validateAndSetStatus(e.target.value);
           }}
           onBlur={() => {
             setTouched(true);
-            const validation = validateEmail(email);
-            setMessage(validation.message);
-            setStatus(validation.isValid ? "idle" : "error");
+            validateAndSetStatus(email);
           }}
           placeholder="Enter your work email"
           className={`w-full h-[50px] px-4 rounded-lg text-white bg-transparent border-2 ${

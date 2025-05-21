@@ -1,7 +1,9 @@
-import type { NextConfig } from "next";
-
-const nextConfig: NextConfig = {
+/** @type {import('next').NextConfig} */
+const nextConfig = {
   /* config options here */
+  // Add any specific configurations needed for your project
+  swcMinify: true,
+  reactStrictMode: true,
 };
 
 export default nextConfig;

@@ -1,10 +1,8 @@
 "use client";
-import React, { useEffect, useRef } from "react";
+import React from "react";
 
 export default function IntegrationSection() {
-  const sectionRef = useRef<HTMLDivElement>(null);
-
-  // Animation code removed
+  // Section ref and animation code were removed as they were unused
 
   return (
     <section

@@ -11,6 +11,7 @@ import { handleSmoothScroll } from './utils/smoothScroll';
 
 
 export default function Home() {
+  // Using React.useEffect for navigation event listeners would go here if needed
 
   return (
     <div className="flex flex-col min-h-screen">

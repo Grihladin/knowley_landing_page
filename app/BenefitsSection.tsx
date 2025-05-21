@@ -1,11 +1,9 @@
 "use client";
-import React, { useEffect, useRef } from "react";
+import React from "react";
 import BenefitCard from "./BenefitCard";
 
 export default function BenefitsSection() {
-  const sectionRef = useRef<HTMLDivElement>(null);
-
-  // Animation code removed
+  // Section ref and animation code were removed as they were unused
 
   return (
     <section id="benefits" className="py-20 px-4 bg-gray-light">

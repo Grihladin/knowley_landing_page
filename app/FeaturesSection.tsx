@@ -1,11 +1,9 @@
 "use client";
-import React, { useEffect, useRef } from "react";
+import React from "react";
 import FeatureCard from "./FeatureCard";
 
 export default function FeaturesSection() {
-  const sectionRef = useRef<HTMLDivElement>(null);
-
-  // Animation code removed
+  // Section ref and animation code were removed as they were unused
 
   return (
     <section id="features" className="py-20 px-2 sm:px-4 bg-gray-light" aria-labelledby="features-heading">

@@ -1,4 +1,5 @@
-import React, { useEffect, useRef } from "react";
+import React from "react";
+import Image from 'next/image';
 
 const teamMembers = [
 	{
@@ -25,7 +26,7 @@ const teamMembers = [
 ];
 
 export default function TeamSection() {
-	const sectionRef = useRef<HTMLDivElement>(null);
+	// Section ref removed as it was unused
 
 	// Animation code removed
 
@@ -46,11 +47,14 @@ export default function TeamSection() {
 							key={idx}
 							className="bg-gray-50 rounded-lg shadow p-6 flex flex-col items-center w-72 min-h-[320px] md:min-h-[340px]"
 						>
-							<div>
-								<img
+							<div className="w-24 h-24 relative mb-4">
+								<Image
 									src={member.image}
 									alt={member.name}
-									className="w-24 h-24 rounded-full object-cover mb-4 border-4 border-primary"
+									className="rounded-full object-cover border-4 border-primary"
+									width={96}
+									height={96}
+									priority
 								/>
 							</div>
 							<h3 className="text-xl font-semibold mb-1">
@@ -60,7 +64,7 @@ export default function TeamSection() {
 								{member.role}
 							</p>
 							<p className="italic text-gray-700 mb-4 text-sm text-center">
-								"{member.quote}"
+								&ldquo;{member.quote}&rdquo;
 							</p>
 							<a
 								href={member.linkedin}

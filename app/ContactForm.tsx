@@ -16,6 +16,13 @@ const ContactForm: React.FC = () => {
     message: false
   });
 
+  const validateEmailField = (email: string) => {
+    const validation = validateEmail(email);
+    setStatusMessage(validation.isValid ? "" : validation.message);
+    setStatus(validation.isValid ? "idle" : "error");
+    return validation;
+  };
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({
@@ -25,14 +32,7 @@ const ContactForm: React.FC = () => {
     
     // Validate email if it's the email field and already touched
     if (name === 'email' && touched.email) {
-      const validation = validateEmail(value);
-      if (!validation.isValid) {
-        setStatusMessage(validation.message);
-        setStatus("error");
-      } else {
-        setStatus("idle");
-        setStatusMessage("");
-      }
+      validateEmailField(value);
     }
   };
 
@@ -45,14 +45,7 @@ const ContactForm: React.FC = () => {
 
     // Validate email on blur
     if (name === 'email' && value) {
-      const validation = validateEmail(value);
-      if (!validation.isValid) {
-        setStatusMessage(validation.message);
-        setStatus("error");
-      } else {
-        setStatus("idle");
-        setStatusMessage("");
-      }
+      validateEmailField(value);
     }
   };
 

@@ -16,21 +16,34 @@ interface ContactData {
 
 const dataFilePath = path.join(process.cwd(), 'data', 'contact.json');
 
-const TELEGRAM_BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN!;
-const TELEGRAM_CHAT_ID = process.env.TELEGRAM_CHAT_ID!;
+// Safely access environment variables 
+const TELEGRAM_BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
+const TELEGRAM_CHAT_ID = process.env.TELEGRAM_CHAT_ID;
 
 async function notifyTelegramContact(name: string, email: string, message: string) {
-  const text = `📩 New contact message:\n*Name:* ${name}\n*Email:* ${email}\n*Message:* ${message}`;
-  const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
-  await fetch(url, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      chat_id: TELEGRAM_CHAT_ID,
-      text,
-      parse_mode: 'Markdown',
-    }),
-  });
+  // Check if the required environment variables are available
+  if (!TELEGRAM_BOT_TOKEN || !TELEGRAM_CHAT_ID) {
+    console.warn('Telegram notification skipped: Missing environment variables');
+    return;
+  }
+  
+  try {
+    const text = `📩 New contact message:\n*Name:* ${name}\n*Email:* ${email}\n*Message:* ${message}`;
+    const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
+    
+    await fetch(url, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        chat_id: TELEGRAM_CHAT_ID,
+        text,
+        parse_mode: 'Markdown',
+      }),
+    });
+  } catch (error) {
+    console.error('Error sending Telegram notification:', error);
+    // Fail silently - don't block the contact process due to notification issues
+  }
 }
 
 export async function POST(request: NextRequest) {
@@ -82,8 +95,9 @@ export async function POST(request: NextRequest) {
     // Save data back to file
     fs.writeFileSync(dataFilePath, JSON.stringify(contactData, null, 2));
 
-    // Notify Telegram
-    await notifyTelegramContact(name, email, message);
+    // Notify Telegram (non-blocking)
+    notifyTelegramContact(name, email, message)
+      .catch(err => console.error('Telegram notification failed but contact was saved:', err));
 
     return NextResponse.json(
       { success: true, message: 'Message sent successfully' },
@@ -91,8 +105,14 @@ export async function POST(request: NextRequest) {
     );
   } catch (error) {
     console.error('Error in contact form submission:', error);
+    
+    // Provide more specific error messages based on error type
+    const errorMessage = error instanceof Error 
+      ? `Error: ${error.message}` 
+      : 'An error occurred while processing your request';
+    
     return NextResponse.json(
-      { success: false, message: 'An error occurred while processing your request' },
+      { success: false, message: errorMessage },
       { status: 500 }
     );
   }

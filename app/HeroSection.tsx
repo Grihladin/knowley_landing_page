@@ -1,22 +1,18 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
 import { handleSmoothScroll } from "./utils/smoothScroll";
+import { YouTubePlayer, YouTubeEvent } from './utils/youtube-types';
 
 export default function HeroSection() {
   const [isPlaying, setIsPlaying] = useState(false);
   const playerRef = useRef<HTMLDivElement>(null);
-  const ytPlayer = useRef<any>(null);
+  const ytPlayer = useRef<YouTubePlayer | null>(null);
 
   useEffect(() => {
-    // Load YouTube IFrame API if not already loaded
-    if (!(window as any).YT) {
-      const tag = document.createElement('script');
-      tag.src = "https://www.youtube.com/iframe_api";
-      document.body.appendChild(tag);
-    }
-    (window as any).onYouTubeIframeAPIReady = () => {
-      if (playerRef.current && !ytPlayer.current) {
-        ytPlayer.current = new (window as any).YT.Player(playerRef.current, {
+    // Declare function to initialize player
+    const initializePlayer = () => {
+      if (playerRef.current && !ytPlayer.current && window.YT) {
+        ytPlayer.current = new window.YT.Player(playerRef.current, {
           videoId: "LDU_Txk06tM",
           playerVars: {
             autoplay: 0,
@@ -25,21 +21,32 @@ export default function HeroSection() {
             modestbranding: 1,
           },
           events: {
-            onStateChange: (event: any) => {
-              if (event.data === 1) setIsPlaying(true); // 1 = playing
-              else if (event.data === 2 || event.data === 0) setIsPlaying(false); // 2 = paused, 0 = ended
+            onStateChange: (event: YouTubeEvent) => {
+              // 1 = playing, 2 = paused, 0 = ended
+              setIsPlaying(event.data === 1);
             },
           },
         });
       }
     };
+
+    // Load YouTube IFrame API if not already loaded
+    if (!window.YT) {
+      // Define callback before loading script
+      window.onYouTubeIframeAPIReady = initializePlayer;
+      
+      const tag = document.createElement('script');
+      tag.src = "https://www.youtube.com/iframe_api";
+      document.body.appendChild(tag);
+    } 
     // If API is already loaded
-    if ((window as any).YT && (window as any).YT.Player && playerRef.current && !ytPlayer.current) {
-      (window as any).onYouTubeIframeAPIReady();
+    else if (window.YT && window.YT.Player) {
+      initializePlayer();
     }
+
     // Cleanup
     return () => {
-      if (ytPlayer.current && ytPlayer.current.destroy) ytPlayer.current.destroy();
+      if (ytPlayer.current?.destroy) ytPlayer.current.destroy();
     };
   }, []);
 
@@ -99,15 +106,17 @@ export default function HeroSection() {
           <div className="relative w-full aspect-video rounded-2xl shadow-2xl overflow-hidden border-2 border-primary/30 bg-white/10 backdrop-blur-md">
             {/* Play button overlay, hidden when video is playing */}
             {!isPlaying && (
-              <div className="absolute inset-0 flex items-center justify-center cursor-pointer z-10" onClick={() => {
-                if (ytPlayer.current) ytPlayer.current.playVideo();
-              }}>
+              <button 
+                className="absolute inset-0 flex items-center justify-center cursor-pointer z-10 bg-transparent border-0"
+                onClick={() => ytPlayer.current?.playVideo()}
+                aria-label="Play video"
+              >
                 <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" className="drop-shadow-lg">
                   <circle cx="40" cy="40" r="38" fill="#fff" fillOpacity="1"/>
                   <circle cx="40" cy="40" r="38" stroke="#6366F1" strokeWidth="4"/>
                   <polygon points="34,28 58,40 34,52" fill="#6366F1"/>
                 </svg>
-              </div>
+              </button>
             )}
             <div className="absolute inset-0 flex items-center justify-center">
               <div ref={playerRef} className="w-full h-full rounded-2xl" />
