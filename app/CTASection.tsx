@@ -55,15 +55,17 @@ export default function CTASection() {
           <div
             className={`
               bg-white/20 rounded-xl w-full overflow-hidden
+              transition-all duration-200
               ${showContactForm
-                ? 'max-h-[1000px] opacity-100 p-4 sm:p-6'
-                : 'max-h-0 opacity-0 p-0 border-none'
+                ? 'max-h-[1000px] p-4 sm:p-6'
+                : 'max-h-0 p-0'
               }
-              text-white
             `}
             aria-hidden={!showContactForm}
           >
-            {showContactForm && <ContactForm />}
+            <div className="transition-transform duration-200" style={{ transform: `translateY(${showContactForm ? '0' : '-8px'})` }}>
+              {showContactForm && <ContactForm />}
+            </div>
           </div>
           
           <div className="bg-white/10 rounded-xl p-4 sm:p-6 w-full text-white">
