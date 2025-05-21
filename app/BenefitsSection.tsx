@@ -5,40 +5,23 @@ import BenefitCard from "./BenefitCard";
 export default function BenefitsSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          observer.unobserve(entry.target);
-        }
-      },
-      { threshold: 0.1 }
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => observer.disconnect();
-  }, []);
+  // Animation code removed
 
   return (
     <section id="benefits" className="py-20 px-4 bg-gray-light">
       <div
-        ref={sectionRef}
-        className="container mx-auto max-w-6xl section-fade-in"
+        className="container mx-auto max-w-6xl"
       >
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6 fade-in-up">
+          <h2 className="text-3xl md:text-4xl font-bold mb-6">
             Why Choose Knowley?
           </h2>
-          <p className="text-gray-dark text-lg fade-in-up">
+          <p className="text-gray-dark text-lg">
             Our AI-powered platform delivers tangible benefits for both your business and employees,
             creating a more effective talent development ecosystem.
           </p>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 stagger-children">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <BenefitCard 
             title="Time & Cost Savings"
             benefits={[

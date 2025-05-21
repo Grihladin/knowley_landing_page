@@ -45,15 +45,15 @@ export default function HeroSection() {
 
   return (
     <section className="py-20 px-4 from-background via-gray-light to-background bg-gradient-to-br">
-      <div className="container mx-auto max-w-6xl flex flex-col md:flex-row items-center gap-12 stagger-children">
+      <div className="container mx-auto max-w-6xl flex flex-col md:flex-row items-center gap-12">
         <div className="w-full md:w-1/2 space-y-6">
-          <div className="inline-block px-3 py-1 bg-primary/10 text-primary rounded-full text-sm font-medium mb-2 fade-in-up">
+          <div className="inline-block px-3 py-1 bg-primary/10 text-primary rounded-full text-sm font-medium mb-2">
             AI-Powered L&D Solution
           </div>
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight bg-clip-text text-transparent bg-gradient-to-r from-primary via-primary to-secondary fade-in-up">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight bg-clip-text text-transparent bg-gradient-to-r from-primary via-primary to-secondary">
             Match Talent to Learning in Minutes
           </h1>
-          <p className="text-xl text-gray-dark fade-in-up">
+          <p className="text-xl text-gray-dark">
             Knowley cuts qualification upgrade course selection time from weeks to 
             days with AI-powered talent matching that integrates with your existing systems.
           </p>
@@ -64,8 +64,7 @@ export default function HeroSection() {
                 "Perfect matches for both employees and business needs"].map((benefit, index) => (
                 <li
                   key={index}
-                  className="flex items-center gap-2 animated-list-item"
-                  style={{ animationDelay: `${index * 0.1}s` }}
+                  className="flex items-center gap-2"
                 >
                   <div className="w-5 h-5 rounded-full bg-primary flex items-center justify-center">
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3 text-white" viewBox="0 0 20 20" fill="currentColor">
@@ -82,25 +81,25 @@ export default function HeroSection() {
               href="https://calendly.com/knowleyde"
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-primary text-white px-6 py-3 rounded-lg hover:bg-primary-dark transition-colors font-medium inline-block text-center button-hover"
+              className="bg-primary text-white px-6 py-3 rounded-lg hover:bg-primary-dark font-medium inline-block text-center"
             >
               Schedule Demo
             </a>
             <a
               href="#waitlist"
               onClick={(e) => handleSmoothScroll(e, "#waitlist")}
-              className="border border-gray px-6 py-3 rounded-lg hover:bg-gray-light transition-colors font-medium text-center button-hover"
+              className="border border-gray px-6 py-3 rounded-lg hover:bg-gray-light font-medium text-center"
               aria-label="Join our waitlist"
             >
               Waitlist
             </a>
           </div>
         </div>
-        <div className="w-full md:w-1/2 mt-8 md:mt-0 fade-in">
-          <div className="relative w-full aspect-video rounded-2xl shadow-2xl overflow-hidden border-2 border-primary/30 bg-white/10 backdrop-blur-md hover-scale">
+        <div className="w-full md:w-1/2 mt-8 md:mt-0">
+          <div className="relative w-full aspect-video rounded-2xl shadow-2xl overflow-hidden border-2 border-primary/30 bg-white/10 backdrop-blur-md">
             {/* Play button overlay, hidden when video is playing */}
             {!isPlaying && (
-              <div className="absolute inset-0 flex items-center justify-center cursor-pointer z-10 hover-scale" onClick={() => {
+              <div className="absolute inset-0 flex items-center justify-center cursor-pointer z-10" onClick={() => {
                 if (ytPlayer.current) ytPlayer.current.playVideo();
               }}>
                 <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" className="drop-shadow-lg">

@@ -8,9 +8,9 @@ interface FeatureCardProps {
 }
 
 const FeatureCard: React.FC<FeatureCardProps> = ({ icon, title, description, items }) => (
-  <div className="bg-white p-4 sm:p-8 rounded-xl shadow-sm hover:shadow-md transition-shadow w-full max-w-full feature-card">
+  <div className="bg-white p-4 sm:p-8 rounded-xl shadow-sm hover:shadow-md w-full max-w-full">
     <div className="flex items-center gap-4 mb-6">
-      <div className="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center icon-hover">
+      <div className="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center">
         {icon}
       </div>
       <h3 className="text-xl font-bold leading-snug align-middle">{title}</h3>
@@ -21,8 +21,7 @@ const FeatureCard: React.FC<FeatureCardProps> = ({ icon, title, description, ite
         {items.map((item, idx) => (
           <li
             key={idx}
-            className="flex items-center gap-2 animated-list-item"
-            style={{ animationDelay: `${idx * 0.1}s` }}
+            className="flex items-center gap-2"
           >
             <div className="flex-shrink-0 w-5 h-5 rounded-full bg-blue-100 flex items-center justify-center">
               <svg 

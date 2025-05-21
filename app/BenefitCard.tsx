@@ -8,11 +8,11 @@ interface BenefitCardProps {
 }
 
 const BenefitCard: React.FC<BenefitCardProps> = ({ icon, title, benefits, colorClass }) => (
-  <div className="bg-white rounded-xl overflow-hidden shadow-sm feature-card">
+  <div className="bg-white rounded-xl overflow-hidden shadow-sm">
     <div className={`h-2 ${colorClass || 'bg-primary'}`}></div>
     <div className="p-8">
       <div className="flex items-center gap-4 mb-6">
-        <div className="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center icon-hover">
+        <div className="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center">
           {icon}
         </div>
         <h3 className="text-xl font-bold leading-snug align-middle">
@@ -23,8 +23,7 @@ const BenefitCard: React.FC<BenefitCardProps> = ({ icon, title, benefits, colorC
         {benefits.map((b, idx) => (
           <li
             key={idx}
-            className="flex items-start gap-3 animated-list-item"
-            style={{ animationDelay: `${idx * 0.1}s` }}
+            className="flex items-start gap-3"
           >
             <div className="flex-shrink-0 w-5 h-5 rounded-full bg-blue-100 flex items-center justify-center mt-1">
               <svg 

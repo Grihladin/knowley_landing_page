@@ -114,7 +114,7 @@ const ContactForm: React.FC = () => {
 
   return (
     <form 
-      className="w-full flex flex-col gap-4 stagger-children" 
+      className="w-full flex flex-col gap-4" 
       onSubmit={handleSubmit} 
       noValidate 
       aria-label="Contact form"
@@ -140,7 +140,7 @@ const ContactForm: React.FC = () => {
           onChange={handleChange}
           onBlur={handleBlur}
           placeholder="Your Name"
-          className="w-full h-[50px] px-4 rounded-lg text-gray-dark border-2 border-white outline-none focus:ring-2 focus:ring-primary-light form-input"
+          className="w-full h-[50px] px-4 rounded-lg text-white bg-transparent border-2 border-white outline-none focus:ring-2 focus:ring-primary-light"
           required
           aria-label="Your name"
         />
@@ -154,9 +154,9 @@ const ContactForm: React.FC = () => {
           onChange={handleChange}
           onBlur={handleBlur}
           placeholder="Your Email"
-          className={`w-full h-[50px] px-4 rounded-lg text-gray-dark border-2 ${
+          className={`w-full h-[50px] px-4 rounded-lg text-white bg-transparent border-2 ${
             touched.email && status === "error" ? "border-red-500" : "border-white"
-          } outline-none focus:ring-2 focus:ring-primary-light form-input`}
+          } outline-none focus:ring-2 focus:ring-primary-light`}
           required
           aria-label="Your email"
         />
@@ -169,7 +169,7 @@ const ContactForm: React.FC = () => {
           onChange={handleChange}
           onBlur={handleBlur}
           placeholder="Your Message"
-          className="w-full px-4 py-3 rounded-lg text-gray-dark border-2 border-white outline-none focus:ring-2 focus:ring-primary-light min-h-[120px] form-input"
+          className="w-full px-4 py-3 rounded-lg text-white bg-transparent border-2 border-white outline-none focus:ring-2 focus:ring-primary-light min-h-[120px]"
           required
           aria-label="Your message"
         />
@@ -177,9 +177,9 @@ const ContactForm: React.FC = () => {
 
       <button
         type="submit"
-        className={`bg-white text-primary h-[50px] px-5 rounded-lg transition-colors font-medium whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-white mt-2 ${
-          status === "loading" ? "opacity-70 cursor-not-allowed loading" : "hover:bg-gray-light"
-        } button-hover`}
+        className={`border-2 border-white bg-transparent text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg hover:bg-white/10 font-medium text-base sm:text-lg text-center focus:outline-none focus:ring-2 focus:ring-white mt-2 ${
+          status === "loading" ? "opacity-70 cursor-not-allowed" : ""
+        }`}
         disabled={status === "loading"}
         aria-busy={status === "loading"}
       >

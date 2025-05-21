@@ -20,10 +20,10 @@ export default function Home() {
           <div className="flex flex-col sm:flex-row items-center">
             <div className="text-2xl font-bold text-primary mb-2 sm:mb-0" aria-label="Knowley Home">Knowley</div>
             <nav className="flex space-x-4 sm:space-x-8 mx-auto text-sm sm:text-base" aria-label="Main navigation">
-              <a href="#features" onClick={(e) => handleSmoothScroll(e, "#features")} className="hover:text-primary transition-colors" aria-label="Features section">Features</a>
-              <a href="#integration" onClick={(e) => handleSmoothScroll(e, "#integration")} className="hover:text-primary transition-colors" aria-label="Integration section">Integration</a>
-              <a href="#benefits" onClick={(e) => handleSmoothScroll(e, "#benefits")} className="hover:text-primary transition-colors" aria-label="Benefits section">Benefits</a>
-              <a href="#team" onClick={(e) => handleSmoothScroll(e, "#team")} className="hover:text-primary transition-colors" aria-label="Team section">Team</a>
+              <a href="#features" onClick={(e) => handleSmoothScroll(e, "#features")} className="hover:text-primary" aria-label="Features section">Features</a>
+              <a href="#integration" onClick={(e) => handleSmoothScroll(e, "#integration")} className="hover:text-primary" aria-label="Integration section">Integration</a>
+              <a href="#benefits" onClick={(e) => handleSmoothScroll(e, "#benefits")} className="hover:text-primary" aria-label="Benefits section">Benefits</a>
+              <a href="#team" onClick={(e) => handleSmoothScroll(e, "#team")} className="hover:text-primary" aria-label="Team section">Team</a>
             </nav>
           </div>
         </div>

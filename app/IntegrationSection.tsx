@@ -4,23 +4,7 @@ import React, { useEffect, useRef } from "react";
 export default function IntegrationSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("visible");
-          observer.unobserve(entry.target);
-        }
-      },
-      { threshold: 0.1 }
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => observer.disconnect();
-  }, []);
+  // Animation code removed
 
   return (
     <section
@@ -29,10 +13,9 @@ export default function IntegrationSection() {
       aria-labelledby="integration-heading"
     >
       <div
-        ref={sectionRef}
-        className="container mx-auto max-w-6xl section-fade-in"
+        className="container mx-auto max-w-6xl"
       >
-        <div className="text-center max-w-3xl mx-auto mb-16 fade-in-up">
+        <div className="text-center max-w-3xl mx-auto mb-16">
           <h2
             id="integration-heading"
             className="text-3xl md:text-4xl font-bold mb-6"
@@ -48,7 +31,7 @@ export default function IntegrationSection() {
 
         <div className="flex flex-col md:flex-row items-center gap-12">
           <div className="md:w-1/2">
-            <div className="relative bg-white p-6 rounded-xl shadow-lg transform transition-all card-hover">
+            <div className="relative bg-white p-6 rounded-xl shadow-lg">
               <div className="absolute -top-3 -left-3 bg-primary text-white text-xs font-bold py-1 px-3 rounded-full">
                 PLUG & PLAY
               </div>
@@ -57,7 +40,7 @@ export default function IntegrationSection() {
                   (system, index) => (
                     <div
                       key={index}
-                      className="border border-gray rounded-lg p-4 bg-gray-light/50 flex items-center justify-center h-24 transition-all hover:border-primary hover-scale-sm"
+                      className="border border-gray rounded-lg p-4 bg-gray-light/50 flex items-center justify-center h-24 hover:border-primary"
                     >
                       <div className="text-center">
                         <div className="text-xs text-gray-dark mb-1">
@@ -117,7 +100,7 @@ export default function IntegrationSection() {
               ].map((item, index) => (
                 <div
                   key={index}
-                  className="flex items-start gap-4 p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-all hover-scale-sm animated-list-item"
+                  className="flex items-start gap-4 p-4 bg-white rounded-lg shadow-sm hover:shadow-md"
                   style={{ animationDelay: `${index * 0.1}s` }}
                 >
                   <div className="bg-success/10 rounded-full p-2 text-success">

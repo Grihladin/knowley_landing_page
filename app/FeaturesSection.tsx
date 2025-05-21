@@ -5,43 +5,26 @@ import FeatureCard from "./FeatureCard";
 export default function FeaturesSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          observer.unobserve(entry.target);
-        }
-      },
-      { threshold: 0.1 }
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => observer.disconnect();
-  }, []);
+  // Animation code removed
 
   return (
     <section id="features" className="py-20 px-2 sm:px-4 bg-gray-light" aria-labelledby="features-heading">
       <div
-        ref={sectionRef}
-        className="container mx-auto max-w-full sm:max-w-6xl section-fade-in"
+        className="container mx-auto max-w-full sm:max-w-6xl"
       >
         <div className="text-center max-w-3xl mx-auto mb-16">
           <h2 
             id="features-heading" 
-            className="text-3xl md:text-4xl font-bold mb-6 fade-in-up"
+            className="text-3xl md:text-4xl font-bold mb-6"
           >
             Powerful AI-Driven Features
           </h2>
-          <p className="text-gray-dark text-lg fade-in-up">
+          <p className="text-gray-dark text-lg">
             Our intelligent platform uses advanced algorithms to match employees with 
             the perfect learning opportunities, saving time and maximizing development impact.
           </p>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 stagger-children">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
           <FeatureCard 
             title="AI Matching Algorithm"
             description="Our proprietary AI analyzes employee skills, learning history, and career goals to recommend the most relevant courses and development opportunities."

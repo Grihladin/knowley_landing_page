@@ -27,61 +27,44 @@ const teamMembers = [
 export default function TeamSection() {
 	const sectionRef = useRef<HTMLDivElement>(null);
 
-	useEffect(() => {
-		const observer = new IntersectionObserver(
-			([entry]) => {
-				if (entry.isIntersecting) {
-					entry.target.classList.add('visible');
-					observer.unobserve(entry.target);
-				}
-			},
-			{ threshold: 0.1 }
-		);
-
-		if (sectionRef.current) {
-			observer.observe(sectionRef.current);
-		}
-
-		return () => observer.disconnect();
-	}, []);
+	// Animation code removed
 
 	return (
 		<section className="py-16 bg-white" id="team">
 			<div
-				ref={sectionRef}
-				className="max-w-4xl mx-auto px-4 text-center section-fade-in"
+				className="max-w-4xl mx-auto px-4 text-center"
 			>
-				<h2 className="text-3xl font-bold mb-4 fade-in-up">
+				<h2 className="text-3xl font-bold mb-4">
 					Our Team
 				</h2>
-				<p className="mb-10 text-gray-600 fade-in-up">
+				<p className="mb-10 text-gray-600">
 					Meet the passionate people behind our club.
 				</p>
-				<div className="flex flex-col md:flex-row justify-center items-center gap-8 stagger-children">
+				<div className="flex flex-col md:flex-row justify-center items-center gap-8">
 					{teamMembers.map((member, idx) => (
 						<div
 							key={idx}
-							className="bg-gray-50 rounded-lg shadow p-6 flex flex-col items-center w-72 min-h-[320px] md:min-h-[340px] team-card"
+							className="bg-gray-50 rounded-lg shadow p-6 flex flex-col items-center w-72 min-h-[320px] md:min-h-[340px]"
 						>
-							<div className="team-image">
+							<div>
 								<img
 									src={member.image}
 									alt={member.name}
 									className="w-24 h-24 rounded-full object-cover mb-4 border-4 border-primary"
 								/>
 							</div>
-							<h3 className="text-xl font-semibold mb-1 fade-in-up">
+							<h3 className="text-xl font-semibold mb-1">
 								{member.name}
 							</h3>
-							<p className="text-gray-500 mb-3 fade-in-up">
+							<p className="text-gray-500 mb-3">
 								{member.role}
 							</p>
-							<p className="italic text-gray-700 mb-4 text-sm text-center fade-in-up">
+							<p className="italic text-gray-700 mb-4 text-sm text-center">
 								"{member.quote}"
 							</p>
 							<a
 								href={member.linkedin}
-								className="inline-flex items-center justify-center p-2 bg-blue-600 text-white rounded-lg mt-auto button-hover"
+								className="inline-flex items-center justify-center p-2 bg-blue-600 text-white rounded-lg mt-auto"
 								target="_blank"
 								rel="noopener noreferrer"
 								aria-label={`LinkedIn profile of ${member.name}`}

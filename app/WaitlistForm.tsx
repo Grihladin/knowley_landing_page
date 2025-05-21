@@ -41,7 +41,7 @@ const WaitlistForm: React.FC = () => {
 
   return (
     <form 
-      className="flex flex-col sm:flex-row items-stretch sm:items-end gap-4 w-full stagger-children" 
+      className="flex flex-col sm:flex-row items-stretch sm:items-end gap-4 w-full" 
       onSubmit={handleSubmit} 
       noValidate 
       aria-label="Join waitlist form"
@@ -77,9 +77,9 @@ const WaitlistForm: React.FC = () => {
             setStatus(validation.isValid ? "idle" : "error");
           }}
           placeholder="Enter your work email"
-          className={`w-full h-[50px] px-4 rounded-lg text-gray-dark border-2 ${
+          className={`w-full h-[50px] px-4 rounded-lg text-white bg-transparent border-2 ${
             touched && status === "error" ? "border-red-500" : "border-white"
-          } outline-none focus:ring-2 focus:ring-primary-light form-input`}
+          } outline-none focus:ring-2 focus:ring-primary-light`}
           required
           aria-label="Work email"
           aria-invalid={touched && status === "error"}
@@ -89,9 +89,9 @@ const WaitlistForm: React.FC = () => {
       </div>
       <button
         type="submit"
-        className={`bg-white text-primary h-[50px] px-5 rounded-lg transition-colors font-medium whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-white ${
-          status === "loading" ? "opacity-70 cursor-not-allowed loading" : ""
-        } w-full sm:w-auto button-hover`}
+        className={`border-2 border-white bg-transparent text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg hover:bg-white/10 font-medium text-base sm:text-lg text-center focus:outline-none focus:ring-2 focus:ring-white ${
+          status === "loading" ? "opacity-70 cursor-not-allowed" : ""
+        } w-full sm:w-auto`}
         disabled={status === "loading"}
         aria-busy={status === "loading"}
       >

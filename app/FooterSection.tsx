@@ -15,7 +15,7 @@ export default function FooterSection() {
                 href="https://linkedin.com/company/knowleyai" 
                 target="_blank" 
                 rel="noopener noreferrer" 
-                className="text-primary bg-primary/5 p-3 rounded-lg inline-flex items-center justify-center hover-scale tap-scale"
+                className="text-primary bg-primary/5 p-3 rounded-lg inline-flex items-center justify-center"
                 aria-label="Visit Knowley LinkedIn page"
                 title="LinkedIn"
               >
@@ -37,7 +37,7 @@ export default function FooterSection() {
           <div className="flex items-center gap-4">
             <a 
               href="mailto:info@knowley.ai" 
-              className="text-base text-gray-dark hover:text-primary transition-colors"
+              className="text-base text-gray-dark hover:text-primary"
             >
               info@knowley.ai
             </a>
@@ -45,7 +45,7 @@ export default function FooterSection() {
               href="https://github.com/Grihladin/knowley_landing_page"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-base text-gray-dark hover:text-primary transition-colors flex items-center gap-1 hover-scale"
+              className="text-base text-gray-dark hover:text-primary flex items-center gap-1"
               aria-label="View GitHub repository"
               title="GitHub Repository"
             >
