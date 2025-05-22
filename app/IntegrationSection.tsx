@@ -26,7 +26,7 @@ export default function IntegrationSection() {
         <div className="flex flex-col md:flex-row items-center gap-12">
           <div className="md:w-1/2">
             <div className="relative bg-white p-6 rounded-xl shadow-lg">
-              <div className="absolute -top-3 -left-3 bg-primary text-white text-xs font-bold py-1 px-3 rounded-full">
+              <div className="absolute -top-3 -left-3 bg-primary-dark text-white text-xs font-bold py-1 px-3 rounded-full">
                 PLUG & PLAY
               </div>
               <div className="grid grid-cols-2 gap-4 mb-6">
@@ -47,7 +47,7 @@ export default function IntegrationSection() {
                 )}
               </div>
               <div className="flex justify-center mb-6">
-                <div className="bg-primary text-white rounded-full w-10 h-10 flex items-center justify-center">
+                <div className="bg-primary-dark text-white rounded-full w-10 h-10 flex items-center justify-center">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     className="h-6 w-6"
@@ -96,7 +96,7 @@ export default function IntegrationSection() {
                   key={index}
                   className="flex items-start gap-4 p-4 bg-white rounded-lg shadow-sm"
                 >
-                  <div className="bg-success/10 rounded-full p-2 text-success">
+                  <div className="bg-primary/20 rounded-full p-2 text-primary">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       className="h-6 w-6"
