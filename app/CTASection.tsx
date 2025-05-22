@@ -5,7 +5,7 @@ import ContactForm from "./ContactForm";
 
 export default function CTASection() {
   const [showContactForm, setShowContactForm] = useState(false);
-  const contactFormRef = useRef(null);
+  const contactFormRef = useRef<HTMLDivElement>(null);
   const [isMobile, setIsMobile] = useState(false);
   
   // Detect mobile device on component mount
@@ -21,7 +21,7 @@ export default function CTASection() {
     }
   }, []);
 
-  const contactContainerRef = useRef(null);
+  const contactContainerRef = useRef<HTMLDivElement>(null);
 
   const toggleContactForm = () => {
     // Toggle the form visibility
