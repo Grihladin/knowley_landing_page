@@ -29,15 +29,27 @@ export default function CTASection() {
     
     // If opening the form, scroll to it
     if (!showContactForm) {
-      // Small delay to ensure the form has started opening
-      setTimeout(() => {
-        if (contactContainerRef.current) {
-          contactContainerRef.current.scrollIntoView({ 
-            behavior: "smooth", // Smooth scrolling for both mobile and desktop
-            block: "center" // Center the form in the viewport
-          });
-        }
-      }, isMobile ? 50 : 100);
+      if (isMobile) {
+        // For mobile, use smooth scrolling with short delay
+        setTimeout(() => {
+          if (contactContainerRef.current) {
+            contactContainerRef.current.scrollIntoView({ 
+              behavior: "smooth", // Smooth scrolling for mobile too
+              block: "center" // Center the form in the viewport
+            });
+          }
+        }, 50); // Slightly longer delay for mobile to coordinate with fade animation
+      } else {
+        // For desktop, use smooth animation
+        setTimeout(() => {
+          if (contactContainerRef.current) {
+            contactContainerRef.current.scrollIntoView({ 
+              behavior: "smooth", // Smooth scrolling for desktop
+              block: "center" // Center the form in the viewport
+            });
+          }
+        }, 100); // Longer delay for desktop
+      }
     }
   };
 
@@ -89,14 +101,13 @@ export default function CTASection() {
         <div className="max-w-xl mx-auto w-full px-4 sm:px-0 relative" ref={contactContainerRef}>
           {/* Mobile vs Desktop animation handling */}
           {isMobile ? (
-            // Minimal animation for mobile
+            // Very minimal fade for mobile (opacity only)
             <div 
               className={`
-                mt-4 overflow-hidden
-                transition-[max-height,opacity] duration-150 ease-out
-                ${showContactForm ? 'max-h-[600px] opacity-100' : 'max-h-0 opacity-0'}
+                mt-4
+                transition-opacity duration-100
+                ${showContactForm ? 'opacity-100' : 'opacity-0 h-0 overflow-hidden pointer-events-none'}
               `}
-              style={{ willChange: 'max-height, opacity' }}
             >
               <div className="bg-white/20 backdrop-blur-sm rounded-xl w-full overflow-hidden">
                 <div className="p-4">
