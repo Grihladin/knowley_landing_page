@@ -1,23 +1,43 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import WaitlistForm from "./WaitlistForm";
 import ContactForm from "./ContactForm";
 
 export default function CTASection() {
   const [showContactForm, setShowContactForm] = useState(false);
-  const [animatingOut, setAnimatingOut] = useState(false);
+  const contactFormRef = useRef(null);
+  const [isMobile, setIsMobile] = useState(false);
   
+  // Detect mobile device on component mount
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const checkMobile = () => {
+        setIsMobile(window.innerWidth < 640);
+      };
+      
+      checkMobile();
+      window.addEventListener('resize', checkMobile);
+      return () => window.removeEventListener('resize', checkMobile);
+    }
+  }, []);
+
+  const contactContainerRef = useRef(null);
+
   const toggleContactForm = () => {
-    if (showContactForm) {
-      // Start closing animation
-      setAnimatingOut(true);
-      // Wait for animation to complete before actually hiding
+    // Toggle the form visibility
+    setShowContactForm(prev => !prev);
+    
+    // If opening the form, scroll to it
+    if (!showContactForm) {
+      // Small delay to ensure the form has started opening
       setTimeout(() => {
-        setShowContactForm(false);
-        setAnimatingOut(false);
-      }, 300); // Match the transition duration
-    } else {
-      setShowContactForm(true);
+        if (contactContainerRef.current) {
+          contactContainerRef.current.scrollIntoView({ 
+            behavior: isMobile ? "auto" : "smooth", 
+            block: "center" // Center the form in the viewport
+          });
+        }
+      }, isMobile ? 50 : 100);
     }
   };
 
@@ -26,19 +46,11 @@ export default function CTASection() {
       id="cta-section"
       className="py-12 sm:py-20 mt-10 sm:mt-16 px-4 bg-gradient-to-r from-primary to-secondary relative overflow-hidden"
     >
-      <div
-        className="absolute inset-0 opacity-10"
-      >
-        <div
-          className="absolute top-0 left-0 w-48 h-48 rounded-full bg-white blur-2xl sm:blur-3xl" // Reduced blur on small screens
-        />
-        <div
-          className="absolute bottom-0 right-0 w-64 h-64 rounded-full bg-white blur-2xl sm:blur-3xl" // Reduced blur on small screens
-        />
+      <div className="absolute inset-0 opacity-10">
+        <div className="absolute top-0 left-0 w-48 h-48 rounded-full bg-white blur-2xl sm:blur-3xl" />
+        <div className="absolute bottom-0 right-0 w-64 h-64 rounded-full bg-white blur-2xl sm:blur-3xl" />
       </div>
-      <div
-        className="container mx-auto max-w-4xl text-center relative z-10 px-4 sm:px-6 text-white"
-      >
+      <div className="container mx-auto max-w-4xl text-center relative z-10 px-4 sm:px-6 text-white">
         <div className="inline-block px-3 sm:px-4 py-1 bg-white/20 backdrop-blur-sm rounded-full text-xs sm:text-sm font-medium mb-4 sm:mb-6">
           Start Your AI-Powered L&D Journey
         </div>
@@ -74,22 +86,42 @@ export default function CTASection() {
           </button>
         </div>
         
-        <div className="relative w-full">
-          <div 
-            className={`
-              max-w-xl mx-auto w-full px-4 sm:px-0 mt-4
-              transition-all duration-200 sm:duration-300 ease-in-out
-              ${showContactForm || animatingOut ? 'opacity-100 max-h-[800px]' : 'opacity-0 max-h-0 pointer-events-none'}
-              overflow-hidden
-            `}
-            style={{ willChange: 'opacity, max-height' }}
-          >
-            <div className="bg-white/20 backdrop-blur-sm rounded-xl w-full overflow-hidden">
-              <div className="p-4 sm:p-6">
-                <ContactForm />
+        <div className="max-w-xl mx-auto w-full px-4 sm:px-0 relative" ref={contactContainerRef}>
+          {/* Mobile vs Desktop animation handling */}
+          {isMobile ? (
+            // Simple toggle for mobile
+            showContactForm && (
+              <div className="mt-4 bg-white/20 backdrop-blur-sm rounded-xl w-full overflow-hidden">
+                <div className="p-4">
+                  <ContactForm />
+                </div>
+              </div>
+            )
+          ) : (
+            // Animated version for desktop
+            <div 
+              ref={contactFormRef}
+              className={`
+                overflow-hidden
+                transition-[max-height] duration-300 ease-out
+                ${showContactForm ? 'max-h-[600px]' : 'max-h-0'}
+              `}
+              style={{ willChange: 'max-height' }}
+            >
+              <div 
+                className={`
+                  bg-white/20 backdrop-blur-sm rounded-xl w-full overflow-hidden
+                  transition-opacity duration-300 ease-out
+                  ${showContactForm ? 'opacity-100' : 'opacity-0'}
+                `}
+                style={{ willChange: 'opacity' }}
+              >
+                <div className="p-4 sm:p-6">
+                  <ContactForm />
+                </div>
               </div>
             </div>
-          </div>
+          )}
         </div>
       </div>
     </section>
