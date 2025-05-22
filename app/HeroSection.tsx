@@ -1,34 +1,42 @@
 "use client";
-import React, { useEffect, useRef, useState } from "react";
-import Image from "next/image"; // Import the Image component
+import React, { useRef, useState } from "react";
+import Image from "next/image";
 import { handleSmoothScroll } from "./utils/smoothScroll";
 import { YouTubePlayer, YouTubeEvent } from './utils/youtube-types';
 
 export default function HeroSection() {
   const [isPlaying, setIsPlaying] = useState(false);
-  const [isLoaded, setIsLoaded] = useState(false);
+  const [videoActivated, setVideoActivated] = useState(false);
   const playerRef = useRef<HTMLDivElement>(null);
   const ytPlayer = useRef<YouTubePlayer | null>(null);
 
-  useEffect(() => {
-    // Declare function to initialize player
+  // This function loads the YouTube API script and initializes the player
+  const loadYouTubeAndPlay = () => {
+    if (videoActivated) {
+      // If already activated, just play the video
+      ytPlayer.current?.playVideo();
+      return;
+    }
+
+    setVideoActivated(true);
+
+    // Function to initialize the player once API is loaded
     const initializePlayer = () => {
       if (playerRef.current && !ytPlayer.current && window.YT) {
         ytPlayer.current = new window.YT.Player(playerRef.current, {
           videoId: "LDU_Txk06tM",
           playerVars: {
-            autoplay: 0,
+            autoplay: 1, // Auto play once loaded
             rel: 0,
             showinfo: 0,
             modestbranding: 1,
             playsinline: 1,
             enablejsapi: 1,
             origin: window.location.origin,
-            loading: 'lazy',
           },
           events: {
-            onReady: () => {
-              setIsLoaded(true);
+            onReady: (event: YouTubeEvent) => {
+              event.target.playVideo(); // Ensure video plays when ready
             },
             onStateChange: (event: YouTubeEvent) => {
               // 1 = playing, 2 = paused, 0 = ended
@@ -56,12 +64,7 @@ export default function HeroSection() {
         initializePlayer();
       }
     }
-
-    // Cleanup
-    return () => {
-      if (ytPlayer.current?.destroy) ytPlayer.current.destroy();
-    };
-  }, []);
+  };
 
   return (
     <section className="py-20 px-4 from-background via-gray-light to-background bg-gradient-to-br">
@@ -106,8 +109,8 @@ export default function HeroSection() {
               Schedule Demo
             </a>
             <a
-              href="#cta-section" // Changed href to #cta-section
-              onClick={(e) => handleSmoothScroll(e, "#cta-section")} // Changed selector to #cta-section
+              href="#cta-section"
+              onClick={(e) => handleSmoothScroll(e, "#cta-section")}
               className="border border-gray px-6 py-3 rounded-lg hover:bg-gray-light font-medium text-center"
               aria-label="Join our waitlist"
             >
@@ -117,24 +120,25 @@ export default function HeroSection() {
         </div>
         <div className="w-full md:w-1/2 mt-8 md:mt-0">
           <div className="relative w-full aspect-video rounded-2xl shadow-2xl overflow-hidden border-2 border-primary/30 bg-white/10 backdrop-blur-md">
-            {/* Thumbnail with play button (shown until video loads or while paused) */}
-            {(!isLoaded || !isPlaying) && (
+            {/* YouTube Video Facade - always shown until real video is playing */}
+            {(!videoActivated || !isPlaying) && (
               <div className="absolute inset-0 z-10 flex items-center justify-center bg-black/5 backdrop-blur-sm">
-                {/* Video thumbnail - preloading the YouTube preview image */}
-                <Image
-                  src={`https://i.ytimg.com/vi/LDU_Txk06tM/hqdefault.jpg`}
-                  alt="Video thumbnail"
-                  className="absolute inset-0 w-full h-full object-cover"
-                  loading="lazy"
-                  width={480}
-                  height={360}
-                  unoptimized // Add this if the image is external and not optimized by Next.js
-                />
+                {/* Video thumbnail with proper width/height for CLS prevention */}
+                <div className="absolute inset-0 w-full h-full">
+                  <Image
+                    src="https://i.ytimg.com/vi/LDU_Txk06tM/hqdefault.jpg"
+                    alt="Video preview"
+                    fill
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    priority={true}
+                    className="object-cover object-center"
+                  />
+                </div>
                 
                 {/* Play button */}
                 <button 
                   className="relative flex items-center justify-center cursor-pointer z-20 bg-transparent border-0"
-                  onClick={() => ytPlayer.current?.playVideo()}
+                  onClick={loadYouTubeAndPlay}
                   aria-label="Play video"
                 >
                   <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" className="drop-shadow-lg">
@@ -146,10 +150,12 @@ export default function HeroSection() {
               </div>
             )}
             
-            {/* Actual YouTube iframe */}
-            <div className={`absolute inset-0 flex items-center justify-center transition-opacity duration-300 ${isPlaying ? 'opacity-100' : 'opacity-0'}`}>
-              <div ref={playerRef} className="w-full h-full rounded-2xl" />
-            </div>
+            {/* YouTube iframe - only rendered when activated */}
+            {videoActivated && (
+              <div className={`absolute inset-0 flex items-center justify-center transition-opacity duration-300 ${isPlaying ? 'opacity-100' : 'opacity-0'}`}>
+                <div ref={playerRef} className="w-full h-full rounded-2xl" />
+              </div>
+            )}
           </div>
         </div>
       </div>
