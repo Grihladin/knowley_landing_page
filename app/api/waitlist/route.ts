@@ -7,7 +7,8 @@ interface WaitlistData {
   emails: string[];
 }
 
-const dataFilePath = path.join(process.cwd(), 'data', 'waitlist.json');
+const dataDir = path.join(process.cwd(), 'data');
+const dataFilePath = path.join(dataDir, 'waitlist.json');
 
 // Safely access environment variables
 const TELEGRAM_BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
@@ -53,11 +54,42 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Load existing data
+    // Ensure the data directory exists
+    try {
+      if (!fs.existsSync(dataDir)) {
+        fs.mkdirSync(dataDir, { recursive: true });
+        console.log(`Data directory created: ${dataDir}`);
+      }
+    } catch (dirError) {
+      console.error('Error creating data directory:', dirError);
+      return NextResponse.json(
+        { success: false, message: 'Failed to initialize data storage.' },
+        { status: 500 }
+      );
+    }
+
+    // Load existing data or initialize
     let waitlistData: WaitlistData = { emails: [] };
-    if (fs.existsSync(dataFilePath)) {
-      const fileData = fs.readFileSync(dataFilePath, 'utf-8');
-      waitlistData = JSON.parse(fileData);
+    try {
+      if (fs.existsSync(dataFilePath)) {
+        const fileData = fs.readFileSync(dataFilePath, 'utf-8');
+        if (fileData.trim() !== '') { // Avoid parsing empty string
+          const parsedData = JSON.parse(fileData);
+          if (parsedData && Array.isArray(parsedData.emails)) {
+            waitlistData = parsedData;
+          } else {
+            console.warn('Invalid structure in waitlist.json, initializing with empty emails.');
+          }
+        } else {
+          console.log('waitlist.json is empty, initializing with empty emails.');
+        }
+      } else {
+        console.log('waitlist.json not found, will be created with the new email.');
+        // waitlistData is already { emails: [] }, file will be created by writeFileSync
+      }
+    } catch (e) {
+      console.error('Error reading/parsing waitlist.json, initializing with empty emails:', e);
+      // waitlistData remains { emails: [] }
     }
 
     // Check if email already exists
@@ -71,8 +103,16 @@ export async function POST(request: NextRequest) {
     // Add new email
     waitlistData.emails.push(email);
 
-    // Save data back to file
-    fs.writeFileSync(dataFilePath, JSON.stringify(waitlistData, null, 2));
+    // Save data back to file (creates the file if it doesn't exist)
+    try {
+      fs.writeFileSync(dataFilePath, JSON.stringify(waitlistData, null, 2));
+    } catch (writeError) {
+      console.error('Error writing to waitlist.json:', writeError);
+      return NextResponse.json(
+        { success: false, message: 'Failed to save email to waitlist.' },
+        { status: 500 }
+      );
+    }
 
     // Notify Telegram
     await notifyTelegram(email);

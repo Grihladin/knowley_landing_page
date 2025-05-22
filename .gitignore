@@ -41,3 +41,5 @@ yarn-error.log*
 next-env.d.ts
 
 packcage-lock.json
+data/contact.json
+data/waitlist.json

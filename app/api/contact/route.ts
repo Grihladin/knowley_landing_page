@@ -14,7 +14,8 @@ interface ContactData {
   messages: ContactMessage[];
 }
 
-const dataFilePath = path.join(process.cwd(), 'data', 'contact.json');
+const dataDir = path.join(process.cwd(), 'data');
+const dataFilePath = path.join(dataDir, 'contact.json');
 
 // Safely access environment variables 
 const TELEGRAM_BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
@@ -28,7 +29,7 @@ async function notifyTelegramContact(name: string, email: string, message: strin
   }
   
   try {
-    const text = `📩 New contact message:\n*Name:* ${name}\n*Email:* ${email}\n*Message:* ${message}`;
+    const text = `📩 New contact message:\\n*Name:* ${name}\\n*Email:* ${email}\\n*Message:* ${message}`;
     const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
     
     await fetch(url, {
@@ -68,17 +69,42 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Load existing data
-    let contactData: ContactData = { messages: [] };
-    if (fs.existsSync(dataFilePath)) {
-      const fileData = fs.readFileSync(dataFilePath, 'utf-8');
-      contactData = JSON.parse(fileData);
-    } else {
-      // Ensure the data directory exists
-      const dataDir = path.join(process.cwd(), 'data');
+    // Ensure the data directory exists
+    try {
       if (!fs.existsSync(dataDir)) {
         fs.mkdirSync(dataDir, { recursive: true });
+        console.log(`Data directory created: ${dataDir}`);
       }
+    } catch (dirError) {
+      console.error('Error creating data directory:', dirError);
+      return NextResponse.json(
+        { success: false, message: 'Failed to initialize data storage.' },
+        { status: 500 }
+      );
+    }
+
+    // Load existing data or initialize
+    let contactData: ContactData = { messages: [] };
+    try {
+      if (fs.existsSync(dataFilePath)) {
+        const fileData = fs.readFileSync(dataFilePath, 'utf-8');
+        if (fileData.trim() !== '') { // Avoid parsing empty string
+          const parsedData = JSON.parse(fileData);
+          if (parsedData && Array.isArray(parsedData.messages)) {
+            contactData = parsedData;
+          } else {
+            console.warn('Invalid structure in contact.json, initializing with empty messages.');
+          }
+        } else {
+          console.log('contact.json is empty, initializing with empty messages.');
+        }
+      } else {
+        console.log('contact.json not found, will be created with the new message.');
+        // contactData is already { messages: [] }, file will be created by writeFileSync
+      }
+    } catch (e) {
+      console.error('Error reading/parsing contact.json, initializing with empty messages:', e);
+      // contactData remains { messages: [] }
     }
 
     // Create new contact message
@@ -92,8 +118,16 @@ export async function POST(request: NextRequest) {
     // Add new message
     contactData.messages.push(newMessage);
 
-    // Save data back to file
-    fs.writeFileSync(dataFilePath, JSON.stringify(contactData, null, 2));
+    // Save data back to file (creates the file if it doesn't exist)
+    try {
+      fs.writeFileSync(dataFilePath, JSON.stringify(contactData, null, 2));
+    } catch (writeError) {
+      console.error('Error writing to contact.json:', writeError);
+      return NextResponse.json(
+        { success: false, message: 'Failed to save message.' },
+        { status: 500 }
+      );
+    }
 
     // Notify Telegram (non-blocking)
     notifyTelegramContact(name, email, message)
