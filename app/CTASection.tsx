@@ -19,10 +19,10 @@ export default function CTASection() {
         className="absolute inset-0 opacity-10"
       >
         <div
-          className="absolute top-0 left-0 w-48 h-48 rounded-full bg-white blur-3xl"
+          className="absolute top-0 left-0 w-48 h-48 rounded-full bg-white blur-2xl sm:blur-3xl" // Reduced blur on small screens
         />
         <div
-          className="absolute bottom-0 right-0 w-64 h-64 rounded-full bg-white blur-3xl"
+          className="absolute bottom-0 right-0 w-64 h-64 rounded-full bg-white blur-2xl sm:blur-3xl" // Reduced blur on small screens
         />
       </div>
       <div
@@ -58,15 +58,14 @@ export default function CTASection() {
           <div
             className={`
               bg-white/20 rounded-xl w-full overflow-hidden
-              transition-[max-height] duration-500 ease-in-out
-              ${showContactForm ? 'max-h-[1000px]' : 'max-h-0'}
+              transition-all duration-500 ease-in-out
+              ${showContactForm ? 'max-h-[1000px] opacity-100' : 'max-h-0 opacity-0 pointer-events-none'}
             `}
+            style={{ transformOrigin: 'top' }}
             aria-hidden={!showContactForm}
           >
             <div className={`
               p-4 sm:p-6
-              transition-opacity duration-500 ease-in-out
-              ${showContactForm ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}
             `}>
               <ContactForm />
             </div>
