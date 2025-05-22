@@ -1,5 +1,6 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
+import Image from "next/image"; // Import the Image component
 import { handleSmoothScroll } from "./utils/smoothScroll";
 import { YouTubePlayer, YouTubeEvent } from './utils/youtube-types';
 
@@ -120,13 +121,14 @@ export default function HeroSection() {
             {(!isLoaded || !isPlaying) && (
               <div className="absolute inset-0 z-10 flex items-center justify-center bg-black/5 backdrop-blur-sm">
                 {/* Video thumbnail - preloading the YouTube preview image */}
-                <img 
+                <Image
                   src={`https://i.ytimg.com/vi/LDU_Txk06tM/hqdefault.jpg`}
-                  alt="Video thumbnail" 
+                  alt="Video thumbnail"
                   className="absolute inset-0 w-full h-full object-cover"
                   loading="lazy"
-                  width="480"
-                  height="360"
+                  width={480}
+                  height={360}
+                  unoptimized // Add this if the image is external and not optimized by Next.js
                 />
                 
                 {/* Play button */}

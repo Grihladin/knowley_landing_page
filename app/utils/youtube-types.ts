@@ -18,7 +18,7 @@ declare global {
         element: HTMLElement | string,
         options: {
           videoId: string;
-          playerVars?: Record<string, any>;
+          playerVars?: Record<string, string | number | boolean>; // Updated type
           events?: {
             onReady?: (event: YouTubeEvent) => void;
             onStateChange?: (event: YouTubeEvent) => void;
