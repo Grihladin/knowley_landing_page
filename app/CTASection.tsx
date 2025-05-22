@@ -86,7 +86,7 @@ export default function CTASection() {
             href="https://calendly.com/knowleyde"
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-white text-primary px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-medium text-base sm:text-lg text-center"
+            className="bg-white text-primary-dark px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-medium text-base sm:text-lg text-center"
           >
             Schedule a Demo
           </a>

@@ -97,7 +97,7 @@ const WaitlistForm: React.FC = () => {
       </div>
       <button
         type="submit"
-        className={`bg-white text-primary px-6 sm:px-8 h-[50px] rounded-lg font-medium text-base sm:text-lg text-center focus:outline-none ${
+        className={`bg-white text-primary-dark px-6 sm:px-8 h-[50px] rounded-lg font-medium text-base sm:text-lg text-center focus:outline-none ${
           status === "loading" ? "opacity-70 cursor-not-allowed" : ""
         } w-full sm:w-auto whitespace-nowrap`}
         disabled={status === "loading"}

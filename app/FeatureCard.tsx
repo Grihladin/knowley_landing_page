@@ -23,9 +23,9 @@ const FeatureCard: React.FC<FeatureCardProps> = ({ icon, title, description, ite
             key={idx}
             className="flex items-center gap-2"
           >
-            <div className="flex-shrink-0 w-5 h-5 rounded-full bg-blue-100 flex items-center justify-center">
+            <div className="flex-shrink-0 w-5 h-5 rounded-full bg-primary-light flex items-center justify-center">
               <svg 
-                className="w-3 h-3 text-blue-600" 
+                className="w-3 h-3 text-primary-dark" 
                 fill="none" 
                 viewBox="0 0 24 24" 
                 stroke="currentColor"

@@ -25,9 +25,9 @@ const BenefitCard: React.FC<BenefitCardProps> = ({ icon, title, benefits, colorC
             key={idx}
             className="flex items-start gap-3"
           >
-            <div className="flex-shrink-0 w-5 h-5 rounded-full bg-blue-100 flex items-center justify-center mt-1">
+            <div className="flex-shrink-0 w-5 h-5 rounded-full bg-primary-light flex items-center justify-center mt-1">
               <svg 
-                className="w-3 h-3 text-blue-600" 
+                className="w-3 h-3 text-primary-dark" 
                 fill="none" 
                 viewBox="0 0 24 24" 
                 stroke="currentColor"
