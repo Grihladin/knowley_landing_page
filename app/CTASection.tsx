@@ -15,7 +15,7 @@ export default function CTASection() {
       setTimeout(() => {
         setShowContactForm(false);
         setAnimatingOut(false);
-      }, 200); // Match the slideUp animation duration
+      }, 300); // Match the transition duration
     } else {
       setShowContactForm(true);
     }
@@ -74,17 +74,20 @@ export default function CTASection() {
           </button>
         </div>
         
-        <div className={`max-w-xl mx-auto w-full px-4 sm:px-0 mt-4 ${!showContactForm && !animatingOut ? 'hidden' : ''}`}>
-          <div
+        <div className="relative w-full">
+          <div 
             className={`
-              bg-white/20 backdrop-blur-sm rounded-xl w-full overflow-hidden
-              ${showContactForm && !animatingOut ? 'animate-slideDown' : 'animate-slideUp'}
+              max-w-xl mx-auto w-full px-4 sm:px-0 mt-4
+              transition-all duration-200 sm:duration-300 ease-in-out
+              ${showContactForm || animatingOut ? 'opacity-100 max-h-[800px]' : 'opacity-0 max-h-0 pointer-events-none'}
+              overflow-hidden
             `}
-            style={{ transformOrigin: 'top' }}
-            aria-hidden={!showContactForm && !animatingOut}
+            style={{ willChange: 'opacity, max-height' }}
           >
-            <div className="p-4 sm:p-6">
-              <ContactForm />
+            <div className="bg-white/20 backdrop-blur-sm rounded-xl w-full overflow-hidden">
+              <div className="p-4 sm:p-6">
+                <ContactForm />
+              </div>
             </div>
           </div>
         </div>
