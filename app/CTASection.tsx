@@ -33,7 +33,7 @@ export default function CTASection() {
       setTimeout(() => {
         if (contactContainerRef.current) {
           contactContainerRef.current.scrollIntoView({ 
-            behavior: isMobile ? "auto" : "smooth", 
+            behavior: "smooth", // Smooth scrolling for both mobile and desktop
             block: "center" // Center the form in the viewport
           });
         }
@@ -89,14 +89,21 @@ export default function CTASection() {
         <div className="max-w-xl mx-auto w-full px-4 sm:px-0 relative" ref={contactContainerRef}>
           {/* Mobile vs Desktop animation handling */}
           {isMobile ? (
-            // Simple toggle for mobile
-            showContactForm && (
-              <div className="mt-4 bg-white/20 backdrop-blur-sm rounded-xl w-full overflow-hidden">
+            // Minimal animation for mobile
+            <div 
+              className={`
+                mt-4 overflow-hidden
+                transition-[max-height,opacity] duration-150 ease-out
+                ${showContactForm ? 'max-h-[600px] opacity-100' : 'max-h-0 opacity-0'}
+              `}
+              style={{ willChange: 'max-height, opacity' }}
+            >
+              <div className="bg-white/20 backdrop-blur-sm rounded-xl w-full overflow-hidden">
                 <div className="p-4">
                   <ContactForm />
                 </div>
               </div>
-            )
+            </div>
           ) : (
             // Animated version for desktop
             <div 
