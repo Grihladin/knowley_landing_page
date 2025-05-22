@@ -55,27 +55,25 @@ export default function CTASection() {
           </button>
         </div>
         <div className="flex flex-col space-y-6 max-w-xl mx-auto w-full px-4 sm:px-0">
-          <div
-            className={`
-              bg-white/20 rounded-xl w-full overflow-hidden
-              transition-all duration-500 ease-in-out
-              ${showContactForm ? 'max-h-[1000px] opacity-100' : 'max-h-0 opacity-0 pointer-events-none'}
-            `}
-            style={{ transformOrigin: 'top' }}
-            aria-hidden={!showContactForm}
-          >
-            <div className={`
-              p-4 sm:p-6
-            `}>
-              <ContactForm />
-            </div>
-          </div>
-          
           <div className="bg-white/10 rounded-xl p-4 sm:p-6 w-full text-white">
             <WaitlistForm />
             <p className="text-xs mt-3 opacity-70">
               By signing up, you agree to our Terms of Service and Privacy Policy.
             </p>
+          </div>
+          
+          <div
+            className={`
+              bg-white/20 backdrop-blur-sm rounded-xl w-full overflow-hidden
+              transition-[opacity,transform] sm:transition-all sm:duration-300 duration-200 ease-in-out
+              ${showContactForm ? 'scale-y-100 opacity-100' : 'scale-y-0 opacity-0 pointer-events-none'}
+            `}
+            style={{ transformOrigin: 'top' }}
+            aria-hidden={!showContactForm}
+          >
+            <div className="p-4 sm:p-6">
+              <ContactForm />
+            </div>
           </div>
         </div>
       </div>
