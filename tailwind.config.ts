@@ -24,6 +24,8 @@ const config: Config = {
         'fade-in': 'fadeIn 0.5s ease-in forwards',
         'fade-in-up': 'fadeInUp 0.5s ease-out forwards',
         'slide-in': 'slideIn 0.5s ease-out forwards',
+        'slideDown': 'slideDown 0.3s ease-out forwards',
+        'slideUp': 'slideUp 0.2s ease-in forwards',
       },
       keyframes: {
         fadeIn: {
@@ -37,6 +39,14 @@ const config: Config = {
         slideIn: {
           '0%': { transform: 'translateX(-100%)' },
           '100%': { transform: 'translateX(0)' },
+        },
+        slideDown: {
+          '0%': { opacity: '0', transform: 'scaleY(0)' },
+          '100%': { opacity: '1', transform: 'scaleY(1)' },
+        },
+        slideUp: {
+          '0%': { opacity: '1', transform: 'scaleY(1)' },
+          '100%': { opacity: '0', transform: 'scaleY(0)' },
         },
       },
     },

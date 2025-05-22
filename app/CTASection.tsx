@@ -5,9 +5,20 @@ import ContactForm from "./ContactForm";
 
 export default function CTASection() {
   const [showContactForm, setShowContactForm] = useState(false);
+  const [animatingOut, setAnimatingOut] = useState(false);
   
   const toggleContactForm = () => {
-    setShowContactForm(prev => !prev);
+    if (showContactForm) {
+      // Start closing animation
+      setAnimatingOut(true);
+      // Wait for animation to complete before actually hiding
+      setTimeout(() => {
+        setShowContactForm(false);
+        setAnimatingOut(false);
+      }, 200); // Match the slideUp animation duration
+    } else {
+      setShowContactForm(true);
+    }
   };
 
   return (
@@ -38,7 +49,15 @@ export default function CTASection() {
           Join forward-thinking companies that are cutting course selection time 
           from weeks to days while delivering better learning outcomes.
         </p>
-        <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12 w-full px-4 sm:px-0 max-w-md mx-auto">
+        <div className="flex flex-col space-y-6 max-w-xl mx-auto w-full px-4 sm:px-0 mb-8">
+          <div className="bg-white/10 rounded-xl p-4 sm:p-6 w-full text-white">
+            <WaitlistForm />
+            <p className="text-xs mt-3 opacity-70">
+              By signing up, you agree to our Terms of Service and Privacy Policy.
+            </p>
+          </div>
+        </div>
+        <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8 w-full px-4 sm:px-0 max-w-md mx-auto">
           <a
             href="https://calendly.com/knowleyde"
             target="_blank"
@@ -54,22 +73,15 @@ export default function CTASection() {
             Contact Us
           </button>
         </div>
-        <div className="flex flex-col space-y-6 max-w-xl mx-auto w-full px-4 sm:px-0">
-          <div className="bg-white/10 rounded-xl p-4 sm:p-6 w-full text-white">
-            <WaitlistForm />
-            <p className="text-xs mt-3 opacity-70">
-              By signing up, you agree to our Terms of Service and Privacy Policy.
-            </p>
-          </div>
-          
+        
+        <div className={`max-w-xl mx-auto w-full px-4 sm:px-0 mt-4 ${!showContactForm && !animatingOut ? 'hidden' : ''}`}>
           <div
             className={`
               bg-white/20 backdrop-blur-sm rounded-xl w-full overflow-hidden
-              transition-[opacity,transform] sm:transition-all sm:duration-300 duration-200 ease-in-out
-              ${showContactForm ? 'scale-y-100 opacity-100' : 'scale-y-0 opacity-0 pointer-events-none'}
+              ${showContactForm && !animatingOut ? 'animate-slideDown' : 'animate-slideUp'}
             `}
             style={{ transformOrigin: 'top' }}
-            aria-hidden={!showContactForm}
+            aria-hidden={!showContactForm && !animatingOut}
           >
             <div className="p-4 sm:p-6">
               <ContactForm />
