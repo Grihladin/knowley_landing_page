@@ -40,6 +40,6 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-packcage-lock.json
+package-lock.json
 data/contact.json
 data/waitlist.json
