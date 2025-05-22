@@ -2,7 +2,6 @@
 const nextConfig = {
   /* config options here */
   // Add any specific configurations needed for your project
-  swcMinify: true,
   reactStrictMode: true,
 };
 
