@@ -29,7 +29,7 @@ async function notifyTelegramContact(name: string, email: string, message: strin
   }
   
   try {
-    const text = `📩 New contact message:\\n*Name:* ${name}\\n*Email:* ${email}\\n*Message:* ${message}`;
+    const text = `📩 New contact message:\n*Name:* ${name}\n*Email:* ${email}\n*Message:* ${message}`;
     const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
     
     await fetch(url, {
