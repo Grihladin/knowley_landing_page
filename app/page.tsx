@@ -1,5 +1,6 @@
 "use client";
 import "client-only";
+import Image from "next/image"; // Added import for Image component
 import HeroSection from "./HeroSection";
 import FeaturesSection from "./FeaturesSection";
 import IntegrationSection from "./IntegrationSection";
@@ -19,7 +20,10 @@ export default function Home() {
       <header className="sticky top-0 z-50 bg-background/80 backdrop-blur-sm border-b border-gray/20" role="banner">
         <div className="container mx-auto px-4 py-4">
           <div className="flex flex-col sm:flex-row items-center">
-            <div className="text-2xl font-bold text-primary mb-2 sm:mb-0" aria-label="Knowley Home">Knowley</div>
+            <div className="flex items-center text-2xl font-bold text-primary mb-2 sm:mb-0" aria-label="Knowley Home">
+              <Image src="/knowley_transparent_logo.svg" alt="Knowley Logo" width={50} height={50} className="-mr-2" />
+              Knowley
+            </div>
             <nav className="flex space-x-4 sm:space-x-8 mx-auto text-sm sm:text-base" aria-label="Main navigation">
               <a href="#features" onClick={(e) => handleSmoothScroll(e, "#features")} className="hover:text-primary" aria-label="Features section">Features</a>
               <a href="#integration" onClick={(e) => handleSmoothScroll(e, "#integration")} className="hover:text-primary" aria-label="Integration section">Integration</a>

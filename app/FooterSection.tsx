@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image"; // Added import for Image component
 
 export default function FooterSection() {
   return (
@@ -6,7 +7,10 @@ export default function FooterSection() {
       <div className="container mx-auto max-w-6xl">
         <div className="flex justify-center items-center mb-12">
           <div className="text-center">
-            <div className="text-2xl font-bold mb-4 text-primary" aria-label="Knowley Logo">Knowley</div>
+            <div className="flex items-center justify-center text-2xl font-bold mb-4 text-primary" aria-label="Knowley Logo">
+              <Image src="/knowley_transparent_logo.svg" alt="Knowley Logo" width={50} height={50} className="-mr-2" />
+              Knowley
+            </div>
             <p className="text-base text-foreground mb-6 max-w-md">
               AI-powered talent management tool matching employees to L&D/courses seamlessly.
             </p>

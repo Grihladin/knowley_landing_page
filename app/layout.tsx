@@ -15,10 +15,13 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Knowley",
   description: "Match employees to learning & development courses with AI. Cut course selection time from weeks to days.",
+  icons: {
+    icon: "/knowley_logo.svg",
+  },
   openGraph: {
     title: "Knowley",
     description: "Match employees to learning & development courses with AI. Cut course selection time from weeks to days.",
-    url: "https://knowley.ai/",
+    url: "https://knowley.de/",
     siteName: "Knowley",
     images: [
       {
@@ -35,12 +38,12 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Knowley",
     description: "Match employees to learning & development courses with AI. Cut course selection time from weeks to days.",
-    site: "@knowleyai",
+    site: "@knowleyde",
     images: ["/logo-color.png"],
   },
-  metadataBase: new URL("https://knowley.ai/"),
+  metadataBase: new URL("https://knowley.de/"),
   alternates: {
-    canonical: "https://knowley.ai/",
+    canonical: "https://knowley.de/",
   },
 };
 
@@ -58,8 +61,8 @@ export default function RootLayout({
               "@context": "https://schema.org",
               "@type": "Organization",
               "name": "Knowley",
-              "url": "https://knowley.ai/",
-              "logo": "https://knowley.ai/logo-color.png",
+              "url": "https://knowley.de/",
+              "logo": "https://knowley.de/logo-color.png",
               "sameAs": [
                 "https://linkedin.com/company/knowleyai"
               ],
