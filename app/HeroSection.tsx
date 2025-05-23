@@ -5,7 +5,6 @@ import { handleSmoothScroll } from "./utils/smoothScroll";
 import { YouTubePlayer, YouTubeEvent } from './utils/youtube-types';
 
 export default function HeroSection() {
-  const [isPlaying, setIsPlaying] = useState(false);
   const [videoActivated, setVideoActivated] = useState(false);
   const playerRef = useRef<HTMLDivElement>(null);
   const ytPlayer = useRef<YouTubePlayer | null>(null);
@@ -40,7 +39,6 @@ export default function HeroSection() {
             },
             onStateChange: (event: YouTubeEvent) => {
               // 1 = playing, 2 = paused, 0 = ended
-              setIsPlaying(event.data === 1);
             },
           },
         });
