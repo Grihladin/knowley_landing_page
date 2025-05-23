@@ -122,8 +122,8 @@ export default function HeroSection() {
         </div>
         <div className="w-full md:w-1/2 mt-8 md:mt-0">
           <div className="relative w-full aspect-video rounded-2xl shadow-2xl overflow-hidden border-2 border-primary/30 bg-white/10 backdrop-blur-md">
-            {/* YouTube Video Facade - always shown until real video is playing */}
-            {(!videoActivated || !isPlaying) && (
+            {/* YouTube Video Facade - shown only until video is activated for the first time */}
+            {!videoActivated && (
               <div className="absolute inset-0 z-10 flex items-center justify-center bg-black/5 backdrop-blur-sm">
                 {/* Video thumbnail with proper width/height for CLS prevention */}
                 <div className="absolute inset-0 w-full h-full">
@@ -139,7 +139,7 @@ export default function HeroSection() {
                 
                 {/* Play button */}
                 <button 
-                  className="relative flex items-center justify-center cursor-pointer z-20 bg-transparent border-0"
+                  className="relative flex items-center justify-center cursor-pointer z-20 bg-transparent border-0 group focus:outline-none focus:ring-0 active:outline-none active:ring-0"
                   onClick={loadYouTubeAndPlay}
                   aria-label="Play video"
                 >
@@ -152,9 +152,9 @@ export default function HeroSection() {
               </div>
             )}
             
-            {/* YouTube iframe - only rendered when activated */}
+            {/* YouTube iframe - rendered when activated, and stays visible */}
             {videoActivated && (
-              <div className={`absolute inset-0 flex items-center justify-center transition-opacity duration-300 ${isPlaying ? 'opacity-100' : 'opacity-0'}`}>
+              <div className={`absolute inset-0 flex items-center justify-center transition-opacity duration-300 opacity-100`}>
                 <div ref={playerRef} className="w-full h-full rounded-2xl" />
               </div>
             )}
