@@ -101,18 +101,14 @@ export default function CTASection() {
         <div className="max-w-xl mx-auto w-full px-4 sm:px-0 relative" ref={contactContainerRef}>
           {/* Mobile vs Desktop animation handling */}
           {isMobile ? (
-            // Animated slide, fade, and collapse for mobile
+            // No animation for mobile, instant show/hide, manages layout space
             <div
               className={`
                 mt-4
-                overflow-hidden // Ensures content is clipped during animation and when max-h is 0
-                transition-all duration-300 ease-out
-                ${showContactForm ? 'opacity-100 translate-y-0 max-h-[600px]' : 'opacity-0 -translate-y-5 max-h-0 pointer-events-none'}
+                overflow-hidden // Ensures content is clipped and space is managed
+                ${showContactForm ? 'opacity-100 max-h-[600px]' : 'opacity-0 max-h-0 pointer-events-none'}
               `}
-              style={{ willChange: 'transform, opacity, max-height' }} // Performance optimization
             >
-              {/* Removed backdrop-blur-sm for mobile animation performance */}
-              {/* The inner div no longer needs overflow-hidden if the parent has it and clips correctly */}
               <div className="bg-white/20 rounded-xl w-full">
                 <div className="p-4">
                   <ContactForm />
