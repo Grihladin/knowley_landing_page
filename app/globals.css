@@ -39,6 +39,7 @@ body {
 .aurora-char {
   background: linear-gradient(45deg, var(--clr-1), var(--clr-2), var(--clr-3), var(--clr-4));
   background-size: 400% 400%;
+  background-position: 0% 50%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -78,20 +79,26 @@ body {
   border-radius: 37% 29% 27% 27% / 28% 25% 41% 37%;
   filter: blur(var(--blur));
   mix-blend-mode: overlay;
+  opacity: 0;
+  animation: aurora-fade-in 1s ease-out forwards;
 }
 
 .aurora__item:nth-of-type(1) {
-  top: -50%;
+  top: 0;
+  right: 0;
   animation: aurora-border 6s ease-in-out infinite,
     aurora-1 12s ease-in-out infinite alternate;
+  animation-delay: 0s, 0s;
 }
 
 .aurora__item:nth-of-type(2) {
   background-color: var(--clr-3);
   right: 0;
-  top: 0;
+  top: -50%;
+  left: 0%;
   animation: aurora-border 6s ease-in-out infinite,
     aurora-2 12s ease-in-out infinite alternate;
+  animation-delay: 1s, 1s;
 }
 
 .aurora__item:nth-of-type(3) {
@@ -100,6 +107,7 @@ body {
   bottom: 0;
   animation: aurora-border 6s ease-in-out infinite,
     aurora-3 8s ease-in-out infinite alternate;
+  animation-delay: 2s, 2s;
 }
 
 .aurora__item:nth-of-type(4) {
@@ -108,6 +116,7 @@ body {
   bottom: -50%;
   animation: aurora-border 6s ease-in-out infinite,
     aurora-4 24s ease-in-out infinite alternate;
+  animation-delay: 3s, 3s;
 }
 
 @keyframes aurora-1 {
@@ -229,5 +238,14 @@ body {
   }
   100% {
     background-position: 0% 50%;
+  }
+}
+
+@keyframes aurora-fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
   }
 }

@@ -40,7 +40,7 @@ export default function FooterSection() {
           <p className="text-base text-gray-dark mb-4 md:mb-0">© 2025 Knowley. All rights reserved.</p>
           <div className="flex items-center gap-4">
             <a 
-              href="mailto:info@knowley.ai" 
+              href="mailto:info@knowley.de" 
               className="text-base text-gray-dark hover:text-primary"
             >
               info@knowley.de
