@@ -101,13 +101,15 @@ export default function CTASection() {
         <div className="max-w-xl mx-auto w-full px-4 sm:px-0 relative" ref={contactContainerRef}>
           {/* Mobile vs Desktop animation handling */}
           {isMobile ? (
-            // Very minimal fade for mobile (opacity only)
-            <div 
+            // Animated slide and fade for mobile
+            <div
               className={`
                 mt-4
-                transition-opacity duration-100
-                ${showContactForm ? 'opacity-100' : 'opacity-0 h-0 overflow-hidden pointer-events-none'}
+                overflow-hidden // Ensures content is clipped during animation
+                transition-[max-height,opacity] duration-300 ease-out // Smooth slide and fade
+                ${showContactForm ? 'max-h-[600px] opacity-100' : 'max-h-0 opacity-0 pointer-events-none'}
               `}
+              style={{ willChange: 'max-height, opacity' }} // Performance optimization
             >
               <div className="bg-white/20 backdrop-blur-sm rounded-xl w-full overflow-hidden">
                 <div className="p-4">

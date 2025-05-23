@@ -43,7 +43,7 @@ export default function FooterSection() {
               href="mailto:info@knowley.ai" 
               className="text-base text-gray-dark hover:text-primary"
             >
-              info@knowley.ai
+              info@knowley.de
             </a>
             <a
               href="https://github.com/Grihladin/knowley_landing_page"
