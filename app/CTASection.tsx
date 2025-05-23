@@ -56,7 +56,7 @@ export default function CTASection() {
   return (
     <section 
       id="cta-section"
-      className="py-12 sm:py-20 mt-10 sm:mt-16 px-4 bg-gradient-to-r from-primary to-secondary relative overflow-hidden"
+      className="py-12 sm:py-20 mt-10 sm:mt-16 px-4 bg-gradient-to-r from-primary to-secondary relative overflow-hidden transition-all duration-500 ease-in-out"
     >
       <div className="absolute inset-0 opacity-10">
         <div className="absolute top-0 left-0 w-48 h-48 rounded-full bg-white blur-2xl sm:blur-3xl" />
@@ -98,7 +98,11 @@ export default function CTASection() {
           </button>
         </div>
         
-        <div className="max-w-xl mx-auto w-full px-4 sm:px-0 relative" ref={contactContainerRef}>
+        <div 
+          className={`max-w-xl mx-auto w-full px-4 sm:px-0 relative ${!isMobile ? 'transition-[margin-bottom] duration-500 ease-in-out' : ''}`}
+          ref={contactContainerRef}
+          style={!isMobile ? { marginBottom: showContactForm ? '2rem' : '0rem' } : {}}
+        >
           {/* Mobile vs Desktop animation handling */}
           {isMobile ? (
             // No animation for mobile, instant show/hide, manages layout space
@@ -116,20 +120,18 @@ export default function CTASection() {
               </div>
             </div>
           ) : (
-            // Animated version for desktop using transform and opacity
+            // Improved animated version for desktop using transform, opacity, and proper height transitions
             <div
               ref={contactFormRef}
               className={`
                 overflow-hidden
-                transition-all duration-300 ease-out
-                ${showContactForm ? 'opacity-100 translate-y-0 max-h-[600px]' : 'opacity-0 -translate-y-5 max-h-0 pointer-events-none'}
+                transition-all duration-500 ease-in-out
+                ${showContactForm ? 'opacity-100 translate-y-0 max-h-[600px] mb-8' : 'opacity-0 -translate-y-5 max-h-0 mb-0 pointer-events-none'}
               `}
-              style={{ willChange: 'transform, opacity, max-height' }}
+              style={{ willChange: 'transform, opacity, max-height, margin' }}
             >
               <div
                 className="bg-white/20 backdrop-blur-sm rounded-xl w-full"
-                // Opacity is handled by the parent now, so direct transition here might be redundant
-                // but keeping for explicitness or if styles are decoupled later.
               >
                 <div className="p-4 sm:p-6">
                   <ContactForm />
