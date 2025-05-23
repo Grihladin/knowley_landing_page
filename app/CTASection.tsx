@@ -101,40 +101,39 @@ export default function CTASection() {
         <div className="max-w-xl mx-auto w-full px-4 sm:px-0 relative" ref={contactContainerRef}>
           {/* Mobile vs Desktop animation handling */}
           {isMobile ? (
-            // Animated slide and fade for mobile
+            // Animated slide, fade, and collapse for mobile
             <div
               className={`
                 mt-4
-                overflow-hidden // Ensures content is clipped during animation
-                transition-[max-height,opacity] duration-300 ease-out // Smooth slide and fade
-                ${showContactForm ? 'max-h-[600px] opacity-100' : 'max-h-0 opacity-0 pointer-events-none'}
+                overflow-hidden // Ensures content is clipped during animation and when max-h is 0
+                transition-all duration-300 ease-out
+                ${showContactForm ? 'opacity-100 translate-y-0 max-h-[600px]' : 'opacity-0 -translate-y-5 max-h-0 pointer-events-none'}
               `}
-              style={{ willChange: 'max-height, opacity' }} // Performance optimization
+              style={{ willChange: 'transform, opacity, max-height' }} // Performance optimization
             >
-              <div className="bg-white/20 backdrop-blur-sm rounded-xl w-full overflow-hidden">
+              {/* Removed backdrop-blur-sm for mobile animation performance */}
+              {/* The inner div no longer needs overflow-hidden if the parent has it and clips correctly */}
+              <div className="bg-white/20 rounded-xl w-full">
                 <div className="p-4">
                   <ContactForm />
                 </div>
               </div>
             </div>
           ) : (
-            // Animated version for desktop
-            <div 
+            // Animated version for desktop using transform and opacity
+            <div
               ref={contactFormRef}
               className={`
                 overflow-hidden
-                transition-[max-height] duration-300 ease-out
-                ${showContactForm ? 'max-h-[600px]' : 'max-h-0'}
+                transition-all duration-300 ease-out
+                ${showContactForm ? 'opacity-100 translate-y-0 max-h-[600px]' : 'opacity-0 -translate-y-5 max-h-0 pointer-events-none'}
               `}
-              style={{ willChange: 'max-height' }}
+              style={{ willChange: 'transform, opacity, max-height' }}
             >
-              <div 
-                className={`
-                  bg-white/20 backdrop-blur-sm rounded-xl w-full overflow-hidden
-                  transition-opacity duration-300 ease-out
-                  ${showContactForm ? 'opacity-100' : 'opacity-0'}
-                `}
-                style={{ willChange: 'opacity' }}
+              <div
+                className="bg-white/20 backdrop-blur-sm rounded-xl w-full"
+                // Opacity is handled by the parent now, so direct transition here might be redundant
+                // but keeping for explicitness or if styles are decoupled later.
               >
                 <div className="p-4 sm:p-6">
                   <ContactForm />
