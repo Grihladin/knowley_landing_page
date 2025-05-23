@@ -37,7 +37,7 @@ export default function HeroSection() {
             onReady: (event: YouTubeEvent) => {
               event.target.playVideo(); // Ensure video plays when ready
             },
-            onStateChange: (event: YouTubeEvent) => {
+            onStateChange: () => {
               // 1 = playing, 2 = paused, 0 = ended
             },
           },
