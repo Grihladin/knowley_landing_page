@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   title: "Knowley",
   description: "Match employees to learning & development courses with AI. Cut course selection time from weeks to days.",
   icons: {
-    icon: "/knowley_logo.svg",
+    icon: "/knowley_logo.png",
   },
   openGraph: {
     title: "Knowley",
