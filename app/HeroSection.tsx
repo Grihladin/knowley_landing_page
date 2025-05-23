@@ -73,8 +73,10 @@ export default function HeroSection() {
           <div className="inline-block px-3 py-1 bg-primary/10 text-primary rounded-full text-sm font-medium mb-2">
             AI-Powered L&D Solution
           </div>
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight bg-clip-text text-transparent bg-gradient-to-r from-primary via-primary to-secondary">
-            Match Talent to Learning in Minutes
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
+            {"Match Talent to".split("").map((char, index) => (<span key={index} className="aurora-char" style={{animationDelay: `${index * 0.05}s`}}>{char === " " ? "\u00A0" : char}</span>))}<br/>
+            {"Learning in".split("").map((char, index) => (<span key={index + 100} className="aurora-char" style={{animationDelay: `${(index + 15) * 0.05}s`}}>{char === " " ? "\u00A0" : char}</span>))}<br/>
+            {"Minutes".split("").map((char, index) => (<span key={index + 200} className="aurora-char" style={{animationDelay: `${(index + 26) * 0.05}s`}}>{char === " " ? "\u00A0" : char}</span>))}
           </h1>
           <p className="text-xl text-gray-dark">
             Knowley cuts qualification upgrade course selection time from weeks to 
