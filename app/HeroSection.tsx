@@ -104,14 +104,14 @@ export default function HeroSection() {
               href="https://calendly.com/knowleyde"
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-primary-dark text-white px-6 py-3 rounded-lg hover:bg-primary font-medium inline-block text-center"
+              className="bg-primary-dark text-white px-6 py-3 rounded-lg hover:bg-primary font-medium inline-block text-center hover:scale-105 hover:shadow-lg transition-transform duration-200 ease-in-out"
             >
               Schedule Demo
             </a>
             <a
               href="#cta-section"
               onClick={(e) => handleSmoothScroll(e, "#cta-section")}
-              className="border border-gray px-6 py-3 rounded-lg hover:bg-gray-light font-medium text-center"
+              className="border border-gray px-6 py-3 rounded-lg hover:bg-gray-light font-medium text-center hover:scale-105 hover:shadow-lg transition-transform duration-200 ease-in-out"
               aria-label="Join our waitlist"
             >
               Waitlist

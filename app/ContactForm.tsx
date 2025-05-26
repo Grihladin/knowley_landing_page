@@ -170,9 +170,7 @@ const ContactForm: React.FC = () => {
 
       <button
         type="submit"
-        className={`bg-white text-primary px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-medium text-base sm:text-lg text-center focus:outline-none focus:ring-2 focus:ring-white mt-2 ${
-          status === "loading" ? "opacity-70 cursor-not-allowed" : ""
-        }`}
+        className={`bg-white text-primary px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-medium text-base sm:text-lg text-center focus:outline-none focus:ring-2 focus:ring-white mt-2 ${status === "loading" ? "opacity-70 cursor-not-allowed" : "hover:scale-105 hover:shadow-lg transition-transform duration-200 ease-in-out"}`}
         disabled={status === "loading"}
         aria-busy={status === "loading"}
       >
