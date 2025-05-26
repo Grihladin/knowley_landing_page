@@ -104,8 +104,8 @@ const WaitlistForm: React.FC = () => {
       <button
         type="submit"
         className={`bg-white text-primary-dark px-6 sm:px-8 h-[50px] rounded-lg font-medium text-base sm:text-lg text-center focus:outline-none ${
-          status === "loading" ? "opacity-70 cursor-not-allowed" : ""
-        } w-full sm:w-auto whitespace-nowrap`}
+          status === "loading" ? "opacity-70 cursor-not-allowed" : "hover:scale-105 hover:shadow-lg"
+        } w-full sm:w-auto whitespace-nowrap transition-transform duration-200 ease-in-out`}
         disabled={status === "loading"}
         aria-busy={status === "loading"}
       >
