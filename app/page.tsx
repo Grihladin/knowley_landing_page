@@ -37,7 +37,7 @@ export default function Home() {
       <main className="flex-grow" id="main-content" role="main">
         <HeroSection />
         <FeaturesSection />
-        <IntegrationSection />
+        {/* <IntegrationSection /> */}
         <BenefitsSection />
         <TeamSection />
         <CTASection />
