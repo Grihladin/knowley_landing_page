@@ -137,7 +137,7 @@ export default function HeroSection() {
                 
                 {/* Play button */}
                 <button 
-                  className="relative flex items-center justify-center cursor-pointer z-20 bg-transparent border-0 group focus:outline-none focus:ring-0 active:outline-none active:ring-0"
+                  className="relative flex items-center justify-center cursor-pointer z-20 bg-transparent border-0 group focus:outline-none focus:ring-0 active:outline-none active:ring-0 hover:scale-105 hover:shadow-lg transition-transform duration-200 ease-in-out"
                   onClick={loadYouTubeAndPlay}
                   aria-label="Play video"
                 >
