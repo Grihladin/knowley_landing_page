@@ -65,7 +65,7 @@ export default function HeroSection() {
   };
 
   return (
-    <section className="py-20 px-4 from-background via-gray-light to-background bg-gradient-to-br">
+    <section className="pt-10 pb-20 sm:py-20 px-4 from-background via-gray-light to-background bg-gradient-to-br">
       <div className="container mx-auto max-w-6xl flex flex-col md:flex-row items-center gap-12">
         <div className="w-full md:w-1/2 space-y-6">
           <div className="inline-block px-3 py-1 bg-primary/10 text-primary rounded-full text-sm font-medium mb-2">
@@ -87,9 +87,9 @@ export default function HeroSection() {
                 "Perfect matches for both employees and business needs"].map((benefit, index) => (
                 <li
                   key={index}
-                  className="flex items-center gap-2"
+                  className="flex items-start gap-2"
                 >
-                  <div className="w-5 h-5 rounded-full bg-primary flex items-center justify-center">
+                  <div className="w-5 h-5 rounded-full bg-primary flex items-center justify-center flex-shrink-0 mt-1">
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3 text-white" viewBox="0 0 20 20" fill="currentColor">
                       <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                     </svg>

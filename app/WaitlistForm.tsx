@@ -73,27 +73,33 @@ const WaitlistForm: React.FC = () => {
             {message}
           </div>
         )}
-        <input
-          type="email"
-          value={email}
-          onChange={e => {
-            setEmail(e.target.value);
-            validateAndSetStatus(e.target.value);
-          }}
-          onBlur={() => {
-            setTouched(true);
-            validateAndSetStatus(email);
-          }}
-          placeholder="Enter your work email"
-          className={`w-full h-[50px] px-4 rounded-lg text-white bg-transparent border-2 ${
-            touched && status === "error" ? "border-red-500" : "border-white"
-          } outline-none focus:ring-2 focus:ring-primary-light placeholder-white/70`}
-          required
-          aria-label="Work email"
-          aria-invalid={touched && status === "error"}
-          aria-describedby={message ? "email-validation-message" : undefined}
-        />
-
+        <div className="relative flex items-center">
+          <img 
+            src="/mail-icon.svg" 
+            alt="Email icon" 
+            className="absolute left-3 w-5 h-5 pointer-events-none" 
+          />
+          <input
+            type="email"
+            value={email}
+            onChange={e => {
+              setEmail(e.target.value);
+              validateAndSetStatus(e.target.value);
+            }}
+            onBlur={() => {
+              setTouched(true);
+              validateAndSetStatus(email);
+            }}
+            placeholder="Enter your work email"
+            className={`w-full h-[50px] pl-10 pr-4 rounded-lg text-white bg-transparent border-2 ${
+              touched && status === "error" ? "border-red-500" : "border-white"
+            } outline-none focus:ring-2 focus:ring-primary-light placeholder-white/70`}
+            required
+            aria-label="Work email"
+            aria-invalid={touched && status === "error"}
+            aria-describedby={message ? "email-validation-message" : undefined}
+          />
+        </div>
       </div>
       <button
         type="submit"

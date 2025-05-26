@@ -3,7 +3,6 @@ import "client-only";
 import Image from "next/image"; // Added import for Image component
 import HeroSection from "./HeroSection";
 import FeaturesSection from "./FeaturesSection";
-import IntegrationSection from "./IntegrationSection";
 import BenefitsSection from "./BenefitsSection";
 import CTASection from "./CTASection";
 import FooterSection from "./FooterSection";
@@ -26,7 +25,6 @@ export default function Home() {
             </div>
             <nav className="flex space-x-4 sm:space-x-8 mx-auto text-sm sm:text-base" aria-label="Main navigation">
               <a href="#features" onClick={(e) => handleSmoothScroll(e, "#features")} className="hover:text-primary" aria-label="Features section">Features</a>
-              <a href="#integration" onClick={(e) => handleSmoothScroll(e, "#integration")} className="hover:text-primary" aria-label="Integration section">Integration</a>
               <a href="#benefits" onClick={(e) => handleSmoothScroll(e, "#benefits")} className="hover:text-primary" aria-label="Benefits section">Benefits</a>
               <a href="#team" onClick={(e) => handleSmoothScroll(e, "#team")} className="hover:text-primary" aria-label="Team section">Team</a>
             </nav>
@@ -37,7 +35,6 @@ export default function Home() {
       <main className="flex-grow" id="main-content" role="main">
         <HeroSection />
         <FeaturesSection />
-        <IntegrationSection />
         <BenefitsSection />
         <TeamSection />
         <CTASection />
