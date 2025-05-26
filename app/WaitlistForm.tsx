@@ -1,4 +1,5 @@
 import React, { useState, memo } from "react";
+import Image from "next/image"; // Import next/image
 import { validateEmail } from "./utils/validation";
 
 const WaitlistForm: React.FC = () => {
@@ -74,10 +75,12 @@ const WaitlistForm: React.FC = () => {
           </div>
         )}
         <div className="relative flex items-center">
-          <img 
+          <Image // Replace img with Image
             src="/mail-icon.svg" 
             alt="Email icon" 
-            className="absolute left-3 w-5 h-5 pointer-events-none" 
+            width={20} // Add width
+            height={20} // Add height
+            className="absolute left-3 pointer-events-none" // Adjusted className, h-5 and w-5 are covered by height and width
           />
           <input
             type="email"
