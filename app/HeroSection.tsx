@@ -65,7 +65,7 @@ export default function HeroSection() {
   };
 
   return (
-    <section className="pt-10 pb-20 sm:py-20 px-4 from-background via-gray-light to-background bg-gradient-to-br">
+    <section className="pt-4 pb-20 sm:pt-12 sm:pb-20 px-4 from-background via-gray-light to-background bg-gradient-to-br">
       <div className="container mx-auto max-w-6xl flex flex-col md:flex-row items-center gap-12">
         <div className="w-full md:w-1/2 space-y-6">
           <div className="inline-block px-3 py-1 bg-primary/10 text-primary rounded-full text-sm font-medium mb-2">
