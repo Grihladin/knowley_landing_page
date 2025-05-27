@@ -75,45 +75,62 @@ export default function VideoComponent() {
           </p>
         </div>
         
-        <div className="relative w-full aspect-video rounded-3xl shadow-2xl overflow-hidden bg-gradient-to-br from-white/90 to-gray-100/90 backdrop-blur-sm border border-gray/20 mx-auto max-w-3xl">
-            {/* YouTube Video Facade - shown only until video is activated for the first time */}
-            {!videoActivated && (
-              <div className="absolute inset-0 z-10 flex items-center justify-center bg-black/5 backdrop-blur-sm">
-                {/* Video thumbnail with proper width/height for CLS prevention */}
-                <div className="absolute inset-0 w-full h-full">
-                  <Image
-                    src="https://i.ytimg.com/vi/LDU_Txk06tM/hqdefault.jpg"
-                    alt="Video preview"
-                    fill
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                    priority={true}
-                    className="object-cover object-center"
-                  />
-                </div>
-                
-                {/* Play button */}
-                <button 
-                  className="relative flex items-center justify-center cursor-pointer z-20 bg-transparent border-0 group focus:outline-none focus:ring-0 active:outline-none active:ring-0 hover:scale-105 hover:shadow-lg transition-transform duration-200 ease-in-out"
-                  onClick={loadYouTubeAndPlay}
-                  aria-label="Play video"
-                >
-                  <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" className="drop-shadow-lg">
-                    <circle cx="40" cy="40" r="38" fill="#fff" fillOpacity="1"/>
-                    <circle cx="40" cy="40" r="38" stroke="#6366F1" strokeWidth="4"/>
-                    <polygon points="34,28 58,40 34,52" fill="#6366F1"/>
-                  </svg>
-                </button>
+        {/* MacBook Browser Window Frame */}
+        <div className="relative w-full mx-auto max-w-4xl">
+          {/* Browser window container with shadow */}
+          <div className="bg-white rounded-t-xl shadow-2xl overflow-hidden border border-gray-300">
+            {/* Browser top bar */}
+            <div className="flex items-center px-4 py-3 bg-gray-100 border-b border-gray-200">
+              {/* Traffic light buttons */}
+              <div className="flex space-x-2">
+                <div className="w-3 h-3 rounded-full bg-red-500"></div>
+                <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
+                <div className="w-3 h-3 rounded-full bg-green-500"></div>
               </div>
-            )}
+            </div>
             
-            {/* YouTube iframe - rendered when activated, and stays visible */}
-            {videoActivated && (
-              <div className={`absolute inset-0 flex items-center justify-center transition-opacity duration-300 opacity-100`}>
-                <div ref={playerRef} className="w-full h-full rounded-2xl" />
-              </div>
-            )}
+            {/* Video container */}
+            <div className="relative w-full aspect-video bg-black">
+              {/* YouTube Video Facade - shown only until video is activated for the first time */}
+              {!videoActivated && (
+                <div className="absolute inset-0 z-10 flex items-center justify-center">
+                  {/* Video thumbnail with proper width/height for CLS prevention */}
+                  <div className="absolute inset-0 w-full h-full">
+                    <Image
+                      src="https://i.ytimg.com/vi/LDU_Txk06tM/hqdefault.jpg"
+                      alt="Video preview"
+                      fill
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                      priority={true}
+                      className="object-cover object-center"
+                    />
+                  </div>
+                  
+                  {/* Play button */}
+                  <button 
+                    className="relative flex items-center justify-center cursor-pointer z-20 bg-transparent border-0 group focus:outline-none focus:ring-0 active:outline-none active:ring-0 hover:scale-105 hover:shadow-lg transition-transform duration-200 ease-in-out"
+                    onClick={loadYouTubeAndPlay}
+                    aria-label="Play video"
+                  >
+                    <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" className="drop-shadow-lg">
+                      <circle cx="40" cy="40" r="38" fill="#fff" fillOpacity="1"/>
+                      <circle cx="40" cy="40" r="38" stroke="#6366F1" strokeWidth="4"/>
+                      <polygon points="34,28 58,40 34,52" fill="#6366F1"/>
+                    </svg>
+                  </button>
+                </div>
+              )}
+              
+              {/* YouTube iframe - rendered when activated, and stays visible */}
+              {videoActivated && (
+                <div className="absolute inset-0 flex items-center justify-center transition-opacity duration-300 opacity-100">
+                  <div ref={playerRef} className="w-full h-full" />
+                </div>
+              )}
+            </div>
           </div>
         </div>
+      </div>
     </section>
   );
 }
