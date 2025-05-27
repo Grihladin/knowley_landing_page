@@ -12,11 +12,9 @@ export default function HeroSection() {
           <div className="inline-block px-3 py-1 bg-primary/10 text-primary rounded-full text-sm font-medium mb-2">
             AI-Powered L&D Solution
           </div>
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-            Personalized
-            <br />
-            Learning Paths in 
-            <br />
+         <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+            Match Talent to<br/>
+            Learning in<br/>
             Minutes
           </h1>
           <p className="text-xl text-gray-dark">
