@@ -1,68 +1,9 @@
 "use client";
-import React, { useRef, useState } from "react";
-import Image from "next/image";
+import React from "react";
 import { handleSmoothScroll } from "./utils/smoothScroll";
-import { YouTubePlayer, YouTubeEvent } from "./utils/youtube-types";
-
+import { Macbook } from "./LaptopMockup";
+import Image from "next/image";
 export default function HeroSection() {
-  const [videoActivated, setVideoActivated] = useState(false);
-  const playerRef = useRef<HTMLDivElement>(null);
-  const ytPlayer = useRef<YouTubePlayer | null>(null);
-
-  // This function loads the YouTube API script and initializes the player
-  const loadYouTubeAndPlay = () => {
-    if (videoActivated) {
-      // If already activated, just play the video
-      ytPlayer.current?.playVideo();
-      return;
-    }
-
-    setVideoActivated(true);
-
-    // Function to initialize the player once API is loaded
-    const initializePlayer = () => {
-      if (playerRef.current && !ytPlayer.current && window.YT) {
-        ytPlayer.current = new window.YT.Player(playerRef.current, {
-          videoId: "LDU_Txk06tM",
-          playerVars: {
-            autoplay: 1, // Auto play once loaded
-            rel: 0,
-            showinfo: 0,
-            modestbranding: 1,
-            playsinline: 1,
-            enablejsapi: 1,
-            origin: window.location.origin,
-          },
-          events: {
-            onReady: (event: YouTubeEvent) => {
-              event.target.playVideo(); // Ensure video plays when ready
-            },
-            onStateChange: () => {
-              // 1 = playing, 2 = paused, 0 = ended
-            },
-          },
-        });
-      }
-    };
-
-    // Load YouTube IFrame API if not already loaded
-    if (typeof window !== "undefined") {
-      if (!window.YT) {
-        // Define callback before loading script
-        window.onYouTubeIframeAPIReady = initializePlayer;
-
-        const tag = document.createElement("script");
-        tag.src = "https://www.youtube.com/iframe_api";
-        tag.async = true;
-        tag.defer = true;
-        document.head.appendChild(tag);
-      }
-      // If API is already loaded
-      else if (window.YT && window.YT.Player) {
-        initializePlayer();
-      }
-    }
-  };
 
   return (
     <section className="py-20 px-4 from-background via-gray-light to-background bg-gradient-to-br">
@@ -126,6 +67,12 @@ export default function HeroSection() {
               Waitlist
             </a>
           </div>
+        </div>
+        
+        {/* Right Side - 3D Laptop Mockup */}
+        <div className="w-full md:w-1/2 flex justify-center items-center">
+          {/* <LaptopMockup className="w-full max-w-2xl" /> */}
+          <Macbook/>
         </div>
       </div>
     </section>

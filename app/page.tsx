@@ -9,7 +9,7 @@ import CTASection from "./CTASection";
 import FooterSection from "./FooterSection";
 import TeamSection from "./TeamSection";
 import { handleSmoothScroll } from './utils/smoothScroll';
-
+import VideoComponent from "./VideoComponent";
 
 export default function Home() {
   // Using React.useEffect for navigation event listeners would go here if needed
@@ -36,6 +36,7 @@ export default function Home() {
 
       <main className="flex-grow" id="main-content" role="main">
         <HeroSection />
+        <VideoComponent/>
         <FeaturesSection />
         {/* <IntegrationSection /> */}
         <BenefitsSection />
