@@ -86,13 +86,13 @@ export default function CTASection() {
             href="https://calendly.com/knowleyde"
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-white text-primary-dark px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-medium text-base sm:text-lg text-center"
+            className="bg-white text-primary-dark px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-medium text-base sm:text-lg text-center hover:scale-105 hover:shadow-lg transition-transform duration-200 ease-in-out"
           >
             Schedule a Demo
           </a>
           <button
             onClick={toggleContactForm}
-            className="border-2 border-white bg-transparent px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-medium text-base sm:text-lg text-center"
+            className="border-2 border-white bg-transparent px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-medium text-base sm:text-lg text-center hover:scale-105 hover:shadow-lg transition-transform duration-200 ease-in-out"
           >
             Contact Us
           </button>

@@ -1,4 +1,5 @@
 import React, { useState, memo } from "react";
+import Image from "next/image"; // Import next/image
 import { validateEmail } from "./utils/validation";
 
 const WaitlistForm: React.FC = () => {
@@ -73,33 +74,41 @@ const WaitlistForm: React.FC = () => {
             {message}
           </div>
         )}
-        <input
-          type="email"
-          value={email}
-          onChange={e => {
-            setEmail(e.target.value);
-            validateAndSetStatus(e.target.value);
-          }}
-          onBlur={() => {
-            setTouched(true);
-            validateAndSetStatus(email);
-          }}
-          placeholder="Enter your work email"
-          className={`w-full h-[50px] px-4 rounded-lg text-white bg-transparent border-2 ${
-            touched && status === "error" ? "border-red-500" : "border-white"
-          } outline-none focus:ring-2 focus:ring-primary-light placeholder-white/70`}
-          required
-          aria-label="Work email"
-          aria-invalid={touched && status === "error"}
-          aria-describedby={message ? "email-validation-message" : undefined}
-        />
-
+        <div className="relative flex items-center">
+          <Image // Replace img with Image
+            src="/mail-icon.svg" 
+            alt="Email icon" 
+            width={20} // Add width
+            height={20} // Add height
+            className="absolute left-3 pointer-events-none" // Adjusted className, h-5 and w-5 are covered by height and width
+          />
+          <input
+            type="email"
+            value={email}
+            onChange={e => {
+              setEmail(e.target.value);
+              validateAndSetStatus(e.target.value);
+            }}
+            onBlur={() => {
+              setTouched(true);
+              validateAndSetStatus(email);
+            }}
+            placeholder="Enter your work email"
+            className={`w-full h-[50px] pl-10 pr-4 rounded-lg text-white bg-transparent border-2 ${
+              touched && status === "error" ? "border-red-500" : "border-white"
+            } outline-none focus:ring-2 focus:ring-primary-light placeholder-white/70`}
+            required
+            aria-label="Work email"
+            aria-invalid={touched && status === "error"}
+            aria-describedby={message ? "email-validation-message" : undefined}
+          />
+        </div>
       </div>
       <button
         type="submit"
         className={`bg-white text-primary-dark px-6 sm:px-8 h-[50px] rounded-lg font-medium text-base sm:text-lg text-center focus:outline-none ${
-          status === "loading" ? "opacity-70 cursor-not-allowed" : ""
-        } w-full sm:w-auto whitespace-nowrap`}
+          status === "loading" ? "opacity-70 cursor-not-allowed" : "hover:scale-105 hover:shadow-lg"
+        } w-full sm:w-auto whitespace-nowrap transition-transform duration-200 ease-in-out`}
         disabled={status === "loading"}
         aria-busy={status === "loading"}
       >

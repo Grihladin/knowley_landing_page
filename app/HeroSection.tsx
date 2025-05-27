@@ -6,7 +6,7 @@ import Image from "next/image";
 export default function HeroSection() {
 
   return (
-    <section className="py-20 px-4 from-background via-gray-light to-background bg-gradient-to-br">
+    <section className="pt-4 pb-20 sm:pt-12 sm:pb-20 px-4 from-background via-gray-light to-background bg-gradient-to-br">
       <div className="container mx-auto max-w-6xl flex flex-col md:flex-row items-center gap-12">
         <div className="w-full md:w-1/2 space-y-6">
           <div className="inline-block px-3 py-1 bg-primary/10 text-primary rounded-full text-sm font-medium mb-2">
@@ -52,14 +52,14 @@ export default function HeroSection() {
               href="https://calendly.com/knowleyde"
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-primary-dark text-white px-6 py-3 rounded-lg hover:bg-primary font-medium inline-block text-center"
+              className="bg-primary-dark text-white px-6 py-3 rounded-lg hover:bg-primary font-medium inline-block text-center hover:scale-105 hover:shadow-lg transition-transform duration-200 ease-in-out"
             >
               Schedule Demo
             </a>
             <a
               href="#cta-section"
               onClick={(e) => handleSmoothScroll(e, "#cta-section")}
-              className="border border-gray px-6 py-3 rounded-lg hover:bg-gray-light font-medium text-center"
+              className="border border-gray px-6 py-3 rounded-lg hover:bg-gray-light font-medium text-center hover:scale-105 hover:shadow-lg transition-transform duration-200 ease-in-out"
               aria-label="Join our waitlist"
             >
               Waitlist

@@ -68,7 +68,7 @@ export default function TeamSection() {
 							</p>
 							<a
 								href={member.linkedin}
-								className="inline-flex items-center justify-center p-2 bg-blue-600 text-white rounded-lg mt-auto"
+								className="inline-flex items-center justify-center p-2 bg-blue-600 text-white rounded-lg mt-auto hover:scale-105 hover:shadow-lg transition-transform duration-200 ease-in-out"
 								target="_blank"
 								rel="noopener noreferrer"
 								aria-label={`LinkedIn profile of ${member.name}`}

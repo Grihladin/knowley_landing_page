@@ -19,7 +19,7 @@ export default function FooterSection() {
                 href="https://linkedin.com/company/knowleyai" 
                 target="_blank" 
                 rel="noopener noreferrer" 
-                className="text-primary bg-primary/5 p-3 rounded-lg inline-flex items-center justify-center"
+                className="text-primary bg-primary/5 p-3 rounded-lg inline-flex items-center justify-center hover:scale-105 hover:shadow-lg transition-transform duration-200 ease-in-out"
                 aria-label="Visit Knowley LinkedIn page"
                 title="LinkedIn"
               >
