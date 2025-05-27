@@ -17,7 +17,7 @@ const teamMembers = [
 		quote: "Fuel your body, fuel your passion.",
 	},
 	{
-		name: "Alexander Uplishvili",
+		name: "Alexander Uplisashvili",
 		role: "COO",
 		image: "/logo-color.png",
 		linkedin: "https://www.linkedin.com/in/alexander-uplisashvili-800078201/",
