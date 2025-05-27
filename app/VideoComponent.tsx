@@ -1,7 +1,6 @@
 "use client";
 import React, { useRef, useState } from "react";
 import Image from "next/image";
-import { handleSmoothScroll } from "./utils/smoothScroll";
 import { YouTubePlayer, YouTubeEvent } from './utils/youtube-types';
 
 export default function VideoComponent() {
@@ -65,8 +64,18 @@ export default function VideoComponent() {
   };
 
   return (
-        <div className="py-20 px-4 w-full mt-8 md:mt-0">
-          <div className="container relative w-full aspect-video rounded-2xl shadow-2xl overflow-hidden border-2 border-primary/30 bg-white/10 backdrop-blur-md">
+    <section className="py-20 px-4 bg-gradient-to-br from-background via-gray-light/50 to-background">
+      <div className="container mx-auto max-w-4xl">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold text-primary mb-2">
+            Walkthrough from founders
+          </h2>
+          <p className="text-lg text-gray-dark max-w-2xl mx-auto">
+            Watch how you can instantly find corporate learning materials with Knowley
+          </p>
+        </div>
+        
+        <div className="relative w-full aspect-video rounded-3xl shadow-2xl overflow-hidden bg-gradient-to-br from-white/90 to-gray-100/90 backdrop-blur-sm border border-gray/20 mx-auto max-w-3xl">
             {/* YouTube Video Facade - shown only until video is activated for the first time */}
             {!videoActivated && (
               <div className="absolute inset-0 z-10 flex items-center justify-center bg-black/5 backdrop-blur-sm">
@@ -105,5 +114,6 @@ export default function VideoComponent() {
             )}
           </div>
         </div>
+    </section>
   );
 }

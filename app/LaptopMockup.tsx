@@ -7,7 +7,7 @@ export const Macbook = () => {
       <div style={{ borderRadius: '3% 3% 0.5% 0.5% / 5%' }} className="macbook-screen relative w-4/5 mx-auto bg-[#333] overflow-hidden">
         <div className="macbook-viewport absolute inset-0 m-[4.3%_3.2%] overflow-hidden">
           <Image
-            src="/screenshot2.png"
+            src="/screenshot.png"
             alt="Screen content"
             fill
             className="object-contain"
