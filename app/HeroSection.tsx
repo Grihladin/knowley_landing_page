@@ -1,6 +1,5 @@
 "use client";
 import React from "react";
-import Image from "next/image";
 import { handleSmoothScroll } from "./utils/smoothScroll";
 import YouTubeVideoPlayer from "./YouTubeVideoPlayer";
 

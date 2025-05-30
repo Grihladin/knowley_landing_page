@@ -40,7 +40,6 @@ export function useYouTubePlayer({ videoId }: UseYouTubePlayerOptions) {
         const existingCallback = window.onYouTubeIframeAPIReady;
         window.onYouTubeIframeAPIReady = () => {
           if (existingCallback) {
-            // @ts-ignore
             existingCallback();
           }
           initializePlayer();
