@@ -17,8 +17,8 @@ export default function HeroSection() {
             Minutes
           </h1>
           <p className="text-xl text-gray-dark">
-            Knowley cuts qualification upgrade course selection time from weeks to 
-            days with AI-powered talent matching that integrates with your existing systems.
+            Knowley cuts learning material selection time<br/>
+            from weeks to hours.
           </p>
           <div className="pt-4">
             <ul className="space-y-2" aria-label="Key benefits list">

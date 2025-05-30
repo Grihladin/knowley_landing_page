@@ -25,7 +25,6 @@ export default function BenefitsSection() {
             benefits={[
               { label: "90% faster matching", description: "Reduce course selection time from weeks to just days with AI-powered recommendations" },
               { label: "Lower training costs", description: "Eliminate wasted spending on mismatched courses with precise AI recommendations" },
-              { label: "Reduced admin overhead", description: "Automate the course matching process, freeing up L&D staff for strategic initiatives" },
             ]}
             icon={
               <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -36,8 +35,7 @@ export default function BenefitsSection() {
           <BenefitCard 
             title="Enhanced Outcomes"
             benefits={[
-              { label: "Higher completion rates", description: "Better matched courses lead to 40% higher completion rates and improved learning outcomes" },
-              { label: "Increased employee satisfaction", description: "Personalized learning paths that align with career goals boost engagement and retention" },
+              { label: "Higher completion rates", description: "Better matched courses lead to higher completion rates and improved learning outcomes" },
               { label: "Business-aligned skill development", description: "Close skills gaps faster with learning that aligns with both employee and business objectives" },
             ]}
             icon={

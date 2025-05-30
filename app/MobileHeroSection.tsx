@@ -16,7 +16,7 @@ export default function MobileHeroSection() {
             Learning in Minutes
           </h1>
           <p className="text-lg text-gray-dark px-2">
-            Knowley cuts course selection time with AI-powered talent matching.
+            Knowley cuts learning material selection time from weeks to hours.
           </p>
         </div>
 

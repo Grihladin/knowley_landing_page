@@ -25,7 +25,7 @@ export default function FeaturesSection() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
           <FeatureCard 
             title="AI Matching Algorithm"
-            description="Our proprietary AI analyzes employee skills, learning history, and career goals to recommend the most relevant courses and development opportunities."
+            description="Our AI analyzes employee skills and learning history to recommend the most relevant courses and development opportunities."
             items={["Skills gap analysis", "Learning style compatibility", "Business need alignment"]}
             icon={
               <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -44,7 +44,7 @@ export default function FeaturesSection() {
             }
           />
           <FeatureCard 
-            title="Data-Driven Insights"
+            title="Learning Analytics & Feedback"
             description="Gain valuable insights into your L&D program effectiveness with comprehensive analytics and reporting that highlight ROI and skills progression."
             items={["Customizable dashboards", "Engagement metrics", "Skills development tracking"]}
             icon={

@@ -71,7 +71,7 @@ export default function CTASection() {
         </h2>
         <p className="text-base sm:text-xl mb-8 sm:mb-10 opacity-90 max-w-2xl mx-auto">
           Join forward-thinking companies that are cutting course selection time 
-          from weeks to days while delivering better learning outcomes.
+          from weeks to hours while delivering better learning outcomes.
         </p>
         <div className="flex flex-col space-y-6 max-w-xl mx-auto w-full px-4 sm:px-0 mb-8">
           <div className="bg-white/10 rounded-xl p-4 sm:p-6 w-full text-white">
