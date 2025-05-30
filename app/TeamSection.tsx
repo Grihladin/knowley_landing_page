@@ -19,7 +19,7 @@ const teamMembers = [
 	{
 		name: "Alexander Uplisashvili",
 		role: "COO",
-		image: "/logo-color.png",
+		image: "/alex.JPG",
 		linkedin: "https://www.linkedin.com/in/alexander-uplisashvili-800078201/",
 		quote: "Every step forward is a step toward success.",
 	},
