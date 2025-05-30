@@ -5,7 +5,7 @@ const teamMembers = [
 	{
 		name: "Pavel Senko",
 		role: "CTO",
-		image: "/logo-color.png",
+		image: "/pavel.jpg",
 		linkedin: "https://www.linkedin.com/in/plavik/",
 		quote: "Running is not just a sport, it's a way of life.",
 	},
@@ -51,7 +51,7 @@ export default function TeamSection() {
 								<Image
 									src={member.image}
 									alt={member.name}
-									className="rounded-full object-cover border-4 border-primary"
+									className="aspect-square rounded-full object-cover border-4 border-primary"
 									width={96}
 									height={96}
 									priority

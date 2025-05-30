@@ -1,7 +1,9 @@
 "use client";
 import "client-only";
+import React from 'react'; // Added React import
 import Image from "next/image"; // Added import for Image component
 import HeroSection from "./HeroSection";
+import MobileHeroSection from "./MobileHeroSection"; // Import the mobile version
 import FeaturesSection from "./FeaturesSection";
 import BenefitsSection from "./BenefitsSection";
 import CTASection from "./CTASection";
@@ -12,6 +14,17 @@ import { handleSmoothScroll } from './utils/smoothScroll';
 
 export default function Home() {
   // Using React.useEffect for navigation event listeners would go here if needed
+
+  const [isMobile, setIsMobile] = React.useState(false);
+
+  React.useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768); // Assuming mobile is less than 768px
+    };
+    checkMobile(); // Initial check
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -33,7 +46,7 @@ export default function Home() {
       </header>
 
       <main className="flex-grow" id="main-content" role="main">
-        <HeroSection />
+        {isMobile ? <MobileHeroSection /> : <HeroSection />}
         <FeaturesSection />
         <BenefitsSection />
         <TeamSection />
