@@ -4,7 +4,7 @@ import YouTubeVideoPlayer from "./YouTubeVideoPlayer";
 
 export default function VideoSection() {
   return (
-    <section className="pt-8 pb-20 px-4 bg-gradient-to-b from-background to-gray-light/30">
+    <section id="video" className="pt-8 pb-20 px-4 bg-gradient-to-b from-background to-gray-light/30">
       <div className="container mx-auto max-w-5xl">
         <div className="text-center space-y-8">
           {/* Section heading */}

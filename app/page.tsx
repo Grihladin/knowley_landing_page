@@ -38,6 +38,7 @@ export default function Home() {
               Knowley
             </div>
             <nav className="flex space-x-4 sm:space-x-8 mx-auto text-sm sm:text-base" aria-label="Main navigation">
+              <a href="#video" onClick={(e) => handleSmoothScroll(e, "#video")} className="hover:text-primary" aria-label="Video section">Video</a>
               <a href="#features" onClick={(e) => handleSmoothScroll(e, "#features")} className="hover:text-primary" aria-label="Features section">Features</a>
               <a href="#benefits" onClick={(e) => handleSmoothScroll(e, "#benefits")} className="hover:text-primary" aria-label="Benefits section">Benefits</a>
               <a href="#team" onClick={(e) => handleSmoothScroll(e, "#team")} className="hover:text-primary" aria-label="Team section">Team</a>
