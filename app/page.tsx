@@ -4,6 +4,7 @@ import React from 'react'; // Added React import
 import Image from "next/image"; // Added import for Image component
 import HeroSection from "./HeroSection";
 import MobileHeroSection from "./MobileHeroSection"; // Import the mobile version
+import VideoSection from "./VideoSection";
 import FeaturesSection from "./FeaturesSection";
 import BenefitsSection from "./BenefitsSection";
 import CTASection from "./CTASection";
@@ -47,6 +48,7 @@ export default function Home() {
 
       <main className="flex-grow" id="main-content" role="main">
         {isMobile ? <MobileHeroSection /> : <HeroSection />}
+        <VideoSection />
         <FeaturesSection />
         <BenefitsSection />
         <TeamSection />
