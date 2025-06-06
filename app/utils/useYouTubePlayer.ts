@@ -1,6 +1,40 @@
 "use client";
 import { useState, useRef, useCallback, useEffect } from 'react';
-import type { YouTubePlayer, YouTubeEvent } from './youtube-types';
+
+// --- BEGIN INLINED TYPES from youtube-types.ts ---
+// Simplified YouTube IFrame API types
+export interface YouTubeEvent {
+  data: number; // 1 = playing, 2 = paused, 0 = ended
+  target: YouTubePlayer;
+}
+
+export interface YouTubePlayer {
+  playVideo: () => void;
+  pauseVideo: () => void;
+  stopVideo: () => void;
+  destroy: () => void;
+}
+
+declare global {
+  interface Window {
+    YT?: {
+      Player: new (
+        element: HTMLElement | string,
+        options: {
+          videoId: string;
+          playerVars?: Record<string, string | number | boolean>;
+          events?: {
+            onReady?: (event: YouTubeEvent) => void;
+            onStateChange?: (event: YouTubeEvent) => void;
+            [key: string]: ((event: YouTubeEvent) => void) | undefined;
+          };
+        }
+      ) => YouTubePlayer;
+    };
+    onYouTubeIframeAPIReady?: () => void;
+  }
+}
+// --- END INLINED TYPES ---
 
 interface UseYouTubePlayerOptions {
   videoId: string;
@@ -8,11 +42,20 @@ interface UseYouTubePlayerOptions {
 
 export function useYouTubePlayer({ videoId }: UseYouTubePlayerOptions) {
   const [videoActivated, setVideoActivated] = useState(false);
+  const [isPlayerReady, setIsPlayerReady] = useState(false); // New state for player readiness
   const playerRef = useRef<HTMLDivElement>(null);
   const ytPlayer = useRef<YouTubePlayer | null>(null);
 
   const initializePlayer = useCallback(() => {
-    if (playerRef.current && !ytPlayer.current && window.YT && window.YT.Player) {
+    if (playerRef.current && window.YT && window.YT.Player) {
+      // Destroy any existing player instance before creating a new one
+      if (ytPlayer.current && typeof ytPlayer.current.destroy === 'function') {
+        ytPlayer.current.destroy();
+        ytPlayer.current = null;
+      }
+
+      setIsPlayerReady(false); // Reset player ready state
+
       ytPlayer.current = new window.YT.Player(playerRef.current, {
         videoId: videoId,
         playerVars: {
@@ -23,20 +66,25 @@ export function useYouTubePlayer({ videoId }: UseYouTubePlayerOptions) {
           playsinline: 1,
           enablejsapi: 1,
           origin: typeof window !== 'undefined' ? window.location.origin : '',
+          wmode: 'opaque', // Kept from previous change
         },
         events: {
           onReady: (event: YouTubeEvent) => {
             event.target.playVideo();
+            setIsPlayerReady(true); // Set player as ready
+          },
+          onError: (event: any) => { // Added onError handler
+            console.error('YouTube Player Error:', event.data);
+            setIsPlayerReady(false); // Player is not ready or encountered an error
           },
         },
       });
     }
-  }, [videoId]);
+  }, [videoId]); // playerRef is stable
 
   const loadYouTubeAPI = useCallback(() => {
     if (typeof window !== 'undefined') {
       if (!window.YT || !window.YT.Player) {
-        // If API is not loaded, set up the callback and load the script
         const existingCallback = window.onYouTubeIframeAPIReady;
         window.onYouTubeIframeAPIReady = () => {
           if (existingCallback) {
@@ -52,11 +100,9 @@ export function useYouTubePlayer({ videoId }: UseYouTubePlayerOptions) {
           tag.defer = true;
           document.head.appendChild(tag);
         } else if (window.YT && window.YT.Player) {
-          // If script tag exists but API might not be fully ready on our player instance
            initializePlayer();
         }
       } else {
-        // If API is already loaded, initialize the player directly
         initializePlayer();
       }
     }
@@ -65,36 +111,35 @@ export function useYouTubePlayer({ videoId }: UseYouTubePlayerOptions) {
   const handlePlayVideo = useCallback(() => {
     if (!videoActivated) {
       setVideoActivated(true);
-      // API loading and player initialization will be triggered by useEffect
-    } else if (ytPlayer.current && typeof ytPlayer.current.playVideo === 'function') {
+    } else if (ytPlayer.current && typeof ytPlayer.current.playVideo === 'function' && isPlayerReady) {
+      // If already activated and player is ready, explicitly play.
+      // Useful if custom controls for pause/play are added later.
       ytPlayer.current.playVideo();
     }
-  }, [videoActivated]);
+  }, [videoActivated, isPlayerReady]); // Added isPlayerReady dependency
 
   useEffect(() => {
     if (videoActivated) {
       loadYouTubeAPI();
     }
-  }, [videoActivated, loadYouTubeAPI]);
 
-  // Cleanup effect
-  useEffect(() => {
-    const playerInstance = ytPlayer.current;
+    // Cleanup function
     return () => {
-      if (playerInstance && typeof playerInstance.destroy === 'function') {
-        playerInstance.destroy();
+      if (ytPlayer.current && typeof ytPlayer.current.destroy === 'function') {
+        ytPlayer.current.destroy();
+        ytPlayer.current = null;
       }
-      ytPlayer.current = null;
-      // It's tricky to clean up window.onYouTubeIframeAPIReady if multiple players might use it.
-      // For simplicity, we're not removing it here, but in a more complex app,
-      // a more robust queueing or callback management system for onYouTubeIframeAPIReady might be needed.
+      setIsPlayerReady(false); // Reset ready state on cleanup
     };
-  }, []);
+  }, [videoActivated, videoId, loadYouTubeAPI]); // Added videoId for robust cleanup/re-init
+
+  // Removed the old separate cleanup useEffect as its logic is merged above
 
   return {
     playerRef,
     videoActivated,
-    ytPlayer,
+    isPlayerReady, // Return new state
     handlePlayVideo,
+    // ytPlayer is not directly needed by the component anymore for visibility
   };
 }

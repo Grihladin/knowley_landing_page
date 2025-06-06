@@ -5,9 +5,10 @@ import GradientText from "./GradientText";
 
 export default function HeroSection() {
   return (
-    <section className="pt-16 pb-32 px-4 relative overflow-hidden">
+    <section className="pt-16 pb-16 px-4 relative overflow-hidden"> {/* Changed pb-32 to pb-16 */}
       {/* Background decorative elements */}
-      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-background to-secondary/5"></div>
+      {/* Changed background gradient to match VideoSection */}
+      <div className="absolute inset-0 bg-gradient-to-b from-background to-gray-light/30"></div>
       <div className="absolute top-20 left-10 w-72 h-72 bg-primary/10 rounded-full blur-3xl"></div>
       <div className="absolute bottom-20 right-10 w-96 h-96 bg-secondary/10 rounded-full blur-3xl"></div>
       
