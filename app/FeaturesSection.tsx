@@ -6,7 +6,7 @@ export default function FeaturesSection() {
   // Section ref and animation code were removed as they were unused
 
   return (
-    <section id="features" className="py-10 sm:py-20 px-2 sm:px-4 bg-gray-light" aria-labelledby="features-heading">
+    <section id="features" className="py-6 sm:py-12 px-2 sm:px-4 bg-gray-light" aria-labelledby="features-heading">
       <div
         className="container mx-auto max-w-full sm:max-w-6xl"
       >

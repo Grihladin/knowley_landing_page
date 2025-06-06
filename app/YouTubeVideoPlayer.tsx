@@ -174,14 +174,14 @@ export default function YouTubeVideoPlayer({
               />
             </div>
             <button
-              className="relative flex items-center justify-center cursor-pointer z-20 bg-transparent border-0 group focus:outline-none focus:ring-0 active:outline-none active:ring-0 hover:scale-105 transition-transform duration-200 ease-in-out"
+              className="relative flex items-center justify-center cursor-pointer z-20 bg-transparent border-0 group focus:outline-none focus:ring-0 active:outline-none active:ring-0 hover:scale-110 active:scale-95 transition-all duration-300 ease-in-out transform"
               onClick={handlePlayVideo}
               aria-label="Play video"
             >
-              <svg width={playButtonSize.width} height={playButtonSize.height} viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" className="drop-shadow-md">
-                <circle cx="40" cy="40" r="38" fill="#fff" fillOpacity="1"/>
-                <circle cx="40" cy="40" r="38" stroke="#6366F1" strokeWidth="4"/>
-                <polygon points="34,28 58,40 34,52" fill="#6366F1"/>
+              <svg className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 drop-shadow-lg group-hover:drop-shadow-xl transition-all duration-300" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="40" cy="40" r="38" fill="#fff" fillOpacity="0.95" className="group-hover:fill-opacity-100 transition-all duration-300"/>
+                <circle cx="40" cy="40" r="38" stroke="#6366F1" strokeWidth="4" className="group-hover:stroke-primary-dark transition-all duration-300"/>
+                <polygon points="34,28 58,40 34,52" fill="#6366F1" className="group-hover:fill-primary-dark transition-all duration-300"/>
               </svg>
             </button>
           </div>
