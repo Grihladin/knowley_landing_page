@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import { handleSmoothScroll } from "./utils/smoothScroll";
+import GradientText from "./GradientText";
 
 export default function HeroSection() {
   return (
@@ -24,17 +25,21 @@ export default function HeroSection() {
 
           {/* Main heading */}
           <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight">
-            <span className="bg-gradient-to-r from-primary via-primary-dark to-secondary bg-clip-text text-transparent">
+            <GradientText
+              colors={["#6A0DAD", "#4C4AE6", "#2E86FF", "#5771FF", "#6A0DAD"]}
+              animationSpeed={8}
+              showBorder={false}
+            >
               Match Talent to
-            </span>
+            </GradientText>
             <br />
-            <span className="bg-gradient-to-r from-secondary via-primary to-primary-dark bg-clip-text text-transparent">
-              Learning in
-            </span>
-            <br />
-            <span className="bg-gradient-to-r from-primary-dark via-secondary to-primary bg-clip-text text-transparent">
-              Minutes
-            </span>
+            <GradientText
+              colors={["#4C4AE6", "#2E86FF", "#5771FF", "#6A0DAD", "#4C4AE6"]}
+              animationSpeed={6}
+              showBorder={false}
+            >
+              Learning in Minutes
+            </GradientText>
           </h1>
 
           {/* Subheading */}
