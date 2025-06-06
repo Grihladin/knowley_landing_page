@@ -12,7 +12,6 @@ interface GradientTextProps {
 export default function GradientText({
   colors,
   animationSpeed = 3,
-  showBorder = false,
   className = "",
   children
 }: GradientTextProps) {
@@ -20,7 +19,7 @@ export default function GradientText({
   
   return (
     <span 
-      className={`inline-block ${className}`}
+      className={`inline-block pb-1 ${className}`}
       style={{
         background: `linear-gradient(-45deg, ${gradientString})`,
         backgroundSize: '300% 100%',

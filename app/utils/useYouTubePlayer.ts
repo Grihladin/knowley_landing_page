@@ -73,7 +73,7 @@ export function useYouTubePlayer({ videoId }: UseYouTubePlayerOptions) {
             event.target.playVideo();
             setIsPlayerReady(true); // Set player as ready
           },
-          onError: (event: any) => { // Added onError handler
+          onError: (event: YouTubeEvent) => { // Added onError handler
             console.error('YouTube Player Error:', event.data);
             setIsPlayerReady(false); // Player is not ready or encountered an error
           },

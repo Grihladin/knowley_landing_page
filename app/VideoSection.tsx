@@ -16,7 +16,7 @@ export default function VideoSection() {
               thumbnailSizes="(max-width: 768px) 100vw, 80vw"
               thumbnailPriority={false}
               outerContainerClassName="w-full"
-              videoWrapperClassName="relative w-full aspect-video rounded-2xl shadow-2xl overflow-hidden border-2 border-primary/20 bg-gradient-to-br from-white/10 to-gray-light/20 backdrop-blur-md hover:border-primary/40 transition-all duration-300"
+              videoWrapperClassName="relative w-full aspect-video rounded-2xl shadow-2xl overflow-hidden border-2 border-primary/20 bg-gradient-to-br from-white/10 to-gray-light/20 backdrop-blur-md"
               playButtonSize={{ width: 100, height: 100 }}
             />
           </div>

@@ -71,7 +71,7 @@ function useYouTubePlayer({ videoId }: UseYouTubePlayerOptions) {
             event.target.playVideo();
             setIsPlayerReady(true);
           },
-          onError: (event: any) => {
+          onError: (event: YouTubeEvent) => {
             console.error('YouTube Player Error:', event.data);
             setIsPlayerReady(false);
           },
@@ -153,7 +153,7 @@ export default function YouTubeVideoPlayer({
   thumbnailSizes,
   thumbnailPriority = false,
   outerContainerClassName = "w-full",
-  videoWrapperClassName = "relative w-full aspect-video rounded-xl shadow-xl overflow-hidden border-2 border-primary/30 bg-white/10 backdrop-blur-sm",
+  videoWrapperClassName = "relative w-full aspect-video rounded-xl shadow-xl overflow-hidden border-2 border-gray-200 bg-white/10 backdrop-blur-sm",
   playButtonSize = { width: 64, height: 64 }
 }: YouTubeVideoPlayerProps) {
   const { playerRef, videoActivated, handlePlayVideo, isPlayerReady } = useYouTubePlayer({ videoId });
