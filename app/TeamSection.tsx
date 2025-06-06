@@ -68,18 +68,20 @@ export default function TeamSection() {
 							</p>
 							<a
 								href={member.linkedin}
-								className="inline-flex items-center justify-center p-2 bg-blue-600 text-white rounded-lg mt-auto hover:scale-105 hover:shadow-lg transition-transform duration-200 ease-in-out"
+								className="text-primary bg-primary/5 p-3 rounded-lg inline-flex items-center justify-center mt-auto hover:scale-105 hover:shadow-lg transition-transform duration-200 ease-in-out"
 								target="_blank"
 								rel="noopener noreferrer"
 								aria-label={`LinkedIn profile of ${member.name}`}
+								title="LinkedIn"
 							>
-								<svg
-									xmlns="http://www.w3.org/2000/svg"
-									fill="currentColor"
+								<svg 
+									xmlns="http://www.w3.org/2000/svg" 
+									className="h-7 w-7" 
+									fill="currentColor" 
 									viewBox="0 0 24 24"
-									className="w-6 h-6"
+									aria-hidden="true"
 								>
-									<path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-10h3v10zm-1.5-11.268c-.966 0-1.75-.784-1.75-1.75s.784-1.75 1.75-1.75 1.75.784 1.75 1.75-.784 1.75-1.75 1.75zm15.5 11.268h-3v-5.604c0-1.337-.025-3.063-1.868-3.063-1.868 0-2.154 1.459-2.154 2.967v5.7h-3v-10h2.881v1.367h.041c.401-.761 1.379-1.563 2.838-1.563 3.034 0 3.595 1.997 3.595 4.59v5.606z" />
+									<path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065a2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
 								</svg>
 							</a>
 						</div>
