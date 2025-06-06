@@ -143,7 +143,6 @@ interface YouTubeVideoPlayerProps {
   thumbnailPriority?: boolean;
   outerContainerClassName?: string;
   videoWrapperClassName?: string;
-  playButtonSize?: { width: number; height: number };
 }
 
 export default function YouTubeVideoPlayer({
@@ -154,7 +153,6 @@ export default function YouTubeVideoPlayer({
   thumbnailPriority = false,
   outerContainerClassName = "w-full",
   videoWrapperClassName = "relative w-full aspect-video rounded-xl shadow-xl overflow-hidden border-2 border-gray-200 bg-white/10 backdrop-blur-sm",
-  playButtonSize = { width: 64, height: 64 }
 }: YouTubeVideoPlayerProps) {
   const { playerRef, videoActivated, handlePlayVideo, isPlayerReady } = useYouTubePlayer({ videoId });
 
