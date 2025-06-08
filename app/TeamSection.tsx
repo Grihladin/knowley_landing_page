@@ -7,21 +7,21 @@ const teamMembers = [
 		role: "CTO",
 		image: "/pavel.jpeg",
 		linkedin: "https://www.linkedin.com/in/plavik/",
-		quote: "Running is not just a sport, it's a way of life.",
+		quote: "pavel@knowley.de",
 	},
 	{
 		name: "Michael Ratke",
 		role: "CEO",
 		image: "/misha.png",
 		linkedin: "https://www.linkedin.com/in/michael-ratke-0b3304303/",
-		quote: "Fuel your body, fuel your passion.",
+		quote: "michael@knowley.de",
 	},
 	{
 		name: "Alexander Uplisashvili",
 		role: "COO",
 		image: "/alex.jpeg",
 		linkedin: "https://www.linkedin.com/in/alexander-uplisashvili-800078201/",
-		quote: "Answer to any question lies within our users",
+		quote: "alexander@knowley.de",
 	},
 ];
 
@@ -63,9 +63,9 @@ export default function TeamSection() {
 							<p className="text-gray-500 mb-3">
 								{member.role}
 							</p>
-							{/* <p className="italic text-gray-700 mb-4 text-sm text-center">
-								&ldquo;{member.quote}&rdquo;
-							</p> */}
+							<p className="italic text-gray-700 mb-4 text-sm text-center">
+								{member.quote}
+							</p>
 							<a
 								href={member.linkedin}
 								className="text-primary bg-primary/5 p-3 rounded-lg inline-flex items-center justify-center mt-auto hover:scale-105 hover:shadow-lg transition-transform duration-200 ease-in-out"

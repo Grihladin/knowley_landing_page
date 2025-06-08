@@ -42,7 +42,7 @@ const benefitCategories = [
     categoryTitle: "Time & Cost Savings",
     IconComponent: ClockIcon,
     benefits: [
-      { label: "90% faster matching", description: "Reduce course selection time from weeks to just days with AI-powered recommendations." },
+      { label: "90% faster matching", description: "Reduce course selection time from weeks to just hours with AI-powered recommendations." },
       { label: "Lower training costs", description: "Eliminate wasted spending on mismatched courses with precise AI recommendations." },
     ]
   },
