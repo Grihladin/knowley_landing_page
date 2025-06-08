@@ -15,18 +15,18 @@ export default function FeaturesSection() {
             id="features-heading" 
             className="text-3xl md:text-4xl font-bold mb-6"
           >
-            Powerful AI-Driven Features
+            Effortless Course Search
           </h2>
           <p className="text-gray-dark text-lg">
-            Our intelligent platform uses advanced algorithms to match employees with 
+            Our chat based intelligent platform uses advanced algorithms to match employees with 
             the perfect learning opportunities, saving time and maximizing development impact.
           </p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
           <FeatureCard 
-            title="AI Matching Algorithm"
-            description="Our AI analyzes employee skills and learning history to recommend the most relevant courses and development opportunities."
-            items={["Skills gap analysis", "Learning style compatibility", "Business need alignment"]}
+            title="Precise Matching"
+            description="Knowley analyzes employees’ skills to find the best match among thousands of your company’s learning materials, delivering tailored recommendations."
+            items={["Personalized matching", "Connects to all learning sources", "Chat-based search"]}
             icon={
               <div className="relative flex items-center justify-center w-16 h-16">
                 <div className="absolute w-full h-full rounded-full bg-primary/10"></div>
@@ -39,8 +39,8 @@ export default function FeaturesSection() {
           />
           <FeatureCard 
             title="Seamless Integration"
-            description="Connect Knowley with your existing HR, LMS, and talent management systems without replacing what already works. We enhance, not replace."
-            items={["API-based connectivity", "Fast implementation", "No disruption to workflows"]}
+            description="Knowley easily connects to your existing internal and external learning materials providers, HR systems, and LMS. We enhance, not replace."
+            items={["No disruption to workflows", "Compatible with all platforms", "Easy implementation"]}
             icon={
               <div className="relative flex items-center justify-center w-16 h-16">
                 <div className="absolute w-full h-full rounded-full bg-primary/10"></div>
@@ -52,9 +52,9 @@ export default function FeaturesSection() {
             }
           />
           <FeatureCard 
-            title="Learning Analytics & Feedback"
-            description="Gain valuable insights into your L&D program effectiveness with comprehensive analytics and reporting that highlight ROI and skills progression."
-            items={["Customizable dashboards", "Engagement metrics", "Skills development tracking"]}
+            title="Feedback-Driven Search"
+            description="Knowley uses feedback—especially from experienced employees—to find trusted and relevant courses & learning materials."
+            items={["Prioritizes content rated highly by experienced employees", "Ranks courses based on feedback", "Surfaces trusted and relevant content"]}
             icon={
               <div className="relative flex items-center justify-center w-16 h-16">
                 <div className="absolute w-full h-full rounded-full bg-primary/10"></div>
