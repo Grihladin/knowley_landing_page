@@ -15,7 +15,7 @@ export const handleSmoothScroll = (event: React.MouseEvent<HTMLAnchorElement, Mo
   if (targetElement) {
     targetElement.scrollIntoView({ 
       behavior: "smooth",
-      block: "start"
+      block: "center" // Changed from "start" to "center"
     });
     
     // Update URL hash without page jump
