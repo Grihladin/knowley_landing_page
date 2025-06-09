@@ -17,7 +17,7 @@ export default function FeaturesSection() {
             id="features-heading"
             className="text-3xl md:text-4xl font-bold mb-6"
           >
-            Personalized course search
+            AI Personalized course search
           </h2>
           <p className="text-gray-dark text-lg">
             Our chat based intelligent platform uses advanced algorithms to
@@ -85,6 +85,35 @@ export default function FeaturesSection() {
             }
           />
           <FeatureCard
+            title="Data stays private"
+            description="Knowley runs inside your IT infrastructure, keeping all internal data on-premise and fully private — nothing leaves your environment."
+            items={[
+              "No data sent to third parties",
+              "Full control and privacy",
+              "Deployed within your company",
+            ]}
+            icon={
+              <div className="relative flex items-center justify-center w-16 h-16">
+                <div className="absolute w-full h-full rounded-full bg-primary/10"></div>
+                <div className="absolute w-12 h-12 rounded-full bg-primary/20"></div>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="relative h-8 w-8 text-primary"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  strokeWidth={1.5}
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
+                  />
+                </svg>
+              </div>
+            }
+          />
+          {/* <FeatureCard
             title="Feedback-Driven Search"
             description="Knowley uses feedback — especially feedback given by experienced employees—to find trusted and relevant learning materials."
             items={[
@@ -112,7 +141,7 @@ export default function FeaturesSection() {
                 </svg>
               </div>
             }
-          />
+          /> */}
         </div>
       </div>
     </section>
