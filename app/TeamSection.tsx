@@ -5,23 +5,23 @@ const teamMembers = [
 	{
 		name: "Pavel Senko",
 		role: "CTO",
-		image: "/pavel.jpg",
+		image: "/pavel.jpeg",
 		linkedin: "https://www.linkedin.com/in/plavik/",
-		quote: "Running is not just a sport, it's a way of life.",
+		quote: "pavel@knowley.de",
 	},
 	{
 		name: "Michael Ratke",
 		role: "CEO",
-		image: "/logo-color.png",
+		image: "/misha.png",
 		linkedin: "https://www.linkedin.com/in/michael-ratke-0b3304303/",
-		quote: "Fuel your body, fuel your passion.",
+		quote: "michael@knowley.de",
 	},
 	{
 		name: "Alexander Uplisashvili",
 		role: "COO",
-		image: "/alex.JPG",
+		image: "/alex.jpeg",
 		linkedin: "https://www.linkedin.com/in/alexander-uplisashvili-800078201/",
-		quote: "Every step forward is a step toward success.",
+		quote: "alexander@knowley.de",
 	},
 ];
 
@@ -45,7 +45,7 @@ export default function TeamSection() {
 					{teamMembers.map((member, idx) => (
 						<div
 							key={idx}
-							className="bg-gray-50 rounded-lg shadow p-6 flex flex-col items-center w-72 min-h-[320px] md:min-h-[340px]"
+							className="bg-gray-50 rounded-lg shadow p-6 flex flex-col items-center w-72 min-h-[320px] md:min-h-[300px]"
 						>
 							<div className="w-24 h-24 relative mb-4">
 								<Image
@@ -64,7 +64,7 @@ export default function TeamSection() {
 								{member.role}
 							</p>
 							<p className="italic text-gray-700 mb-4 text-sm text-center">
-								&ldquo;{member.quote}&rdquo;
+								{member.quote}
 							</p>
 							<a
 								href={member.linkedin}

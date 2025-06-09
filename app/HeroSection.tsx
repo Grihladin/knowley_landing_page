@@ -43,7 +43,7 @@ export default function HeroSection() {
 
           {/* Subheading */}
           <p className="text-xl sm:text-xl md:text-2xl text-gray-dark max-w-2xl mx-auto leading-relaxed px-2">
-            Knowley cuts learning material selection time from weeks to hours.
+             Stop wasting time browsing endless courses, Knowley delivers the best match instantly.
           </p>
 
           {/* CTA Buttons */}
@@ -54,7 +54,7 @@ export default function HeroSection() {
               rel="noopener noreferrer"
               className="bg-gradient-to-r from-primary to-primary-dark text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg sm:rounded-xl hover:from-primary-dark hover:to-primary font-medium sm:font-semibold inline-block text-center hover:scale-105 hover:shadow-xl transition-all duration-300 ease-in-out text-base"
             >
-              Schedule Demo
+              Schedule Meeting
             </a>
             <a
               href="#cta-section"

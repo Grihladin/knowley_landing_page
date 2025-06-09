@@ -42,8 +42,8 @@ const benefitCategories = [
     categoryTitle: "Time & Cost Savings",
     IconComponent: ClockIcon,
     benefits: [
-      { label: "90% faster matching", description: "Reduce course selection time from weeks to just days with AI-powered recommendations." },
-      { label: "Lower training costs", description: "Eliminate wasted spending on mismatched courses with precise AI recommendations." },
+      { label: "90% faster matching", description: "Stop looking through thousands of courses in different sources, let Knowley handle that for you" },
+      { label: "Deliver what matters", description: "Eliminate time spent on mismatched courses with precise AI recommendations." },
     ]
   },
   {
@@ -52,7 +52,7 @@ const benefitCategories = [
     IconComponent: TrendingUpIcon,
     benefits: [
       { label: "Higher completion rates", description: "Better matched courses lead to higher completion rates and improved learning outcomes." },
-      { label: "Business-aligned skill development", description: "Close skills gaps faster with learning that aligns with both employee and business objectives." },
+      { label: "Learning People Actually Care About", description: "When learning fits the person, engagement rises and so do your business results." },
     ]
   }
 ];
