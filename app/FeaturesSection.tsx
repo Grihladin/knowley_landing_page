@@ -17,7 +17,7 @@ export default function FeaturesSection() {
             id="features-heading"
             className="text-3xl md:text-4xl font-bold mb-6"
           >
-            Effortless Course Search
+            Personalized course search
           </h2>
           <p className="text-gray-dark text-lg">
             Our chat based intelligent platform uses advanced algorithms to
