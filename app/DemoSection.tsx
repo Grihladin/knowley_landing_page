@@ -2,9 +2,9 @@
 import React from "react";
 import YouTubeVideoPlayer from "./YouTubeVideoPlayer";
 
-export default function VideoSection() {
+export default function DemoSection() {
   return (
-    <section id="video" className="pt-2 pb-12 px-4 bg-gradient-to-b from-background to-gray-light/30">
+    <section id="demo" className="pt-2 pb-12 px-4 bg-gradient-to-b from-background to-gray-light/30">
       <div className="container mx-auto max-w-5xl">
         <div className="text-center space-y-8">
           {/* Video container */}
