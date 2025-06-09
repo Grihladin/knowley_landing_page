@@ -20,7 +20,7 @@ export default function FeaturesSection() {
             AI Personalized course search
           </h2>
           <p className="text-gray-dark text-lg">
-            Our chat based intelligent platform uses advanced algorithms to
+            Our intelligent platform uses advanced algorithms to
             match employees with the perfect learning opportunities, saving time
             and maximizing development impact.
           </p>
@@ -86,7 +86,7 @@ export default function FeaturesSection() {
           />
           <FeatureCard
             title="Data stays private"
-            description="Knowley runs inside your IT infrastructure, keeping all internal data on-premise and fully private — nothing leaves your environment."
+            description="Knowley runs inside your IT infrastructure, keeping all internal data on-premise and fully private. Nothing leaves your environment."
             items={[
               "No data sent to third parties",
               "Full control and privacy",

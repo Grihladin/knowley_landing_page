@@ -43,7 +43,7 @@ export default function HeroSection() {
 
           {/* Subheading */}
           <p className="text-xl sm:text-xl md:text-2xl text-gray-dark max-w-2xl mx-auto leading-relaxed px-2">
-            Knowley's AI system cuts learning material selection time from weeks to hours.
+             Stop wasting time browsing endless courses, Knowley delivers the best match instantly.
           </p>
 
           {/* CTA Buttons */}
