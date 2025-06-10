@@ -52,7 +52,7 @@ const benefitCategories = [
     IconComponent: TrendingUpIcon,
     benefits: [
       { label: "Higher completion rates", description: "Better matched courses lead to higher completion rates and improved learning outcomes." },
-      { label: "Learning People Actually Care About", description: "When learning fits the person, engagement rises and so do your business results." },
+      { label: "Learning people actually care about", description: "When learning fits the person, engagement rises and so do your business results." },
     ]
   }
 ];
