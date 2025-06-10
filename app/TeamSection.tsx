@@ -14,7 +14,7 @@ const teamMembers = [
 		role: "CEO",
 		image: "/misha.png",
 		linkedin: "https://www.linkedin.com/in/michael-ratke-0b3304303/",
-		quote: "michael@knowley.de",
+		quote: "ratkem@knowley.de",
 	},
 	{
 		name: "Alexander Uplisashvili",

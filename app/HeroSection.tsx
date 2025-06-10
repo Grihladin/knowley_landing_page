@@ -54,7 +54,7 @@ export default function HeroSection() {
               rel="noopener noreferrer"
               className="bg-gradient-to-r from-primary to-primary-dark text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg sm:rounded-xl hover:from-primary-dark hover:to-primary font-medium sm:font-semibold inline-block text-center hover:scale-105 hover:shadow-xl transition-all duration-300 ease-in-out text-base"
             >
-              Schedule Meeting
+              Schedule a Meeting
             </a>
             <a
               href="#cta-section"

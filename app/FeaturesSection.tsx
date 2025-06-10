@@ -57,7 +57,7 @@ export default function FeaturesSection() {
           />
           <FeatureCard
             title="Seamless Integration"
-            description={`Our tool seamlessly connects to your internal and external learning material providers, HR systems, and LMS without causing any distruptions to workflows.`}
+            description={`Our tool seamlessly connects to your internal and external learning material providers, HR systems, and LMS without causing any disruptions to workflows.`}
             items={[
               "We enhance, not replace",
               "Compatible with all platforms",

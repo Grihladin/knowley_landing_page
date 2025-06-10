@@ -88,7 +88,7 @@ export default function CTASection() {
             rel="noopener noreferrer"
             className="bg-white text-primary-dark px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-medium text-base sm:text-lg text-center hover:scale-105 hover:shadow-lg transition-transform duration-200 ease-in-out"
           >
-            Schedule Meeting
+            Schedule a Meeting
           </a>
           <button
             onClick={toggleContactForm}
