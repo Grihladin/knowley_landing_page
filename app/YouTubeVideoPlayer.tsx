@@ -2,13 +2,13 @@
 import React, { useState, useRef, useCallback, useEffect } from 'react';
 import Image from 'next/image';
 
-// --- BEGIN INLINED TYPES from useYouTubePlayer.ts (originally youtube-types.ts) ---
-interface YouTubeEvent { // Removed export
-  data: number; // 1 = playing, 2 = paused, 0 = ended
+// --- INLINED TYPES ---
+interface YouTubeEvent {
+  data: number;
   target: YouTubePlayer;
 }
 
-interface YouTubePlayer { // Removed export
+interface YouTubePlayer {
   playVideo: () => void;
   pauseVideo: () => void;
   stopVideo: () => void;
@@ -36,7 +36,7 @@ declare global {
 }
 // --- END INLINED TYPES ---
 
-// --- BEGIN INLINED HOOK LOGIC from useYouTubePlayer.ts ---
+// --- OPTIMIZED HOOK ---
 interface UseYouTubePlayerOptions {
   videoId: string;
 }
@@ -44,16 +44,18 @@ interface UseYouTubePlayerOptions {
 function useYouTubePlayer({ videoId }: UseYouTubePlayerOptions) {
   const [videoActivated, setVideoActivated] = useState(false);
   const [isPlayerReady, setIsPlayerReady] = useState(false);
+  const [apiLoaded, setApiLoaded] = useState(false);
   const playerRef = useRef<HTMLDivElement>(null);
   const ytPlayer = useRef<YouTubePlayer | null>(null);
 
   const initializePlayer = useCallback(() => {
     if (playerRef.current && window.YT && window.YT.Player) {
-      if (ytPlayer.current && typeof ytPlayer.current.destroy === 'function') {
+      if (ytPlayer.current) {
         ytPlayer.current.destroy();
         ytPlayer.current = null;
       }
       setIsPlayerReady(false);
+      
       ytPlayer.current = new window.YT.Player(playerRef.current, {
         videoId: videoId,
         playerVars: {
@@ -80,51 +82,52 @@ function useYouTubePlayer({ videoId }: UseYouTubePlayerOptions) {
     }
   }, [videoId]);
 
-  const loadYouTubeAPI = useCallback(() => {
-    if (typeof window !== 'undefined') {
-      if (!window.YT || !window.YT.Player) {
-        const existingCallback = window.onYouTubeIframeAPIReady;
-        window.onYouTubeIframeAPIReady = () => {
-          if (existingCallback) {
-            existingCallback();
-          }
-          initializePlayer();
-        };
-        if (!document.querySelector('script[src="https://www.youtube.com/iframe_api"]')) {
-          const tag = document.createElement('script');
-          tag.src = "https://www.youtube.com/iframe_api";
-          tag.async = true;
-          tag.defer = true;
-          document.head.appendChild(tag);
-        } else if (window.YT && window.YT.Player) {
-          initializePlayer();
-        }
-      } else {
-        initializePlayer();
-      }
+  // Preload YouTube API on component mount
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+
+    // If API is already available
+    if (window.YT && window.YT.Player) {
+      setApiLoaded(true);
+      return;
     }
-  }, [initializePlayer]);
+
+    // Chain to existing callback if present
+    const existingCallback = window.onYouTubeIframeAPIReady;
+    window.onYouTubeIframeAPIReady = () => {
+      existingCallback?.();
+      setApiLoaded(true);
+    };
+
+    // Only load script if not already present
+    if (!document.querySelector('script[src="https://www.youtube.com/iframe_api"]')) {
+      const tag = document.createElement('script');
+      tag.src = "https://www.youtube.com/iframe_api";
+      tag.async = true;
+      tag.defer = true;
+      document.head.appendChild(tag);
+    }
+  }, []);
+
+  // Initialize player when both conditions are met
+  useEffect(() => {
+    if (videoActivated && apiLoaded) {
+      initializePlayer();
+    }
+  }, [videoActivated, apiLoaded, initializePlayer]);
 
   const handlePlayVideo = useCallback(() => {
-    if (!videoActivated) {
-      setVideoActivated(true);
-    } else if (ytPlayer.current && typeof ytPlayer.current.playVideo === 'function' && isPlayerReady) {
-      ytPlayer.current.playVideo();
-    }
-  }, [videoActivated, isPlayerReady]);
+    setVideoActivated(true);
+  }, []);
 
+  // Cleanup on unmount
   useEffect(() => {
-    if (videoActivated) {
-      loadYouTubeAPI();
-    }
     return () => {
-      if (ytPlayer.current && typeof ytPlayer.current.destroy === 'function') {
+      if (ytPlayer.current) {
         ytPlayer.current.destroy();
-        ytPlayer.current = null;
       }
-      setIsPlayerReady(false);
     };
-  }, [videoActivated, videoId, loadYouTubeAPI]);
+  }, []);
 
   return {
     playerRef,
@@ -133,8 +136,8 @@ function useYouTubePlayer({ videoId }: UseYouTubePlayerOptions) {
     handlePlayVideo,
   };
 }
-// --- END INLINED HOOK LOGIC ---
 
+// --- COMPONENT IMPLEMENTATION ---
 interface YouTubeVideoPlayerProps {
   videoId: string;
   thumbnailSrc: string;
