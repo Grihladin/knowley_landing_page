@@ -179,7 +179,7 @@ export default function YouTubeVideoPlayer({
               <svg className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 drop-shadow-lg group-hover:drop-shadow-xl transition-all duration-300" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <circle cx="40" cy="40" r="38" fill="#fff" fillOpacity="0.95" className="group-hover:fill-opacity-100 transition-all duration-300"/>
                 <circle cx="40" cy="40" r="38" stroke="#6366F1" strokeWidth="4" className="group-hover:stroke-primary-dark transition-all duration-300"/>
-                <path d="M 34,48 L 34,32 Q 34,28 37.6,29.8 L 54.4,38.2 Q 58,40 54.4,41.8 L 37.6,50.2 Q 34,52 34,48 Z" fill="#6366F1" className="group-hover:fill-primary-dark transition-all duration-300"/>
+                <path d="M 32,48 L 32,32 Q 32,28 35.6,29.8 L 52.4,38.2 Q 56,40 52.4,41.8 L 35.6,50.2 Q 32,52 32,48 Z" fill="#6366F1" className="group-hover:fill-primary-dark transition-all duration-300"/>
               </svg>
             </button>
           </div>

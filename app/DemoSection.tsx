@@ -10,8 +10,8 @@ export default function DemoSection() {
           {/* Video container */}
           <div className="max-w-4xl mx-auto">
             <YouTubeVideoPlayer
-              videoId="LDU_Txk06tM"
-              thumbnailSrc="https://i.ytimg.com/vi/LDU_Txk06tM/hqdefault.jpg"
+              videoId="Qn_o0JOAOMU"
+              thumbnailSrc="https://i.ytimg.com/vi/Qn_o0JOAOMU/hqdefault.jpg"
               thumbnailAlt="Knowley demo video preview"
               thumbnailSizes="(max-width: 768px) 100vw, 80vw"
               thumbnailPriority={false}
